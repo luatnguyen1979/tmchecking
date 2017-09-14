@@ -1,0 +1,15 @@
+[{
+"addressID": "1",
+"address1":"1302 S. Main st",
+"address2":"",
+"city":"FairField",
+"zipcode":"52556",
+"state":"IA",
+"country": "US"
+},
+{"addressID": "2",
+"address1":"1000 S. 4th st",
+"address2":"",
+"city":"FairField",
+"zipcode":"52556",
+"state":"IA"}]

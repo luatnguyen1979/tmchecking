@@ -1,0 +1,15 @@
+[{
+"addressID": "61a0a6d4-7824-4754-8697-198ae9d17243",
+"address1":"1302 S. Main st",
+"address2":"",
+"city":"FairField",
+"zipcode":"52556",
+"state":"IA",
+"country": "US"
+},
+{"addressID": "4456ef71-c932-4c16-be94-9bda7a0b33d5",
+"address1":"1000 S. 4th st",
+"address2":"",
+"city":"FairField",
+"zipcode":"52556",
+"state":"IA"}]
