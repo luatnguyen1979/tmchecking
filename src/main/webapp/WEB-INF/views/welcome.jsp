@@ -7,16 +7,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 <title>Welcome</title>
-</head>
+</head> 
 <body>
 	<section>
 		<div class="jumbotron">
 			<div class="container">
 				<h1> Welcome to Pets Mart </h1>
 				<p> Pets Mart </p>
-				<p> <security:authorize access="isAuthenticated()">
-  					Welcome  <security:authentication property="principal.username" />
-				</security:authorize>
+				<p> <img src="<spring:url value="/resource/images/petsmart.jpg"  htmlEscape="true" />" alt="Welcome page."  />
 
 			</div>	 
  
@@ -30,7 +28,7 @@
 				</security:authorize>
 		
 					 <a href="<spring:url value='/members' />" class="btn btn-default">
-						<span class="glyphicon-hand-left glyphicon"></span> Go to Community
+						<span class="glyphicon-hand-right glyphicon"></span> Go to Community
 					</a>
 				</div>	
 	 			<div class="pull-left"> <h3></h3> </div>
