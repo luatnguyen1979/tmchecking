@@ -131,4 +131,19 @@
 	</properties>
 
 	<packaging>war</packaging>
+
+	<!-- using for IntelliJ -->
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<path>/PetsMart</path>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
 </project>
