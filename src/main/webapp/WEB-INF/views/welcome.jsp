@@ -11,18 +11,16 @@
 <body>
 	<section>
 		<div class="jumbotron">
-			<div class="container">
-				<h1> Welcome to Pets Mart </h1>
-				<p> Pets Mart </p>
+			<div class="container" height="500" width="1440">
+				
+				<H1>Pets Mart Content</H1>
 				<p> <img src="<spring:url value="/resource/images/petsmart.jpg"  htmlEscape="true" />" alt="Welcome page."  />
 
 			</div>	 
  
-				  <div class="container">
+				  <%-- <div class="container">
  				  <security:authorize access="isAnonymous()">
- 				  <!-- WHICH ONE? depends on BASIC form OR CUSTOM -->
-<%--     					<a href="<spring:url value='/spring_security_login' />" class="btn btn-default pull-right"> Login</a>
-  --%>
+ 				 
     					<a href="<spring:url value='/login' />" class="btn btn-default pull-right"> Login</a>
 
 				</security:authorize>
@@ -30,10 +28,7 @@
 					 <a href="<spring:url value='/members' />" class="btn btn-default">
 						<span class="glyphicon-hand-right glyphicon"></span> Go to Community
 					</a>
-					<a href="<spring:url value='/products' />" class="btn btn-default">
-						<span class="glyphicon-hand-left glyphicon"></span> Go to Products
-					</a>
-				</div>	
+				</div>	 --%>
 	 			<div class="pull-left"> <h3></h3> </div>
 		</div>	
 	</section>
