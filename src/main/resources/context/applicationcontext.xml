@@ -51,7 +51,7 @@
 	<bean id="persistenceExceptionTranslationPostProcessor"
 		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 
-	<jpa:repositories base-package="edu.mum.petsmart" />
+	<jpa:repositories base-package="edu.mum" />
 
 
 </beans>

@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Item implements Serializable{
@@ -23,7 +24,11 @@ public class Item implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	private int number;
+
+	private Integer quantity;
+	
+
+	private Integer discount;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="product_Id")
@@ -39,12 +44,12 @@ public class Item implements Serializable{
 		this.id = id;
 	}
 
-	public int getNumber() {
-		return number;
+	public Integer getQuantiry() {
+		return quantity;
 	}
 
-	public void setNumber(int number) {
-		this.number = number;
+	public void setQuantiry(int quantity) {
+		this.quantity = quantity;
 	}
 
 	public Product getProduct() {
