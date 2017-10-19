@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import edu.mum.petsmart.domain.Cart;
-import edu.mum.petsmart.domain.CartItem;
+import edu.mum.petsmart.domain.Item;
 import edu.mum.petsmart.domain.Product;
-import edu.mum.petsmart.service.CartItemService;
+import edu.mum.petsmart.service.ItemService;
 import edu.mum.petsmart.service.CartService;
 import edu.mum.petsmart.service.ProductService;
 import edu.mum.petsmart.service.impl.ProductServiceImp;
@@ -29,7 +29,7 @@ public class PetController {
 	ProductService productService;
 	
 	@Autowired
-	CartItemService cartItemService;
+	ItemService itemService;
 	
 	@Autowired
 	CartService cartService;
@@ -49,15 +49,23 @@ public class PetController {
 		productService.save(product);
 		productService.save(product2);
 		
-		CartItem cartItem = new CartItem();
+		Item cartItem = new Item();
+		Item cartItem2 = new Item();
 		
 		cartItem.setProduct(product);
 		
-		cartItemService.save(cartItem);
+		cartItem2.setProduct(product);
+		
+		itemService.save(cartItem);
+		itemService.save(cartItem2);
 		
 		Cart cart = new Cart();
 		cart.addCartItem(cartItem);
 		
+		
+		cartService.save(cart);
+		
+		cart.addCartItem(cartItem2);
 		
 		cartService.save(cart);
 		

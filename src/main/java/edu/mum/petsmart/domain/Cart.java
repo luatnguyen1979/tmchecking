@@ -31,7 +31,7 @@ public class Cart implements Serializable{
 	
 	@OneToMany(fetch = FetchType.EAGER)
 	@JoinTable
-	private List<CartItem> cartItems;
+	private List<Item> cartItems;
 	
 	public Cart() {
 		cartItems = new ArrayList<>();
@@ -41,15 +41,15 @@ public class Cart implements Serializable{
 		return id;
 	}
 
-	public List<CartItem> getCartItems() {
+	public List<Item> getCartItems() {
 		return cartItems;
 	}
 
-	public void setCartItems(List<CartItem> cartItems) {
+	public void setCartItems(List<Item> cartItems) {
 		this.cartItems = cartItems;
 	}
 
-	public void addCartItem(CartItem cartItem) {
+	public void addCartItem(Item cartItem) {
 		cartItems.add(cartItem);
 	}
 	
