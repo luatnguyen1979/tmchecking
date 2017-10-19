@@ -30,6 +30,9 @@
 					 <a href="<spring:url value='/members' />" class="btn btn-default">
 						<span class="glyphicon-hand-right glyphicon"></span> Go to Community
 					</a>
+					<a href="<spring:url value='/products' />" class="btn btn-default">
+						<span class="glyphicon-hand-left glyphicon"></span> Go to Products
+					</a>
 				</div>	
 	 			<div class="pull-left"> <h3></h3> </div>
 		</div>	
