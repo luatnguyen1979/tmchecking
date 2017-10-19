@@ -13,30 +13,28 @@
 
 <title><tiles:insertAttribute name="title" /></title>
 
-<link href="http://getbootstrap.com/dist/css/bootstrap.css"
-	rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 
-<link href="http://getbootstrap.com/examples/jumbotron/jumbotron.css"
-	rel="stylesheet">
+
 <link href="resource/css/style.css"
 	rel="stylesheet">
 </head>
 
 <body>
-	<div class="container">
-		<div class="header">
+	
+		<div class="container header">
 			<tiles:insertAttribute name="header" />
 		</div>
 
-
-		<div class="row">
+		<div class="container">
 			<ul class="nav nav-pills pull-right">
 				<tiles:insertAttribute name="navigation" />
 			</ul>
-			<h3 class="text-muted">Web Store</h3>
+
 		</div>
 
-		<div class="row">
+		<div class="container">
 			<tiles:insertAttribute name="body" />
 		</div>
 
@@ -44,6 +42,6 @@
 			<tiles:insertAttribute name="footer" />
 		</div>
 
-	</div>
+
 </body>
 </html>
