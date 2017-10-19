@@ -15,7 +15,7 @@
 
 	<mvc:annotation-driven validator="validator" />
 
-	<context:component-scan base-package="edu.mum" />
+	<context:component-scan base-package="edu.mum.petsmart" />
 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
