@@ -27,14 +27,23 @@
 			</a>
 		</div>
 		<div class="dp-search col-lg-5">
-			<div class="dp-search-bar">
+			<!-- div class="dp-search-bar">
 				<form role="search" action="/search/" method="get"
 					name="simpleSearch">
 					<input class="dp-search-input" type="text" name="q"
 						placeholder="keywords"> <input type="submit" value=""
-						id="submit">
+						id="submit" class="glyphicon glyphicon-search">
 				</form>
-			</div>
+			</div> -->
+			<br/>
+			<form class="navbar-form">
+        <div class="form-group" style="display:inline;">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="keywords">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+          </div>
+        </div>
+      </form>
 		</div>
 		<div class="dp-promo1 col-lg-2">
 			<div class="html-slot-container">
@@ -44,15 +53,8 @@
 			</div>
 		</div>
 		<div id="mini-cart" class="col-lg-1">
-
-			<!-- div class="mini-cart-total">
-				<a class="mini-cart-link mini-cart-empty" data-lid="View Cart"
-					data-lpos="Header" data-link-type="o"
-					href="https://www.petsmart.com/cart/" title="View Cart"> <em
-					class="icon-cart"></em>
-				</a>
-			</div-->
 			 <div>
+			 <br/>
         <a href="#" class="btn btn-info btn-lg">
           <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart
         </a>
