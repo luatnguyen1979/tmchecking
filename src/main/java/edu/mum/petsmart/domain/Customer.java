@@ -4,13 +4,19 @@
 package edu.mum.petsmart.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
@@ -44,6 +50,15 @@ public class Customer extends User implements Serializable {
 	String cellPhone;
 
 	String notes;
+	
+	@OneToMany(fetch = FetchType.EAGER)
+	@JoinTable
+	private List<Order> orderList = new ArrayList<Order>();
+	
+	@Valid
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "cart_id", nullable = true)
+	private Cart cart;
 
 	/**
 	 * @return the id
