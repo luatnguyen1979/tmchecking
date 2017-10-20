@@ -20,13 +20,17 @@ public class ProductServiceImp implements ProductService{
 	@Override
 	public Product save(Product product) {
 		return productRepository.save(product);
-		
 	}
 	
 	@Override
 	public List<Product> getAll(){
 		return (List<Product>) productRepository.findAll();
 		
+	}
+
+	@Override
+	public List<Product> saveAll(List<Product> products) {
+		return (List<Product>) productRepository.save(products);
 	}
 
 	@Override
@@ -38,5 +42,6 @@ public class ProductServiceImp implements ProductService{
 	public Product findOne(Long id) {
 		return productRepository.findOne(id);
 	}
+
 
 }

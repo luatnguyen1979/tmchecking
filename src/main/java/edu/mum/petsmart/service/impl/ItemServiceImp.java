@@ -20,8 +20,16 @@ public class ItemServiceImp implements ItemService{
 		return itemRepository.save(cartItem);
 	}
 	
+	@Override
 	public Item get(long id) {
 		return itemRepository.findOne(id);
 	}
+
+	@Override
+	public void delete(long id) {
+		itemRepository.delete(id);
+	}
+
+
 
 }

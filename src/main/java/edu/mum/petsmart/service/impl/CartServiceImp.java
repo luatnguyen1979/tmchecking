@@ -19,14 +19,17 @@ public class CartServiceImp implements CartService{
 	@Override
 	public Cart updateCart(Cart cart) {
 		cartRepository.delete(cart.getId());
-		cartRepository.save(cart);
-		return cart;
-		
+		return cartRepository.save(cart);
 	}
 
 	@Override
 	public Cart save(Cart cart) {
 		return cartRepository.save(cart);
+	}
+
+	@Override
+	public Cart get(long id) {
+		return cartRepository.findOne(id);
 	}
 
 }

@@ -24,11 +24,13 @@ public class Product implements Serializable {
 	private long id;
 	
 	private String name;
+	private String tag;
 	private String details;
 	
 	private String image;
 	
 	private Double price;
+	private int quantity; 
 	
 	public Product() {}
 	
@@ -74,6 +76,14 @@ public class Product implements Serializable {
 	 */
 	public void setImage(String image) {
 		this.image = image;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}	
 	
 	

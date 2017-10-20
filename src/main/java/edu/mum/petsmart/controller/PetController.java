@@ -3,15 +3,23 @@
  */
 package edu.mum.petsmart.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import edu.mum.petsmart.domain.Address;
 import edu.mum.petsmart.domain.Cart;
+import edu.mum.petsmart.domain.Customer;
 import edu.mum.petsmart.domain.Item;
 import edu.mum.petsmart.domain.Product;
+import edu.mum.petsmart.domain.User;
 import edu.mum.petsmart.service.ItemService;
 import edu.mum.petsmart.service.CartService;
 import edu.mum.petsmart.service.ProductService;
@@ -22,8 +30,11 @@ import edu.mum.petsmart.service.impl.ProductServiceImp;
  *
  */
 
+
 @Controller
 public class PetController {
+
+	private long cartId = 1;
 	
 	@Autowired
 	ProductService productService;
@@ -36,39 +47,6 @@ public class PetController {
 
 	@RequestMapping(value= {"welcome", "/"}, method=RequestMethod.GET)
 	public String welcome() {
-		Product product = new Product();
-		product.setName("cat");
-		product.setDetails("fluffy");
-		product.setPrice(100.0);
-		
-		Product product2 = new Product();
-		product2.setName("dog");
-		product2.setDetails("loyal");
-		product2.setPrice(50.0);
-		
-		productService.save(product);
-		productService.save(product2);
-		
-		Item cartItem = new Item();
-		Item cartItem2 = new Item();
-		
-		cartItem.setProduct(product);
-		
-		cartItem2.setProduct(product);
-		
-		itemService.save(cartItem);
-		itemService.save(cartItem2);
-		
-		Cart cart = new Cart();
-		cart.addCartItem(cartItem);
-		
-		
-		cartService.save(cart);
-		
-		cart.addCartItem(cartItem2);
-		
-		cartService.save(cart);
-		
 		return "products";
 	}
 	
@@ -78,5 +56,51 @@ public class PetController {
 		
 		return "products";
 	}
+	
+	@RequestMapping(value = "/addToCart/{productId}/{quantity}")
+	public String addToCart(@PathVariable long productId, @PathVariable int quantity) {
+		Product product = productService.findOne(productId);
+		Item newItem = new Item();
+		
+		newItem.setProduct(product);
+		newItem.setQuantiry(quantity);
+		
+		itemService.save(newItem);
+		
+		Cart tempCart = cartService.get(cartId);
+		
+		tempCart.addCartItem(newItem);
+		
+		cartService.save(tempCart);
+		
+		return "redirect:/cart";
+	}
+	
+	@RequestMapping(value = "/cart", method=RequestMethod.GET)
+	public String cart(Model model) throws Exception {
+		
+		
+		List<Item> cartItems;
+		try{
+			cartItems = cartService.get(cartId).getCartItems();
+		}catch(RuntimeException rte) {
+			throw new Exception("Failed to retrive Cart" + rte);
+		}
+		
+		model.addAttribute("items", cartItems);
+		
+		return "cart";
+	}
 
+	@RequestMapping(value = "/removeItem/{itemId}")
+	public String removeFromCart(@PathVariable long itemId) {
+		Cart testCart = cartService.get(cartId);
+		for(int i = 0; i < testCart.getCartItems().size(); i++) {
+			if(testCart.getCartItems().get(i).getId() == itemId) {
+				testCart.getCartItems().remove(i);
+			}
+		}
+		cartService.save(testCart);
+		return "redirect:/cart";
+	}
 }
