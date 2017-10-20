@@ -4,8 +4,8 @@
 package edu.mum.petsmart.domain;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,6 +19,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  * @author Van Gia Luat Nguyen
  *
  */
+@Entity
 public class Address implements Serializable {
 
 	/**

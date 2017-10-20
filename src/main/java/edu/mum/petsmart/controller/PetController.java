@@ -69,7 +69,7 @@ public class PetController {
 		
 		cartService.save(cart);
 		
-		return "welcome";
+		return "products";
 	}
 	
 	@RequestMapping(value = "/products", method=RequestMethod.GET)

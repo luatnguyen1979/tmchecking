@@ -66,12 +66,14 @@
 		</bean>
 	</mvc:interceptors>
 
+<!-- 
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />
 			<bean class="edu.mum.petsmart.interceptor.VolunteerInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
+-->
 
 	<bean id="tilesConfigurer"
 		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">

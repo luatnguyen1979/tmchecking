@@ -1,3 +1,7 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
+
     <script>
         $(document).ready(function(){
             var quantitiy=0;
@@ -33,59 +37,29 @@
 
 <!-- Page Content -->
 <div class="container">
-
 	<h3 class="my-4">Welcome to our PetsMart</h3>
 
 	<!-- Portfolio Section -->
 	<div class="row">
-		<div class="col-lg-4 col-sm-6 portfolio-item">
-			<div class="card h-100">
-				<a href="#"><img class="card-img-top"
-					src="http://boulderinn.com/bldrinn/wp-content/uploads/2010/10/pets-712-X-495.jpg"
-					alt="" width="700" height="200"></a>
-				<div class="card-body">
-					<h4 class="card-title">
-						<a href="#">Dog</a>
-					</h4>
-					<p class="card-text">The Best Western Plus Boulder Inn is one
-						of only a few pet-friendly accommodations in the area, and the
-						only hotel in Boulder, CO that does not require a non-refundable
-						fee</p>
-				</div>
-                <div class="btn-ground text-center btn-lg">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#product_view"><i class="fa fa-shopping-cart"></i>View Detail</button>
-                </div>
-			</div>
-		</div>
-		<div class="col-lg-4 col-sm-6 portfolio-item">
-			<div class="card h-100">
-				<a href="#"><img class="card-img-top"
-					src="http://placehold.it/700x400" alt=""></a>
-				<div class="card-body">
-					<h4 class="card-title">
-						<a href="#">Project Two</a>
-					</h4>
-					<p class="card-text">Lorem ipsum dolor sit amet, consectetur
-						adipiscing elit. Nam viverra euismod odio, gravida pellentesque
-						urna varius vitae.</p>
+		<c:forEach var="product" items="${products}">
+			<div class="col-lg-4 col-sm-6 portfolio-item">
+				<div class="card h-100">
+					<a href="#"><img class="card-img-top"
+						src="http://boulderinn.com/bldrinn/wp-content/uploads/2010/10/pets-712-X-495.jpg"
+						alt="" width="700" height="200"></a>
+					<div class="card-body">
+						<h4 class="card-title">
+							<a href="#">${product.name}</a>
+						</h4>
+						<p class="card-text">${product.details}</p>
+					</div>
+					<div>${product.name}</div>
+	                <div class="btn-ground text-center btn-lg">
+	                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#product_view"><i class="fa fa-shopping-cart"></i>View Detail</button>
+	                </div>
 				</div>
 			</div>
-		</div>
-		<div class="col-lg-4 col-sm-6 portfolio-item">
-			<div class="card h-100">
-				<a href="#"><img class="card-img-top"
-					src="http://placehold.it/700x400" alt=""></a>
-				<div class="card-body">
-					<h4 class="card-title">
-						<a href="#">Project Three</a>
-					</h4>
-					<p class="card-text">Lorem ipsum dolor sit amet, consectetur
-						adipisicing elit. Quos quisquam, error quod sed cumque, odio
-						distinctio velit nostrum temporibus necessitatibus et facere atque
-						iure perspiciatis mollitia recusandae vero vel quam!</p>
-				</div>
-			</div>
-		</div>
+		</c:forEach>
 	</div>
 	<!-- /.row -->
 </div>
@@ -146,3 +120,6 @@
 		</div>
 	</div>
 </div>
+
+
+

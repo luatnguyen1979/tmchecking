@@ -29,4 +29,14 @@ public class ProductServiceImp implements ProductService{
 		
 	}
 
+	@Override
+	public void delete(Long id) {
+		productRepository.delete(id);
+	}
+
+	@Override
+	public Product findOne(Long id) {
+		return productRepository.findOne(id);
+	}
+
 }

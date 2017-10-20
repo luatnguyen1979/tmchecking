@@ -3,28 +3,20 @@
  */
 package edu.mum.petsmart.domain;
 
-import java.io.Serializable;
-
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.validation.Valid;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-/**
- * @author Van Gia Luat Nguyen
- *
- */
-@Entity(name = "USER")
-public class User implements Serializable {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -5989608861910737977L;
+@Entity
+public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -38,75 +30,40 @@ public class User implements Serializable {
 	@Size(min = 2, max = 40)
 	private String lastName;
 	
-	@NotEmpty
-	@Size(min = 8, max = 20)
-	private String userId;
+	@Valid
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="address_Id")
+	private Address address;
 
-	@NotEmpty
-	@Size(min = 8, max = 20)
-	private String password;
-
-	@NotNull
-	private Boolean status;
-
-	/**
-	 * @return the id
-	 */
 	public long getId() {
 		return id;
 	}
 
-	/**
-	 * @param id
-	 *            the id to set
-	 */
 	public void setId(long id) {
 		this.id = id;
 	}
 
-	/**
-	 * @return the username
-	 */
-	public String getUserId() {
-		return userId;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	/**
-	 * @param username
-	 *            the username to set
-	 */
-	public void setUsername(String userId) {
-		this.userId = userId;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	/**
-	 * @return the password
-	 */
-	public String getPassword() {
-		return password;
+	public String getLastName() {
+		return lastName;
 	}
 
-	/**
-	 * @param password
-	 *            the password to set
-	 */
-	public void setPassword(String password) {
-		this.password = password;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
-	/**
-	 * @return the status
-	 */
-	public Boolean getStatus() {
-		return status;
+	public Address getAddress() {
+		return address;
 	}
 
-	/**
-	 * @param status
-	 *            the status to set
-	 */
-	public void setStatus(Boolean status) {
-		this.status = status;
+	public void setAddress(Address address) {
+		this.address = address;
 	}
-
 }

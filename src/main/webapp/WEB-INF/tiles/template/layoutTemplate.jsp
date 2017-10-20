@@ -9,39 +9,20 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<title><tiles:insertAttribute name="title" /></title>
+<link href="resource/css/bootstrap.min.css" rel="stylesheet" >
+<link href="resource/css/petsmart.css" rel="stylesheet" >
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-
-
-<link href="resource/css/main.css"
-	rel="stylesheet">
+<script src="resource/js/jquery.min.js"></script>
+<script src="resource/js/popper.min.js"></script>
+<script src="resource/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-	
-		<div class="container header">
-			<tiles:insertAttribute name="header" />
-		</div>
-
-		<div class="container">
-			<ul class="nav nav-pills pull-right">
-				<tiles:insertAttribute name="navigation" />
-			</ul>
-
-		</div>
-
-		<div class="container">
-			<tiles:insertAttribute name="body" />
-		</div>
-
-		<div class="footer">
-			<tiles:insertAttribute name="footer" />
-		</div>
-
-
+		<tiles:insertAttribute name="navigation" />
+		<tiles:insertAttribute name="header" />
+		<tiles:insertAttribute name="body" />
+		<tiles:insertAttribute name="footer" />
 </body>
 </html>
