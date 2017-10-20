@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,6 +27,7 @@ import org.springframework.format.annotation.DateTimeFormat;
  * @author Van Gia Luat Nguyen
  *
  */
+@Entity
 public class Order implements Serializable {
 
 	/**
@@ -48,7 +50,7 @@ public class Order implements Serializable {
 	private Address billingAddress;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "address_Id")
+	@JoinColumn(name = "address_Id", nullable=true,  insertable=false, updatable=false)
 	private Address shipingAddress;
 
 	@Email

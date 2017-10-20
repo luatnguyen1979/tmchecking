@@ -6,6 +6,7 @@ package edu.mum.petsmart.domain;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,6 +23,7 @@ import edu.mum.petsmart.util.PaymentMethod;
  * @author Van Gia Luat Nguyen
  *
  */
+@Entity
 public class Payment implements Serializable {
 
 	/**
