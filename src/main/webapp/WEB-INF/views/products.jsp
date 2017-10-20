@@ -45,15 +45,34 @@
 		            $("#product_view #description").text(product.details);
 		            $("#product_view #price").text(product.price);
 		            $("#product_view #image").attr("src","resource/images/products/" + product.image);
+		            $("#product_view").data("product", product);
 		            $("#product_view").modal();
 				},
 				error: function( errorObject ){	
 					console.info("error");
 				}
 			
-			});			
-			
+			});	
         }
+
+        function addToCart() {
+            var product = $("#product_view").data("product");
+			var qty = $('#quantity').val();
+				
+			$.ajax({
+				type : 'POST',
+				url : contextRoot + '/addToCart/'+product.id + '/' + qty,
+				contentType : 'application/json', 
+				success: function( number ) {
+					console.info("success");
+					$("#cartItemNum").text(number);
+					$("#product_view").modal('hide');
+				},
+				error: function( errorObject ){	
+					console.info("error");
+				}
+			});				
+       	}
     </script>
 
 <!-- Page Content -->
@@ -127,9 +146,8 @@
 						<!-- end col -->
 						<div class="space-ten"></div>
 						<div class="btn-ground">
-							<button type="button" class="btn btn-primary">
-								<span class="glyphicon glyphicon-shopping-cart"></span> Add To
-								Cart
+							<button type="button" class="btn btn-primary" onClick="addToCart()">
+								<span class="glyphicon glyphicon-shopping-cart"></span> Add To Cart
 							</button>
 						</div>
 					</div>

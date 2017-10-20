@@ -52,7 +52,8 @@ public class PetController {
 		return productService.findOne(productId);
 	}
 	
-	@RequestMapping(value = "/addToCart/{productId}/{quantity}")
+	@RequestMapping(value = "/addToCart/{productId}/{quantity}", method=RequestMethod.POST)
+	@ResponseBody
 	public String addToCart(@PathVariable long productId, @PathVariable int quantity) {
 		Product product = productService.findOne(productId);
 		Item newItem = new Item();
@@ -67,8 +68,7 @@ public class PetController {
 		tempCart.addCartItem(newItem);
 		
 		cartService.save(tempCart);
-		
-		return "redirect:/cart";
+		return String.valueOf(tempCart.getCartItems().size());
 	}
 	
 	@RequestMapping(value = "/cart", method=RequestMethod.GET)

@@ -25,7 +25,7 @@
               <a class="nav-link" href="help">Help & Support</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="help">Contact USt</a>
+              <a class="nav-link" href="help">Contact US</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="signin">Sign In</a>
@@ -38,6 +38,7 @@
 				    <span class="cart-line-2" style="background-color: #2CC3B5"></span>
 				    <span class="cart-line-3" style="background-color: #2CC3B5"></span>
 				    <span class="cart-wheel" style="background-color: #2CC3B5"></span>
+				    <span class="cart-number" id="cartItemNum"></span>
 				  </span>
 				</a>
             </li>
