@@ -5,31 +5,20 @@ package edu.mum.petsmart.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import edu.mum.petsmart.domain.Address;
 import edu.mum.petsmart.domain.Cart;
-import edu.mum.petsmart.domain.Customer;
 import edu.mum.petsmart.domain.Item;
 import edu.mum.petsmart.domain.Product;
-import edu.mum.petsmart.domain.User;
-import edu.mum.petsmart.service.ItemService;
 import edu.mum.petsmart.service.CartService;
+import edu.mum.petsmart.service.ItemService;
 import edu.mum.petsmart.service.ProductService;
-import edu.mum.petsmart.service.impl.ProductServiceImp;
-
-/**
- * @author Van Gia Luat Nguyen
- *
- */
-
 
 @Controller
 public class PetController {
@@ -47,14 +36,20 @@ public class PetController {
 
 	@RequestMapping(value= {"welcome", "/"}, method=RequestMethod.GET)
 	public String welcome() {
-		return "products";
+		return "forward:products";
 	}
 	
 	@RequestMapping(value = "/products", method=RequestMethod.GET)
 	public String products(Model model) {
 		model.addAttribute("products", productService.getAll());
-		
 		return "products";
+	}
+	
+	@RequestMapping(value = "/product/{productId}", method=RequestMethod.GET)
+	@ResponseBody
+	public Product product(@PathVariable("productId") Long productId, Model model) {
+		System.out.println(productId + "--------------");
+		return productService.findOne(productId);
 	}
 	
 	@RequestMapping(value = "/addToCart/{productId}/{quantity}")

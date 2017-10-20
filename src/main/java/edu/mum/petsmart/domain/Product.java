@@ -2,21 +2,15 @@ package edu.mum.petsmart.domain;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
 
 
 @Entity (name="product")
 public class Product implements Serializable {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 3375286077364928608L;
 
 	@Id
@@ -84,7 +78,22 @@ public class Product implements Serializable {
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
-	}	
-	
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getTag() {
+		return tag;
+	}
+
+	public void setTag(String tag) {
+		this.tag = tag;
+	}
 	
 }

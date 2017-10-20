@@ -19,24 +19,25 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-/**
- * @author Van Gia Luat Nguyen
- *
- */
-public class Customer extends User implements Serializable {
-
-	/**
-	 * 
-	 */
+public class Customer  implements Serializable {
 	private static final long serialVersionUID = -2930448216032136579L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-
+	
+	@NotEmpty
+	@Size(min = 2, max = 40)
+	private String firstName;
+	
+	@NotEmpty
+	@Size(min = 2, max = 40)
+	private String lastName;
+	
 	@NotNull
 	@Valid
 	private Payment payment;
@@ -133,7 +134,37 @@ public class Customer extends User implements Serializable {
 	public void setAddress(Address address) {
 		this.address = address;
 	}
-	
-	
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public List<Order> getOrderList() {
+		return orderList;
+	}
+
+	public void setOrderList(List<Order> orderList) {
+		this.orderList = orderList;
+	}
+
+	public Cart getCart() {
+		return cart;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
 
 }
