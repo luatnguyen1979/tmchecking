@@ -9,14 +9,14 @@
 <title>Welcome</title>
 </head> 
 <body>
-	<section>
+
 		<div class="jumbotron">
-			<div class="container" height="500" width="1440">
+			
 				
 				<H1>Pets Mart Content</H1>
 				<p> <img src="<spring:url value="/resource/images/petsmart.jpg"  htmlEscape="true" />" alt="Welcome page."  />
 
-			</div>	 
+	 
  
 				  <%-- <div class="container">
  				  <security:authorize access="isAnonymous()">
@@ -29,9 +29,9 @@
 						<span class="glyphicon-hand-right glyphicon"></span> Go to Community
 					</a>
 				</div>	 --%>
-	 			<div class="pull-left"> <h3></h3> </div>
+	 			
 		</div>	
-	</section>
+
 	
 </body>
 </html>

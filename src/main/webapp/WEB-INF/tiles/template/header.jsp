@@ -5,7 +5,7 @@
 
 
 
-<link href="resource/css/style.css" rel="stylesheet">
+<link href="resource/css/main.css" rel="stylesheet">
 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
@@ -64,5 +64,5 @@
 			</div>
 		</div>
 	</div>
-</div>
+
 

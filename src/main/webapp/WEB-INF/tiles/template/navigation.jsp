@@ -12,7 +12,7 @@
 <a href="<spring:url value="/signin/"/>">Sign In</a>&nbsp;&nbsp;&nbsp;
 </div-->
 
-<ul class="nav nav-pills">
+<ul class="nav nav-pills navigationheader">
   <li>
     <a href="index.html">
       <span class="glyphicon glyphicon-home"></span> Home
