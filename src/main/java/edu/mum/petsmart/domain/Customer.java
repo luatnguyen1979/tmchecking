@@ -25,7 +25,7 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-public class Customer  implements Serializable {
+public class Customer implements Serializable {
 	private static final long serialVersionUID = -2930448216032136579L;
 
 	@Id
@@ -44,7 +44,7 @@ public class Customer  implements Serializable {
 	@Valid
 	private Payment payment;
 
-	@Valid
+@Valid
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="address_Id")
 	private Address address;

@@ -32,10 +32,6 @@ public class Login implements Serializable {
 
 	@NotNull
 	private String role;
-	
-	@ManyToOne
-	@JoinColumn(name="customer_id")
-	private Customer customer;
 
 	public long getId() {
 		return id;
@@ -69,12 +65,12 @@ public class Login implements Serializable {
 		this.role = role;
 	}
 
-	public Customer getCustomer() {
+/*	public Customer getCustomer() {
 		return customer;
 	}
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
-	}
+	}*/
 	
 }

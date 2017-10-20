@@ -13,6 +13,7 @@ import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+
 import org.hibernate.validator.constraints.NotEmpty;
 
 /**
@@ -52,5 +53,101 @@ public class Address implements Serializable {
 	@NotEmpty
 	@Size(min = 3, max = 40)
 	private String country;
+	
+	public Address() {
+		super();
+	}
 
+	/**
+	 * @return the street1
+	 */
+	public String getStreet1() {
+		return street1;
+	}
+
+	/**
+	 * @param street1 the street1 to set
+	 */
+	public void setStreet1(String street1) {
+		this.street1 = street1;
+	}
+
+	/**
+	 * @return the street2
+	 */
+	public String getStreet2() {
+		return street2;
+	}
+
+	/**
+	 * @param street2 the street2 to set
+	 */
+	public void setStreet2(String street2) {
+		this.street2 = street2;
+	}
+
+	/**
+	 * @return the city
+	 */
+	public String getCity() {
+		return city;
+	}
+
+	/**
+	 * @param city the city to set
+	 */
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	/**
+	 * @return the state
+	 */
+	public String getState() {
+		return state;
+	}
+
+	/**
+	 * @param state the state to set
+	 */
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	/**
+	 * @return the zipCode
+	 */
+	public Integer getZipCode() {
+		return zipCode;
+	}
+
+	/**
+	 * @param zipCode the zipCode to set
+	 */
+	public void setZipCode(Integer zipCode) {
+		this.zipCode = zipCode;
+	}
+
+	/**
+	 * @return the country
+	 */
+	public String getCountry() {
+		return country;
+	}
+
+	/**
+	 * @param country the country to set
+	 */
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	/**
+	 * @return the id
+	 */
+	public long getId() {
+		return id;
+	}
+
+	
 }

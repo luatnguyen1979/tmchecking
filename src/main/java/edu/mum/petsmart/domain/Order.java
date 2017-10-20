@@ -27,7 +27,7 @@ import org.springframework.format.annotation.DateTimeFormat;
  * @author Van Gia Luat Nguyen
  *
  */
-@Entity
+@Entity(name="CustOrder")
 public class Order implements Serializable {
 
 	/**
@@ -46,17 +46,16 @@ public class Order implements Serializable {
 	private double totalPrice;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "address_Id")
+	@JoinColumn(name = "shipping_address_Id", nullable=true,  insertable=false, updatable=false)
 	private Address billingAddress;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "address_Id", nullable=true,  insertable=false, updatable=false)
+	@JoinColumn(name = "billing_address_Id", nullable=true,  insertable=false, updatable=false)
 	private Address shipingAddress;
 
 	@Email
 	String contactEmail;
 
-	@NotEmpty
 	String contactCellPhone;
 
 	String notes;
