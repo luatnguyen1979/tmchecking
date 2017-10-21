@@ -33,8 +33,9 @@
             });
         });
         
-        function getProduct(id) {
+        function getProduct(event, id) {
 			console.info(id);
+			event.preventDefault();
 			$.ajax({
 				type : 'GET',
 				url : contextRoot + '/product/'+id,
@@ -46,7 +47,7 @@
 		            $("#product_view #price").text(product.price);
 		            $("#product_view #image").attr("src","resource/images/products/" + product.image);
 		            $("#product_view").data("product", product);
-		            $("#product_view").modal();
+		            $("#product_view").modal("toggle");
 				},
 				error: function( errorObject ){	
 					console.info("error");
@@ -84,18 +85,15 @@
 		<c:forEach var="product" items="${products}">
 			<div class="col-lg-4 col-sm-6 portfolio-item">
 				<div class="card h-100">
-					<a href="#"><img class="card-img-top"
-						src="resource/images/products/${product.image}"
-						alt="" width="700" height="200"></a>
+					<a href="#" onclick="getProduct(event, ${product.id})">
+						<img class="card-img-top" src="resource/images/products/${product.image}"
+							alt="" width="600" height="200"></a>
 					<div class="card-body">
 						<h4 class="card-title">
-							<a href="#">${product.name}</a>
+							<a href="#" onclick="getProduct(event, ${product.id})">${product.name}</a>
 						</h4>
 						<p class="card-text">${product.details}</p>
 					</div>
-	                <div class="btn-ground text-center btn-lg">
-	                    <button type="button" class="btn btn-primary" data-toggle="modal" onclick="getProduct(${product.id})"><i class="fa fa-shopping-cart"></i>View Detail</button>
-	                </div>
 				</div>
 			</div>
 		</c:forEach>
