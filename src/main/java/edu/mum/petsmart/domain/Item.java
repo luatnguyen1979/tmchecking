@@ -28,7 +28,6 @@ public class Item implements Serializable{
 
 	private Integer quantity;
 	
-
 	private Integer discount;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -59,6 +58,14 @@ public class Item implements Serializable{
 
 	public void setProduct(Product product) {
 		this.product = product;
+	}
+
+	public Integer getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(Integer discount) {
+		this.discount = discount;
 	}
 	
 	

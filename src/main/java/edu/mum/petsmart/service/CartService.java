@@ -14,6 +14,4 @@ public interface CartService {
 	public Cart updateCart(Cart cart);
 	public Cart save(Cart cart);
 	public Cart get(long id);
-
-	
 }
