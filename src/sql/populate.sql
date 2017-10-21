@@ -9,7 +9,7 @@
 --INSERT INTO  `MEMBER` (firstname, lastname,age,title,membernumber, member_id) VALUES ('Curious','George',12,'Boy Monkey', 8754,'admin');
 --INSERT INTO `MEMBER` (firstname, lastname,age,title,membernumber,member_id) VALUES ('Allen','Rench',123,'Torque Master', 8733,'guest');
 
---INSERT INTO cart () VALUES ();
+
  
 INSERT INTO product (details, tag, title, price, quantity, image) VALUES ('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'Loyal', 'Dog1', 72, 5, '/resource/images/products/1001.jpg');
 INSERT INTO product (details, tag, title, price, quantity,image) VALUES ('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'Barks', 'Dog2', 86, 4, '/resource/images/products/1002.jpg');	

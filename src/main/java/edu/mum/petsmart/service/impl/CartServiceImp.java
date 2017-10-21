@@ -32,4 +32,9 @@ public class CartServiceImp implements CartService{
 		return cartRepository.findOne(id);
 	}
 
+	@Override
+	public boolean contains(Cart cart) {
+		return cartRepository.findOne(cart.getId()) != null;
+	}
+
 }
