@@ -8,5 +8,5 @@ package edu.mum.petsmart.util;
  *
  */
 public enum PaymentMethod {
-	VISA, MASTERCARD, PAYPAL, APPLEPAY, SAMSUNGPAY
+	VISA, MASTERCARD, DISCOVERY /* PAYPAL, APPLEPAY, SAMSUNGPAY*/
 }

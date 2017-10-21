@@ -17,6 +17,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
@@ -27,8 +29,8 @@ import org.springframework.format.annotation.DateTimeFormat;
  * @author Van Gia Luat Nguyen
  *
  */
-@Entity(name="CustOrder")
-public class Order implements Serializable {
+@Entity
+public class CustomerOrder implements Serializable {
 
 	/**
 	 * 
@@ -46,11 +48,11 @@ public class Order implements Serializable {
 	private double totalPrice;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "shipping_address_Id", nullable=true,  insertable=false, updatable=false)
+	@JoinColumn(name = "billingaddress_id", nullable=true,  insertable=false, updatable=false)
 	private Address billingAddress;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "billing_address_Id", nullable=true,  insertable=false, updatable=false)
+	@JoinColumn(name = "shippingaddress_id", nullable=true,  insertable=false, updatable=false)
 	private Address shipingAddress;
 
 	@Email
@@ -59,6 +61,11 @@ public class Order implements Serializable {
 	String contactCellPhone;
 
 	String notes;
+	
+	@Valid
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="payment_id", nullable = true,  insertable=false, updatable=false)
+	private Payment payment;
 
 	@OneToMany(fetch = FetchType.EAGER)
 	@JoinTable

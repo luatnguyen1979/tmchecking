@@ -35,8 +35,8 @@ public class Payment implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-	@NotNull
-	PaymentMethod paymentMethod;
+	@NotEmpty
+	String paymentMethod;
 
 	@NotEmpty
 	@Size(min = 3, max = 40)
@@ -50,9 +50,9 @@ public class Payment implements Serializable {
 	@Size(min = 3, max = 3)
 	String ccv;
 
-	@NotNull
-	 @DateTimeFormat(pattern="MM/dd/yyyy")
-	LocalDate expirationDate;
+	@NotEmpty
+	@Size(min=7, max=7)
+	String expiration;
 
 	/**
 	 * @return the id
@@ -72,7 +72,7 @@ public class Payment implements Serializable {
 	/**
 	 * @return the paymentMethod
 	 */
-	public PaymentMethod getPaymentMethod() {
+	public String getPaymentMethod() {
 		return paymentMethod;
 	}
 
@@ -80,7 +80,7 @@ public class Payment implements Serializable {
 	 * @param paymentMethod
 	 *            the paymentMethod to set
 	 */
-	public void setPaymentMethod(PaymentMethod paymentMethod) {
+	public void setPaymentMethod(String paymentMethod) {
 		this.paymentMethod = paymentMethod;
 	}
 
@@ -132,16 +132,16 @@ public class Payment implements Serializable {
 	/**
 	 * @return the expirationDate
 	 */
-	public LocalDate getExpirationDate() {
-		return expirationDate;
+	public String getExpiration() {
+		return expiration;
 	}
 
 	/**
 	 * @param expirationDate
 	 *            the expirationDate to set
 	 */
-	public void setExpirationDate(LocalDate expirationDate) {
-		this.expirationDate = expirationDate;
+	public void setExpiration(String expiration) {
+		this.expiration = expiration;
 	}
 
 }

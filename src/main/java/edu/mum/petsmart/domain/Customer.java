@@ -40,13 +40,15 @@ public class Customer implements Serializable {
 	@Size(min = 2, max = 40)
 	private String lastName;
 	
-	@NotNull
+
 	@Valid
+	 @ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="payment_id", nullable = true, insertable=false, updatable=false)
 	private Payment payment;
 
-@Valid
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="address_Id")
+	@Valid
+	 @ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="address_id", nullable = true, insertable=false, updatable=false)
 	private Address address;
 
 	@NotEmpty
@@ -56,7 +58,7 @@ public class Customer implements Serializable {
 	
 	@OneToMany(fetch = FetchType.EAGER)
 	@JoinTable
-	private List<Order> orderList = new ArrayList<Order>();
+	private List<CustomerOrder> orderList = new ArrayList<CustomerOrder>();
 	
 	@Valid
 	@OneToOne(cascade = CascadeType.ALL)
@@ -153,11 +155,11 @@ public class Customer implements Serializable {
 		this.lastName = lastName;
 	}
 
-	public List<Order> getOrderList() {
+	public List<CustomerOrder> getOrderList() {
 		return orderList;
 	}
 
-	public void setOrderList(List<Order> orderList) {
+	public void setOrderList(List<CustomerOrder> orderList) {
 		this.orderList = orderList;
 	}
 
