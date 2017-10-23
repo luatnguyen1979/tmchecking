@@ -27,7 +27,7 @@ public class Cart implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private Long id;
 	
 	@OneToMany(fetch = FetchType.EAGER)
 	@JoinTable
@@ -37,8 +37,11 @@ public class Cart implements Serializable{
 		cartItems = new ArrayList<>();
 	}
 	
-	public long getId() {
+	public Long getId() {
 		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public List<Item> getCartItems() {

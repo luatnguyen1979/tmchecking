@@ -27,7 +27,7 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
 	 * @see edu.mum.petsmart.service.CustomerOrderService#getCustomerOrder(java.lang.Long)
 	 */
 	@Override
-	public CustomerOrder getCustomerOrder(Long custId) {
+	public CustomerOrder getCustomerOrder(long custId) {
 		// TODO Auto-generated method stub
 		return custOrderRep.findOne(custId);
 	}

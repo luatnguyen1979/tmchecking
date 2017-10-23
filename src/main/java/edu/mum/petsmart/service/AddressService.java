@@ -11,7 +11,7 @@ import edu.mum.petsmart.domain.Address;
  * @product Web Application Architecture
  */
 public interface AddressService {
-	public Address getAddress(Long addrId);
+	public Address getAddress(long addrId);
 	public Address save(Address addr);
 	public Address update(Address addr);
 

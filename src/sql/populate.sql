@@ -9,7 +9,9 @@
 --INSERT INTO  `MEMBER` (firstname, lastname,age,title,membernumber, member_id) VALUES ('Curious','George',12,'Boy Monkey', 8754,'admin');
 --INSERT INTO `MEMBER` (firstname, lastname,age,title,membernumber,member_id) VALUES ('Allen','Rench',123,'Torque Master', 8733,'guest');
 
-
+Insert into cart () value();
+Insert into cart () value();
+Insert into cart () value();
  
 INSERT INTO product (details, tag, title, price, quantity, image) VALUES ('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'Loyal', 'Dog1', 72, 5, '1001.jpg');
 INSERT INTO product (details, tag, title, price, quantity,image) VALUES ('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'Barks', 'Dog2', 86, 4, '1002.jpg');	
@@ -36,9 +38,9 @@ INSERT INTO address (fullName, addressLine1, addressLine2, city, state , zipCode
 
 
 
-INSERT INTO Customer (firstName, lastName, cellPhone, notes, address_id, cart_id, payment_id) VALUES('Luat', 'Nguyen', '(848) 466-9338', '', 1, null, 1);
-INSERT INTO customer (firstName, lastName, cellPhone, notes, address_id, cart_id, payment_id) VALUES('Tri', 'Tran', '(848) 466-4567', '', 2, null, 2);
-INSERT INTO customer (firstName, lastName, cellPhone, notes, address_id, cart_id, payment_id) VALUES('Duc', 'Vo', '(848) 466-5276', '', 3, null, 3);
+INSERT INTO Customer (firstName, lastName, cellPhone, notes, address_id, cart_id, payment_id) VALUES('Luat', 'Nguyen', '(848) 466-9338', '', 1, 1, 1);
+INSERT INTO Customer (firstName, lastName, cellPhone, notes, address_id, cart_id, payment_id) VALUES('Tri', 'Tran', '(848) 466-4567', '', 2, 1, 2);
+INSERT INTO Customer (firstName, lastName, cellPhone, notes, address_id, cart_id, payment_id) VALUES('Duc', 'Vo', '(848) 466-5276', '', 3, 1, 3);
 
 INSERT INTO customerorder (contactCellPhone, contactEmail, notes, orderDate, totalPrice, billingaddress_id, payment_id, shippingaddress_id) VALUES('(848) 466-9338', 'vglnguyen@mum.edu', null, '11/02/2017', 90, 1, 1, 2);
 INSERT INTO customerorder (contactCellPhone, contactEmail, notes, orderDate, totalPrice, billingaddress_id, payment_id, shippingaddress_id) VALUES('(848) 466-1234', 'luatguyen@mum.edu', null, '11/05/2017', 200, 1, 2, 1);

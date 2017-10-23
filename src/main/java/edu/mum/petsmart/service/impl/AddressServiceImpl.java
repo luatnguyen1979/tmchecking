@@ -31,7 +31,7 @@ public class AddressServiceImpl implements AddressService {
 	 * @see edu.mum.petsmart.service.AddressService#getAddress(java.lang.Long)
 	 */
 	@Override
-	public Address getAddress(Long addrId) {
+	public Address getAddress(long addrId) {
 		// TODO Auto-generated method stub
 		return addrRep.findOne(addrId);
 	}

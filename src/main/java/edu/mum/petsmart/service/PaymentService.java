@@ -13,7 +13,7 @@ import edu.mum.petsmart.domain.Payment;
  * @product Web Application Architecture
  */
 public interface PaymentService {
-	public Payment getPayment(Long paymentId);
+	public Payment getPayment(long paymentId);
 	public Payment save(Payment payment);
 	public Payment update(Payment payment);
 }

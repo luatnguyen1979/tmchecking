@@ -17,7 +17,7 @@ import edu.mum.petsmart.domain.CustomerOrder;
 
 
 public interface CustomerOrderService {
-	public CustomerOrder getCustomerOrder(Long custId);
+	public CustomerOrder getCustomerOrder(long custId);
 	public CustomerOrder save(CustomerOrder custOrder);
 	public CustomerOrder update(CustomerOrder custOrder);
 

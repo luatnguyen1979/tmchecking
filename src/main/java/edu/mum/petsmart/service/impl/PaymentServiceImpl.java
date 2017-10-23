@@ -27,7 +27,7 @@ public class PaymentServiceImpl implements PaymentService {
 	 * @see edu.mum.petsmart.service.Payment#getPayment(java.lang.Long)
 	 */
 	@Override
-	public Payment getPayment(Long paymentId) {
+	public Payment getPayment(long paymentId) {
 		// TODO Auto-generated method stub
 		return paymentRep.findOne(paymentId);
 	}

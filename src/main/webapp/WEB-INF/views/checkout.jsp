@@ -14,7 +14,7 @@
 				<div class="row">
 
 					<div class="col-xl-11 center-block text-left">
-						<h5>1. Shipping address ${custOrder.totalPrice} Address: ${custOrder.shipingAddress.addressLine1}</h5>
+						<h5>1. Shipping address - ${customer.address.fullName} - ${customer.address.addressLine1} ${customer.address.addressLine2}, ${customer.address.city}, ${customer.address.state} ${customer.address.zipCode}, US </h5>
 					</div>
 
 					<div class="col-xl-1">
@@ -48,7 +48,7 @@
 
 				<div class="row">
 					<div class="col-xl-11 center-block text-left">
-						<h5>2. Payment method</h5>
+						<h5>2. Payment method - Image ${customer.payment.paymentMethod} ending in ${customer.payment.cardNumber}</h5>
 					</div>
 					<div class="col-xl-1">
 						<a class="collapsed" data-toggle="collapse" href="#collapseTwo"
@@ -84,7 +84,9 @@
 					</div>
 					<div class="col-xl-7"></div>
 					<div class="col-xl-2 center-block text-right">
-						<input class="btn btn-primary" type="button" value="Review Order">
+						
+						<a  href="cart" class="btn btn-primary"
+                            > Review Order </a>
 					</div>
 				</div>
 

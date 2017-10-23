@@ -37,11 +37,11 @@ public class CustomerOrder implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private Long id;
 
 	@NotNull
-	@DateTimeFormat(pattern = "MM/dd/yyyy")
-	private LocalDate orderDate;
+	//@DateTimeFormat(pattern = "MM/dd/yyyy")
+	private String orderDate;
 
 	private double totalPrice;
 
@@ -72,7 +72,7 @@ public class CustomerOrder implements Serializable {
 	/**
 	 * @return the id
 	 */
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -80,14 +80,14 @@ public class CustomerOrder implements Serializable {
 	 * @param id
 	 *            the id to set
 	 */
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
 	/**
 	 * @return the orderDate
 	 */
-	public LocalDate getOrderDate() {
+	public String getOrderDate() {
 		return orderDate;
 	}
 
@@ -95,7 +95,7 @@ public class CustomerOrder implements Serializable {
 	 * @param orderDate
 	 *            the orderDate to set
 	 */
-	public void setOrderDate(LocalDate orderDate) {
+	public void setOrderDate(String orderDate) {
 		this.orderDate = orderDate;
 	}
 

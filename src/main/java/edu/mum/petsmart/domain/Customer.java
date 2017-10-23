@@ -30,7 +30,7 @@ public class Customer implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private Long id;
 	
 	@NotEmpty
 	@Size(min = 2, max = 40)
@@ -42,12 +42,12 @@ public class Customer implements Serializable {
 	
 
 
-	 @ManyToOne(fetch = FetchType.LAZY)
+	 @ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="payment_id", nullable = true, insertable=false, updatable=false)
 	private Payment payment;
 
 
-	 @ManyToOne(fetch = FetchType.LAZY)
+	 @ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="address_id", nullable = true, insertable=false, updatable=false)
 	private Address address;
 
@@ -61,14 +61,14 @@ public class Customer implements Serializable {
 	private List<CustomerOrder> orderList = new ArrayList<CustomerOrder>();
 	
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "cart_id")
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "cart_id", nullable = true, insertable=false, updatable=false)
 	private Cart cart;
 
 	/**
 	 * @return the id
 	 */
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -76,7 +76,7 @@ public class Customer implements Serializable {
 	 * @param id
 	 *            the id to set
 	 */
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
