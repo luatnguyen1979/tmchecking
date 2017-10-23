@@ -99,43 +99,47 @@
 				<div class="card-body">
 
 					<div class="container">
+					
+					<c:forEach items="${customer.cart.cartItems}" var="cartItem">
+					
+					
 						<div class="row">
 							<div class="col-2"></div>
 							<div class="col"></div>
-							<div class="col-9 text-left">Estimated delivery: Oct. 31,
-								2017</div>
+							<div class="col-9 text-left">Estimated delivery: </div>
 
 						</div>
 						<div class="row">
 							<div class="col-2"></div>
-							<div class="col">Image</div>
-							<div class="col-8 text-left">All-new Echo (2nd Generation)
-								with improved sound, powered by Dolby, and a new design -
-								Charcoal Fabric</div>
+							<div class="col"><a href="products"><img src="resource/images/products/${cartItem.product.image}" alt="${cartItem.product.name}" style='width:70px;height:70px;'/></a></div>
+							<div class="col-8 text-left">${cartItem.product.name}<br/>${cartItem.product.details}</div>
 							<div class="col"></div>
 						</div>
 						<div class="row">
 							<div class="col-12">&nbsp;</div>
 						</div>
-						<div class="row">
-							<div class="col-2"></div>
-							<div class="col"></div>
-							<div class="col-9 text-left">Guaranteed delivery date: Oct.
-								24, 2017</div>
-
-						</div>
-						<div class="row">
-							<div class="col-2"></div>
-							<div class="col">Image</div>
-							<div class="col-8 text-left">ecobee3 lite Smart Thermostat,
-								Works with Amazon Alexa, 2nd Gen</div>
-							<div class="col"></div>
-						</div>
+						
+					</c:forEach>
+						
 					</div>
 				</div>
 			</div>
+			<div class="card-header" role="tab" id="headingThree">
+
+
+                <div class="row">
+                    
+                    <div class="col-xl-12 center-block text-right">
+                        
+                        <a  href="cart" class="btn btn-primary"
+                            > Review Order </a>
+                    </div>
+                </div>
+
+
+            </div>
 		</div>
 		</form:form>
 	</div>
 </div>
-
+cart
