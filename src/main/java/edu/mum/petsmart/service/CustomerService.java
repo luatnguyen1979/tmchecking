@@ -3,11 +3,7 @@
  */
 package edu.mum.petsmart.service;
 
-import java.util.List;
-
-import edu.mum.petsmart.domain.Cart;
 import edu.mum.petsmart.domain.Customer;
-import edu.mum.petsmart.domain.CustomerOrder;
 
 /**
  * @author Van Gia Luat Nguyen

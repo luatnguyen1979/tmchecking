@@ -4,11 +4,11 @@
     <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light fixed-top">
       <div class="container">
         <div class="dp-logo-container col-lg-3">
-			<a href="/"> <img src="resource/images/petsmart-logo.png"
+			<a href="/"><img src="resource/images/petsmart-logo.png"
 				alt="PetSmart">
 			</a>
 		</div>
-		<div class="dp-search col-lg-5">
+		<div class="dp-search col-lg-4">
 			
 			<form class="navbar-form">
         <div class="form-group" style="display:inline;">
@@ -22,13 +22,13 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="help">Help & Support</a>
+              <a class="nav-link" href="help"><span class="fa fa-question fa-fw"></span>Help & Support</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="help">Contact US</a>
+              <a class="nav-link" href="help"><span class="fa fa-envelope fa-fw"></span>Contact US</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="signin">Sign In</a>
+              <a class="nav-link" href="signin"><span class="fa fa-user-plus fa-fw"></span>Sign In</a>
             </li>
 
             <li class="nav-item">

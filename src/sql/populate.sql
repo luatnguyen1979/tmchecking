@@ -30,23 +30,19 @@ INSERT INTO payment (cardNumber, ccv, expiration, fullName, paymentMethod) VALUE
 INSERT INTO payment (cardNumber, ccv, expiration, fullName, paymentMethod) VALUES ('1111222233334444', '321', '01/2019', 'Ding', 'MASTERCARD');
 INSERT INTO payment (cardNumber, ccv, expiration, fullName, paymentMethod) VALUES ('444433322221111', '231', '01/2020', 'Kevin', 'DISCOVERY');
 
-INSERT INTO address (street1, street2, city, state , zipCode,country) VALUES('1302 S Main st', '', 'Fairfield', 'IA', '52556', 'US');
-INSERT INTO address (street1, street2, city, state , zipCode,country) VALUES('4986 S Jefferson st', '', 'Ottumwa', 'IA', '52789', 'US');
-INSERT INTO address (street1, street2, city, state , zipCode,country) VALUES('5678 S Nagle st', '', 'Daven Port', 'IA', '05656', 'US');
+INSERT INTO address (fullName, addressLine1, addressLine2, city, state , zipCode,country, phoneNumber) VALUES('Luat Nguyen', '1302 S Main st', '', 'Fairfield', 'IA', '52556', 'US', '848-466-9338');
+INSERT INTO address (fullName, addressLine1, addressLine2, city, state , zipCode,country, phoneNumber) VALUES('Duc Vo', '4986 S Jefferson st', '', 'Ottumwa', 'IA', '52789', 'US', '848-466-1234');
+INSERT INTO address (fullName, addressLine1, addressLine2, city, state , zipCode,country, phoneNumber) VALUES('Tri Nguyen', '5678 S Nagle st', '', 'Daven Port', 'IA', '05656', 'US', '848-466-4321');
 
-INSERT INTO customerorder (contactCellPhone, contactEmail, notes, orderDate, totalPrice, billingaddress_id, payment_id, shippingaddress_id)
-VALUES('(848) 466-9338', 'vglnguyen@mum.edu', '', '11/02/2017', 90, 1, 1, 2);
-INSERT INTO customerorder (contactCellPhone, contactEmail, notes, orderDate, totalPrice, billingaddress_id, payment_id, shippingaddress_id)
-VALUES('(848) 466-1234', 'luatguyen@mum.edu', '', '11/05/2017', 200, 1, 2, 1);
-INSERT INTO customerorder (contactCellPhone, contactEmail, notes, orderDate, totalPrice, billingaddress_id, payment_id, shippingaddress_id)
-VALUES('(848) 466-4321', 'luatnguyen@yahoo.com', '', '10/25/2017', 100, 2, 3, 3);
 
-INSERT INTO customer (firstName, lastName, cellPhone, notes, address_id, cart_id, payment_id)
-VALUES('Luat', 'Nguyen', '(848) 466-9338', '', 1, null, 1);
-INSERT INTO customer (firstName, lastName, cellPhone, notes, address_id, cart_id, payment_id)
-VALUES('Tri', 'Tran', '(848) 466-4567', '', 2, null, 2);
-INSERT INTO customer (firstName, lastName, cellPhone, notes, address_id, cart_id, payment_id)
-VALUES('Duc', 'Vo', '(848) 466-5276', '', 3, null, 3);
+
+INSERT INTO Customer (firstName, lastName, cellPhone, notes, address_id, cart_id, payment_id) VALUES('Luat', 'Nguyen', '(848) 466-9338', '', 1, null, 1);
+INSERT INTO customer (firstName, lastName, cellPhone, notes, address_id, cart_id, payment_id) VALUES('Tri', 'Tran', '(848) 466-4567', '', 2, null, 2);
+INSERT INTO customer (firstName, lastName, cellPhone, notes, address_id, cart_id, payment_id) VALUES('Duc', 'Vo', '(848) 466-5276', '', 3, null, 3);
+
+INSERT INTO customerorder (contactCellPhone, contactEmail, notes, orderDate, totalPrice, billingaddress_id, payment_id, shippingaddress_id) VALUES('(848) 466-9338', 'vglnguyen@mum.edu', null, '11/02/2017', 90, 1, 1, 2);
+INSERT INTO customerorder (contactCellPhone, contactEmail, notes, orderDate, totalPrice, billingaddress_id, payment_id, shippingaddress_id) VALUES('(848) 466-1234', 'luatguyen@mum.edu', null, '11/05/2017', 200, 1, 2, 1);
+INSERT INTO customerorder (contactCellPhone, contactEmail, notes, orderDate, totalPrice, billingaddress_id, payment_id, shippingaddress_id) VALUES('(848) 466-4321', 'luatnguyen@yahoo.com', null, '10/25/2017', 100, 2, 3, 3);
 
 INSERT INTO customer_customerorder (Customer_id, orderList_id) VALUES (1, 1);
 INSERT INTO customer_customerorder (Customer_id, orderList_id) VALUES (1, 2);

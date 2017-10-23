@@ -34,9 +34,13 @@ public class Address implements Serializable {
 
 	@NotEmpty
 	@Size(min = 3, max = 40)
-	private String street1;
+	private String fullName;
+	
+	@NotEmpty
+	@Size(min = 3, max = 40)
+	private String addressLine1;
 
-	private String street2;
+	private String addressLine2;
 
 	@NotEmpty
 	@Size(min = 3, max = 40)
@@ -54,6 +58,10 @@ public class Address implements Serializable {
 	@Size(min = 3, max = 40)
 	private String country;
 	
+	@NotEmpty
+	@Size(min = 3, max = 40)
+	private String phoneNumber;
+	
 	public Address() {
 		super();
 	}
@@ -61,29 +69,29 @@ public class Address implements Serializable {
 	/**
 	 * @return the street1
 	 */
-	public String getStreet1() {
-		return street1;
+	public String getAddressLine1() {
+		return addressLine1;
 	}
 
 	/**
-	 * @param street1 the street1 to set
+	 * @param addressLine1 the street1 to set
 	 */
-	public void setStreet1(String street1) {
-		this.street1 = street1;
+	public void setAddressLine1(String addressLine1) {
+		this.addressLine1 = addressLine1;
 	}
 
 	/**
 	 * @return the street2
 	 */
-	public String getStreet2() {
-		return street2;
+	public String getAddressLine2() {
+		return addressLine2;
 	}
 
 	/**
-	 * @param street2 the street2 to set
+	 * @param addressLine2 the street2 to set
 	 */
-	public void setStreet2(String street2) {
-		this.street2 = street2;
+	public void setAddressLine2(String addressLine2) {
+		this.addressLine2 = addressLine2;
 	}
 
 	/**
@@ -147,6 +155,34 @@ public class Address implements Serializable {
 	 */
 	public long getId() {
 		return id;
+	}
+
+	/**
+	 * @return the fullName
+	 */
+	public String getFullName() {
+		return fullName;
+	}
+
+	/**
+	 * @param fullName the fullName to set
+	 */
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+
+	/**
+	 * @return the phoneNumber
+	 */
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	/**
+	 * @param phoneNumber the phoneNumber to set
+	 */
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 
 	

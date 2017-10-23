@@ -41,12 +41,12 @@ public class Customer implements Serializable {
 	private String lastName;
 	
 
-	@Valid
+
 	 @ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="payment_id", nullable = true, insertable=false, updatable=false)
 	private Payment payment;
 
-	@Valid
+
 	 @ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="address_id", nullable = true, insertable=false, updatable=false)
 	private Address address;
@@ -60,9 +60,9 @@ public class Customer implements Serializable {
 	@JoinTable
 	private List<CustomerOrder> orderList = new ArrayList<CustomerOrder>();
 	
-	@Valid
+
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "cart_id", nullable = true)
+	@JoinColumn(name = "cart_id")
 	private Cart cart;
 
 	/**

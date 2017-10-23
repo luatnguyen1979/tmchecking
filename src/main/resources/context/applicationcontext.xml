@@ -44,14 +44,14 @@
 	</bean>
 
 	<!-- Scan for transaction-based resources -->
-	<context:component-scan base-package="edu.mum.service,edu.mum.repository" />
+	<context:component-scan base-package="edu.mum.petsmart.service,edu.mum.petsmart.repository" />
 
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
 	<bean id="persistenceExceptionTranslationPostProcessor"
 		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 
-	<jpa:repositories base-package="edu.mum.petsmart" />
+	<jpa:repositories base-package="edu.mum.petsmart.repository" />
 
 
 </beans>

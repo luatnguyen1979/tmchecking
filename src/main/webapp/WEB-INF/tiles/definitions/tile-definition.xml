@@ -66,6 +66,14 @@
 		<put-attribute name="heading" value="Products" />
 		<put-attribute name="tagline" value="Available Products" />
 		<put-attribute name="body" value="/WEB-INF/views/productsAdmin.jsp" />
-	</definition>	
+	</definition>
+	
+	<definition name="checkout" extends="baseLayout">
+        <put-attribute name="title" value="Checkout" />
+        <put-attribute name="heading" value="Checkout" />
+        <put-attribute name="tagline" value="Checkout Order" />
+        <put-attribute name="body" value="/WEB-INF/views/checkout.jsp" />
+
+    </definition>
 	 	
 </tiles-definitions>
