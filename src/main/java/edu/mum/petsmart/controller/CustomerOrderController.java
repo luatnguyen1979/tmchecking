@@ -46,8 +46,8 @@ public class CustomerOrderController {
 		custOrder.setShipingAddress(address);
 		//CustomerOrder custOrder = new CustomerOrder();
 		System.out.println(custOrder.getNotes());
-		model.addAttribute("custOrder",custOrder);
-		//model.addAttribute("address", address);
+		//model.addAttribute("custOrder",custOrder);
+		model.addAttribute("address", address);
 	     
 		return "checkout";
 	}
