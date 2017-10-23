@@ -30,7 +30,7 @@ public class CustomerServiceImpl implements CustomerService {
 	 * @see edu.mum.petsmart.service.CustomerService#getCustomer(java.lang.Long)
 	 */
 	@Override
-	public Customer getCustomer(Long cusId) {
+	public Customer getCustomer(long cusId) {
 
 		return customerRepository.findOne(cusId);
 	}

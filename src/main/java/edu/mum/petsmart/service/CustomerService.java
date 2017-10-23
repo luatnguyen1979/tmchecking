@@ -11,7 +11,7 @@ import edu.mum.petsmart.domain.Customer;
  */
 public interface CustomerService {
 	
-	public Customer getCustomer(Long cusId);
+	public Customer getCustomer(long cusId);
 	public Customer save(Customer customer);
 	public Customer update(Customer customer);
 
