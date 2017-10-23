@@ -28,7 +28,7 @@ public class Item implements Serializable{
 
 	private Integer quantity;
 	
-	private Integer discount;
+	private Double discount;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="product_Id")
@@ -44,11 +44,11 @@ public class Item implements Serializable{
 		this.id = id;
 	}
 
-	public Integer getQuantiry() {
+	public Integer getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantiry(int quantity) {
+	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
 
@@ -60,12 +60,12 @@ public class Item implements Serializable{
 		this.product = product;
 	}
 
-	public Integer getDiscount() {
+	public Double getDiscount() {
 		return discount;
 	}
 
-	public void setDiscount(Integer discount) {
-		this.discount = discount;
+	public void setDiscount(double d) {
+		this.discount = d;
 	}
 	
 	

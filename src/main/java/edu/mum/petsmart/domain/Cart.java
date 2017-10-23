@@ -53,4 +53,12 @@ public class Cart implements Serializable{
 		cartItems.add(cartItem);
 	}
 	
+	public double getTotalPrice() {
+		double sum = 0;
+		for(Item i : cartItems) {
+			sum += i.getDiscount();
+		}
+		return sum;
+	}
+	
 }
