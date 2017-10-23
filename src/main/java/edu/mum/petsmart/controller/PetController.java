@@ -89,7 +89,13 @@ public class PetController {
 	
 	@RequestMapping(value = "/cart", method=RequestMethod.GET)
 	public String cart(Model model, HttpServletRequest request) throws Exception {
-		
+		if(request.getSession().getAttribute("cart") == null ||
+				!cartService.contains((Cart) request.getSession().getAttribute("cart"))) {
+			Cart cart = new Cart();
+			cartService.save(cart);
+			
+			request.getSession().setAttribute("cart", cart);
+		}
 		
 		List<Item> cartItems;
 		long cartId = ((Cart)request.getSession().getAttribute("cart")).getId();
@@ -138,5 +144,10 @@ public class PetController {
 		cartService.save(tempCart);
 		
 		return "redirect:/cart";
+	}
+	
+	@RequestMapping(value="/help")
+	public String contactUs() {
+		return "contactUs";
 	}
 }

@@ -9,16 +9,17 @@
 
 <c:forEach var="item" items="${items}">
 	
-	<div class="row">
-		<div class="col-3">${item.product.image}</div>
-		<div class="col-4">
+	<div class="row cartItem" style="margin: 50px">
+		<div class="col-2"><img class="card-img-top" src="resource/images/products/${item.product.image}"
+							alt="" width="300" height="100"></div>
+		<div class="col-5">
 			<div class="row">
-				<div class="col-12">${item.product.name}</div>
-				<div class="col-12">${item.product.tag}</div>
+				<div class="col-12 cartItemName">${item.product.name}</div>
+				<div class="col-12 cartItemTag">${item.product.tag}</div>
 				<div class="col-12"><a href="<spring:url value="/removeItem/${item.id}"/>">remove</a></div>
 			</div>
 		</div>
-		<div class="col-3">${item.discount}</div>
+		<div class="col-3 cartItemPrice">$${item.discount}</div>
 		<div class="col-2">
 		<form action="updateCart">
 			<select name="quantity">
@@ -36,9 +37,9 @@
 
 </c:forEach>
 
-<div class="row">
+<div class="row" style="margin: 50px">
 	<div class="col-7"></div>
-	<div class="col-3">${totalCost}</div>
+	<div class="col-3 cartItemPrice">Total:<br>$${totalCost}</div>
 	<div class="col-2">CHECKOUT</div>
 </div>
 
