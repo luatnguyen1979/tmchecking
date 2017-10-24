@@ -30,6 +30,8 @@
 			</props>
 		</property>
 	</bean>
+	
+
 
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -53,5 +55,8 @@
 
 	<jpa:repositories base-package="edu.mum.petsmart.repository" />
 
+	<bean id="messageAccessor" class="org.springframework.context.support.MessageSourceAccessor">
+    	<constructor-arg  ref="messageSource"/>
+	</bean> 
 
 </beans>

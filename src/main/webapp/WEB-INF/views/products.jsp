@@ -43,9 +43,10 @@
 				success: function( product ) {
 					console.info("success");
 		            $("#product_view #name").text(product.name);
-		            $("#product_view #description").text(product.details);
+		            $("#product_view #details").text(product.details);
 		            $("#product_view #price").text(product.price);
-		            $("#product_view #image").attr("src","resource/images/products/" + product.image);
+		            $("#product_view #image").attr("src","resource/images/products/" + product.id + ".jpg");
+		            $('#quantity').attr("max", product.quantity);
 		            $("#product_view").data("product", product);
 		            $("#product_view").modal("toggle");
 				},
@@ -86,13 +87,13 @@
 			<div class="col-lg-4 col-sm-6 portfolio-item">
 				<div class="card h-100">
 					<a href="#" onclick="getProduct(event, ${product.id})">
-						<img class="card-img-top" src="resource/images/products/${product.image}"
+						<img class="card-img-top" src="resource/images/products/${product.id}.jpg"
 							alt="" width="600" height="200"></a>
 					<div class="card-body">
 						<h4 class="card-title">
 							<a href="#" onclick="getProduct(event, ${product.id})">${product.name}</a>
 						</h4>
-						<p class="card-text">${product.details}</p>
+						<p class="card-text">${product.tag}</p>
 					</div>
 				</div>
 			</div>
@@ -116,7 +117,7 @@
 					</div>
 					<div class="col-md-8 product_content">
 						<p>
-							<span id="description">NotFound</span>
+							<span id="details">NotFound</span>
 						</p>
 						<h4 class="cost">
 							$<span id="price">NotFound</span> 

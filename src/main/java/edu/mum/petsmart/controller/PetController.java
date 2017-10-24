@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import edu.mum.petsmart.domain.Cart;
+import edu.mum.petsmart.domain.EmailForm;
 import edu.mum.petsmart.domain.Item;
 import edu.mum.petsmart.domain.Product;
 import edu.mum.petsmart.service.CartService;
@@ -145,9 +147,6 @@ public class PetController {
 		
 		return "redirect:/cart";
 	}
-	
-	@RequestMapping(value="/help")
-	public String contactUs() {
-		return "contactUs";
-	}
+
+
 }

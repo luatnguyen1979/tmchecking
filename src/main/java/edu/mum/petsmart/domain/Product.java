@@ -7,6 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.web.multipart.MultipartFile;
 
 
 @Entity (name="product")
@@ -16,17 +23,27 @@ public class Product implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private Long id;
 	
 	@Column(name="title")
+	@NotEmpty
 	private String name;
+	@NotEmpty
 	private String tag;
+	@NotEmpty
 	private String details;
 	
-	private String image;
+	@Transient
+	private MultipartFile image;
 	
+	@NotNull
+	@Max(100000)
+	@Min(0)
 	private Double price;
-	private int quantity; 
+	@NotNull
+	@Max(100)
+	@Min(0)
+	private Integer quantity; 
 	
 	public Product() {}
 	
@@ -63,30 +80,30 @@ public class Product implements Serializable {
 	/**
 	 * @return the image
 	 */
-	public String getImage() {
+	public MultipartFile getImage() {
 		return image;
 	}
 
 	/**
 	 * @param image the image to set
 	 */
-	public void setImage(String image) {
+	public void setImage(MultipartFile image) {
 		this.image = image;
 	}
 
-	public int getQuantity() {
+	public Integer getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(int quantity) {
+	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
