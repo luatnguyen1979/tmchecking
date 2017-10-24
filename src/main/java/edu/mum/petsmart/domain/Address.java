@@ -186,5 +186,12 @@ public class Address implements Serializable {
 		this.phoneNumber = phoneNumber;
 	}
 
+	public String toString() {
+		return this.addressLine1 + " " + 
+				this.addressLine2 + " " + 
+				this.city + " " + 
+				this.state + " " +
+				this.country;
+	}
 	
 }

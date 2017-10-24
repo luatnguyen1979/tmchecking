@@ -4,16 +4,16 @@
     <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light fixed-top">
       <div class="container">
         <div class="dp-logo-container col-lg-3">
-			<a href="/"><img src="resource/images/petsmart-logo.png"
+			<a href="admin"><img src="resource/images/petsmart-logo.png"
 				alt="PetSmart">
 			</a>
 		</div>
 		<div class="dp-search col-lg-4">
 			
-			<form class="navbar-form">
+		<form class="navbar-form" action="search">
         <div class="form-group" style="display:inline;">
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="keywords">
+            <input name="keyword" type="text" class="form-control" placeholder="keywords" value=${keyword}>
            		<button type="submit" class="btn btn-success" style="margin-left:-2px">
            		<i class="fa fa-search"></i>
 				</button>
@@ -40,7 +40,7 @@
 				    <span class="cart-line-2" style="background-color: #2CC3B5"></span>
 				    <span class="cart-line-3" style="background-color: #2CC3B5"></span>
 				    <span class="cart-wheel" style="background-color: #2CC3B5"></span>
-				    <span class="cart-number" id="cartItemNum"></span>
+				    <span class="cart-number" id="cartItemNum">${cartItems}</span>
 				  </span>
 				</a>
             </li>

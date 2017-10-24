@@ -213,3 +213,29 @@ a.text-danger:hover {
 
         font-size: 16pt !important; 
 }
+.cartItemName{
+	font-size: 20px !important;
+	font-weight: bold;
+}
+.cartItemTag{
+	font-size: 16px !important;
+	color: #d3d3d3 !important;
+}
+.cartItemPrice{
+	font-size: 20px !important;
+	color: #8000ff!important;
+}
+.cartItem{
+	border-bottom: 2px solid !important;
+}
+
+.red{
+    color:red;
+    }
+.form-area
+{
+    background-color: #FAFAFA;
+	padding: 10px 40px 60px;
+	margin: 10px 0px 60px;
+	border: 1px solid GREY;
+	}

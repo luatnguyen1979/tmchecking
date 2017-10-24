@@ -10,15 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import edu.mum.petsmart.domain.Cart;
-import edu.mum.petsmart.domain.EmailForm;
 import edu.mum.petsmart.domain.Item;
 import edu.mum.petsmart.domain.Product;
 import edu.mum.petsmart.service.CartService;
@@ -45,8 +44,8 @@ public class PetController {
 				!cartService.contains((Cart) request.getSession().getAttribute("cart"))) {
 			Cart cart = new Cart();
 			cartService.save(cart);
-			
 			request.getSession().setAttribute("cart", cart);
+			request.getSession().setAttribute("cartItems", 0);
 		}
 		
 		return "forward:products";
@@ -84,8 +83,8 @@ public class PetController {
 		Cart tempCart = cartService.get(cartId);
 		
 		tempCart.addCartItem(newItem);
-		
 		cartService.save(tempCart);
+		request.getSession().setAttribute("cartItems", tempCart.getCartItems().size());
 		return String.valueOf(tempCart.getCartItems().size());
 	}
 	
@@ -124,6 +123,7 @@ public class PetController {
 			}
 		}
 		cartService.save(testCart);
+		request.getSession().setAttribute("cartItems", testCart.getCartItems().size());
 		return "redirect:/cart";
 	}
 	@RequestMapping(value = "/updateCart")
@@ -144,9 +144,15 @@ public class PetController {
 		}
 		
 		cartService.save(tempCart);
-		
+		request.getSession().setAttribute("cartItems", tempCart.getCartItems().size());
 		return "redirect:/cart";
 	}
 
+	@RequestMapping(value = "/search", method=RequestMethod.GET)
+	public String search(@RequestParam("keyword") String keyword, Model model) {
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("products", productService.findProducts(keyword));
+		return "products";
+	}
 
 }

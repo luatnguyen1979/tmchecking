@@ -14,4 +14,7 @@ public interface ProductService {
 	public void delete(Long id);
 	
 	public Product findOne(Long id);	
+
+	public List<Product> findProducts(String keyword);	
+
 }

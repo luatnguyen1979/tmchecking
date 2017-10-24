@@ -3,6 +3,8 @@
  */
 package edu.mum.petsmart.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -48,6 +50,11 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
 	public CustomerOrder update(CustomerOrder custOrder) {
 		// TODO Auto-generated method stub
 		return custOrderRep.save(custOrder);
+	}
+
+	@Override
+	public List<CustomerOrder> getAll() {
+		return (List<CustomerOrder>) custOrderRep.findAll();
 	}
 	
 }
