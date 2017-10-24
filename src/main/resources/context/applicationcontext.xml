@@ -53,5 +53,8 @@
 
 	<jpa:repositories base-package="edu.mum.petsmart.repository" />
 
+	<bean id="messageAccessor" class="org.springframework.context.support.MessageSourceAccessor">
+    	<constructor-arg  ref="messageSource"/>
+	</bean> 
 
 </beans>

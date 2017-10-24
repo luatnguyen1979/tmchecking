@@ -14,7 +14,9 @@
         <div class="form-group" style="display:inline;">
           <div class="input-group">
             <input type="text" class="form-control" placeholder="keywords">
-            <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+           		<button type="submit" class="btn btn-success" style="margin-left:-2px">
+           		<i class="fa fa-search"></i>
+				</button>
           </div>
         </div>
       </form>

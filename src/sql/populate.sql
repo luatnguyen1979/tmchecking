@@ -14,13 +14,12 @@ Insert into cart () value();
 Insert into cart () value();
 
  
-INSERT INTO product (details, tag, title, price, quantity, image) VALUES ('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'Loyal', 'Dog1', 72, 5, '1001.jpg');
-INSERT INTO product (details, tag, title, price, quantity,image) VALUES ('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'Barks', 'Dog2', 86, 4, '1002.jpg');	
-INSERT INTO product (details, tag, title, price, quantity, image) VALUES ('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'Hairy', 'Dog3', 5, 7, '1003.jpg');	
-INSERT INTO product (details, tag, title, price, quantity, image) VALUES ('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'Fluffy', 'Cat1', 68, 3, '1004.jpg');	
-INSERT INTO product (details, tag, title, price, quantity, image) VALUES ('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'Cuddly', 'Cat2', 56, 1, '1005.jpg');	
-INSERT INTO product (details, tag, title, price, quantity, image) VALUES ('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'Mad', 'Cat3', 9, 4, '1006.jpg');
-
+INSERT INTO product (details, tag, title, price, quantity) VALUES ('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'Loyal', 'Dog1', 72, 5);
+INSERT INTO product (details, tag, title, price, quantity) VALUES ('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'Barks', 'Dog2', 86, 4);	
+INSERT INTO product (details, tag, title, price, quantity) VALUES ('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'Hairy', 'Dog3', 5, 7);	
+INSERT INTO product (details, tag, title, price, quantity) VALUES ('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'Fluffy', 'Cat1', 68, 3);	
+INSERT INTO product (details, tag, title, price, quantity) VALUES ('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'Cuddly', 'Cat2', 56, 1);	
+INSERT INTO product (details, tag, title, price, quantity) VALUES ('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'Mad', 'Cat3', 9, 4);
 
 INSERT INTO item (product_Id, quantity, discount) VALUES (1, 6, 50);
 INSERT INTO item (product_Id, quantity, discount) VALUES (2, 5, 5);

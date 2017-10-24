@@ -67,20 +67,27 @@
 		<put-attribute name="title" value="Product Exception" />
  		<put-attribute name="body" value="/WEB-INF/views/productNotFound.jsp" />
 	</definition>
-	
-	<definition name="productsAdmin" extends="baseLayout">
-		<put-attribute name="title" value="Products" />
-		<put-attribute name="heading" value="Products" />
-		<put-attribute name="tagline" value="Available Products" />
-		<put-attribute name="body" value="/WEB-INF/views/productsAdmin.jsp" />
-	</definition>
-	
+
 	<definition name="checkout" extends="baseLayout">
         <put-attribute name="title" value="Checkout" />
         <put-attribute name="heading" value="Checkout" />
         <put-attribute name="tagline" value="Checkout Order" />
-        <put-attribute name="body" value="/WEB-INF/views/checkout.jsp" />
+        <put-attribute name="body" value="/WEB-INF/views/checkout.jsp" />	
+	</definition>
 
-    </definition>
+	<definition name="adminBaseLayout" template="/WEB-INF/tiles/template/layoutTemplate.jsp">
+		<put-attribute name="title" value="Admin" />
+		<put-attribute name="heading" value="" />
+		<put-attribute name="header" value="/WEB-INF/tiles/template/headerAdmin.jsp"/>
+
+ 		<put-attribute name="navigation" value="/WEB-INF/tiles/template/navigationAdmin.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/tiles/template/footer.jsp" />
+	</definition>
+
+	<definition name="admin" extends="adminBaseLayout">
+		<put-attribute name="title" value="Admin" />
+ 		<put-attribute name="body" value="/WEB-INF/views/admin.jsp" />
+	</definition>
 	 	
 </tiles-definitions>
