@@ -8,14 +8,14 @@
   <table class="table">
     <thead>
       <tr>
-        <th>ID</th>
-        <th>OrderDate</th>
-        <th>TotalPrice</th>
-        <th>ContractEmail</th>
-        <th>ContractPhone</th>
-        <th>BillingAddress</th>
-        <th>ShippingAddress</th>
-        <th>Notes</th>
+        <th><spring:message code="id"/></th>
+        <th><spring:message code="orderDate"/></th>
+        <th><spring:message code="totalPrice"/></th>
+        <th><spring:message code="contractEmail"/></th>
+        <th><spring:message code="contactPhone"/></th>
+        <th><spring:message code="billingAddress"/></th>
+        <th><spring:message code="shippingAddress"/></th>
+        <th><spring:message code="notes"/></th>
       </tr>
     </thead>
     <tbody>

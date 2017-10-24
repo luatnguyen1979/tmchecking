@@ -79,7 +79,7 @@
 
 <!-- Page Content -->
 <div class="container">
-	<h3 class="my-4">Welcome to our PetsMart</h3>
+	<h3 class="my-4"><spring:message code="products.welcome"/></h3>
 
 	<!-- Portfolio Section -->
 	<div class="row">
@@ -117,10 +117,10 @@
 					</div>
 					<div class="col-md-8 product_content">
 						<p>
-							<span id="details">NotFound</span>
+							<span id="details"><spring:message code="products.notFound"/></span>
 						</p>
 						<h4 class="cost">
-							$<span id="price">NotFound</span> 
+							$<span id="price"><spring:message code="products.notFound"/></span> 
 						</h4>
 
 						<div class="input-group"
@@ -146,7 +146,7 @@
 						<div class="space-ten"></div>
 						<div class="btn-ground">
 							<button type="button" class="btn btn-primary" onClick="addToCart()">
-								<span class="glyphicon glyphicon-shopping-cart"></span> Add To Cart
+								<span class="glyphicon glyphicon-shopping-cart"></span> <spring:message code="products.addToCart"/>
 							</button>
 						</div>
 					</div>

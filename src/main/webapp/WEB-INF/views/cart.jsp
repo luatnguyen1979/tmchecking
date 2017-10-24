@@ -5,7 +5,7 @@
 
 
 <div class="container">
-<h3 class="my-4">Your Cart</h3>
+<h3 class="my-4"><spring:message code="cart"/></h3>
 
 <c:forEach var="item" items="${items}">
 	
@@ -16,7 +16,7 @@
 			<div class="row">
 				<div class="col-12 cartItemName">${item.product.name}</div>
 				<div class="col-12 cartItemTag">${item.product.tag}</div>
-				<div class="col-12"><a href="<spring:url value="/removeItem/${item.id}"/>">remove</a></div>
+				<div class="col-12"><a href="<spring:url value="/removeItem/${item.id}"/>"><spring:message code="remove"/></a></div>
 			</div>
 		</div>
 		<div class="col-3 cartItemPrice">$${item.discount}</div>
@@ -39,8 +39,8 @@
 
 <div class="row" style="margin: 50px">
 	<div class="col-7"></div>
-	<div class="col-3 cartItemPrice">Total:<br>$${totalCost}</div>
-	<div class="col-2"><a href="<spring:url value="checkout"/>">Checkout</a></div>
+	<div class="col-3 cartItemPrice"><spring:message code="total"/><br>$${totalCost}</div>
+	<div class="col-2"><a href="<spring:url value="checkout"/>"><spring:message code="checkout"/></a></div>
 </div>
 
 </div>

@@ -146,12 +146,12 @@
    <table class="table">
     <thead>
       <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Tag</th>
-        <th>Price</th>
-        <th>Quantity</th>
-        <th>Details</th>
+        <th><spring:message code="id"/></th>
+        <th><spring:message code="name"/></th>
+        <th><spring:message code="tag"/></th>
+        <th><spring:message code="price"/></th>
+        <th><spring:message code="quantity"/></th>
+        <th><spring:message code="details"/></th>
         <th></th>
         <th></th>
       </tr>
@@ -166,10 +166,10 @@
 	        <td>${product.quantity}</td>
 	        <td>${product.details}</td>
             <td>
-            	<button style="margin-bottom:10px" type="button" class="btn btn-primary" onclick="showEdit(event, ${product.id})">Edit</button>
+            	<button style="margin-bottom:10px" type="button" class="btn btn-primary" onclick="showEdit(event, ${product.id})"><spring:message code="edit"/></button>
             </td>	
             <td>
-             	<button style="margin-bottom:10px" type="button" class="btn btn-primary" onclick="showDelete(event, ${product.id})">Delete</button>
+             	<button style="margin-bottom:10px" type="button" class="btn btn-primary" onclick="showDelete(event, ${product.id})"><spring:message code="delete"/></button>
             </td>	
 	      </tr>
 		</c:forEach>
@@ -185,7 +185,7 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h3 class="modal-title">Edit Product</h3>
+				<h3 class="modal-title"><spring:message code="edit"/></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span aria-hidden="true">&times;</span></button>
 			</div>
 			
@@ -207,7 +207,7 @@
 				</div>
 				<div class="row">
 					<div class="col-md-4 product_content">
-						<p>name</p>
+						<p><spring:message code="name"/></p>
 					</div>
 					<div class="col-md-8 product_content">
 						<form:input path="name" id="name"/>
@@ -215,7 +215,7 @@
 				</div>
 				<div class="row">
 					<div class="col-md-4">
-						<p>tag</p>
+						<p><spring:message code="tag"/></p>
 					</div>
 					<div class="col-md-8 product_content">
 						<form:input path="tag" id="tag" />
@@ -223,7 +223,7 @@
 				</div>
 				<div class="row">
 					<div class="col-md-4">
-						<p>price</p>
+						<p><spring:message code="price"/></p>
 					</div>
 					<div class="col-md-8 product_content">
 						<form:input path="price" id="price" />
@@ -231,7 +231,7 @@
 				</div>
 				<div class="row">
 					<div class="col-md-4">
-						<p>quantity</p>
+						<p><spring:message code="quantity"/></p>
 					</div>
 					<div class="col-md-8 product_content">
 						<form:input path="quantity" id="quantity"/>
@@ -239,7 +239,7 @@
 				</div>
 				<div class="row">
 					<div class="col-md-4">
-						<p>details</p>
+						<p><spring:message code="details"/></p>
 					</div>
 					<div class="col-md-8">
 						<form:textarea path="details" rows="5" cols="30" id="details"/>
@@ -262,16 +262,16 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Delete Parmanently</h4>
+                <h4 class="modal-title"><spring:message code="deletePermanently"/></h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
-                <p>Are you sure about this ?</p>
+                <p><spring:message code="areYouSure"/></p>
             </div>
 			<form:form id="deleteProduct" modelAttribute="product" action="deleteProduct" method="post">
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-danger" onclick="submitProductDeleteForm()">Delete</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal"><spring:message code="cancel"/></button>
+                <button type="button" class="btn btn-danger" onclick="submitProductDeleteForm()"><spring:message code="delete"/></button>
             </div>
 			<form:hidden path="id" id="id"/>
 			</form:form>

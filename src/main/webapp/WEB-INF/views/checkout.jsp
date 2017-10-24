@@ -15,12 +15,12 @@
 				<div class="row">
 
 					<div id="defautlAddress" class="col-xl-11 center-block text-left">
-						<h5>1. Shipping address - ${customer.address.fullName} - ${customer.address.addressLine1} ${customer.address.addressLine2}, ${customer.address.city}, ${customer.address.state} ${customer.address.zipCode}, US &nbsp; <a href="javascript:make_visible('formAddress');" class="btn btn-primary">Add Address</a></h5>
+						<h5>1. <spring:message code="shippingAddress"/> - ${customer.address.fullName} - ${customer.address.addressLine1} ${customer.address.addressLine2}, ${customer.address.city}, ${customer.address.state} ${customer.address.zipCode}, US &nbsp; <a href="javascript:make_visible('formAddress');" class="btn btn-primary"><spring:message code="addAddress"/></a></h5>
 					</div>
 
 					<div class="col-xl-1">
 						<a data-toggle="collapse" href="#collapseOne" aria-expanded="true"
-							aria-controls="collapseOne"> Change </a>
+							aria-controls="collapseOne"> <spring:message code="charge"/> </a>
 							
                         
 					</div>
@@ -44,11 +44,11 @@
 				<div class="row">
 					<div id="defautlPayment" class="col-xl-11 center-block text-left">
 					<c:set var = "shortNumber" value = "${fn:substring(customer.payment.cardNumber, 11, 15)}" />
-						<h5>2. Payment method - <img src="resource/images/cards/${customer.payment.paymentMethod}.png"/> ending in ${shortNumber}&nbsp; <a href="javascript:make_visible('formPayment');" class="btn btn-primary">Add Payment</a></h5>
+						<h5>2. <spring:message code="paymentMethod"/> - <img src="resource/images/cards/${customer.payment.paymentMethod}.png"/> ending in ${shortNumber}&nbsp; <a href="javascript:make_visible('formPayment');" class="btn btn-primary"><spring:message code="addPayment"/></a></h5>
 					</div>
 					<div class="col-xl-1">
 						<a class="collapsed" data-toggle="collapse" href="#collapseTwo"
-							aria-expanded="false" aria-controls="collapseTwo"> Change </a>
+							aria-expanded="false" aria-controls="collapseTwo"> <spring:message code="change"/> </a>
 					</div>
 				</div>
 
@@ -66,7 +66,7 @@
                 <div class="row">
 
                     <div id="defautlBilling" class="col-xl-11 center-block text-left">
-                        <h5>3. Billing address - ${customer.address.fullName} - ${customer.address.addressLine1} ${customer.address.addressLine2}, ${customer.address.city}, ${customer.address.state} ${customer.address.zipCode}, US &nbsp; <a href="javascript:make_visible('formBilling');" class="btn btn-primary">Add Address</a></h5>
+                        <h5>3. <spring:message code="billingAddress"/> - ${customer.address.fullName} - ${customer.address.addressLine1} ${customer.address.addressLine2}, ${customer.address.city}, ${customer.address.state} ${customer.address.zipCode}, US &nbsp; <a href="javascript:make_visible('formBilling');" class="btn btn-primary"><spring:message code="addAddress"/></a></h5>
                     </div>
 
                     <div class="col-xl-1">
@@ -94,13 +94,13 @@
 
 				<div class="row">
 					<div class="col-xl-3 center-block text-left">
-						<h5>3. Review items and shipping</h5>
+						<h5>3. <spring:message code="review"/></h5>
 					</div>
 					<div class="col-xl-7"></div>
 					<div class="col-xl-2 center-block text-right">
 						
 						<a  href="cart" class="btn btn-primary"
-                            > Review Order </a>
+                            > <spring:message code="reviewOrder"/> </a>
 					</div>
 				</div>
 
@@ -120,7 +120,7 @@
 						<div class="row">
 							<div class="col-2"></div>
 							<div class="col"></div>
-							<div class="col-9 text-left">Estimated delivery: </div>
+							<div class="col-9 text-left"><spring:message code="estimatedDelivery"/>: </div>
 
 						</div>
 						<div class="row">
@@ -144,8 +144,7 @@
                 <div class="row">
                     
                     <div class="col-xl-12 center-block text-right">
-                        <input type="submit" class="btn btn-primary" value="Place Order"/>
-                    </div>
+												<input type="submit" class="btn btn-primary" value="Place Order"/>                    </div>
                 </div>
 
 
@@ -160,7 +159,7 @@
         <!-- Modal content -->
         <div class="modal-content">
           <br/>
-            <h3 align="center">Adding Address</h3>
+            <h3 align="center"><spring:message code="addingAddress"/></h3>
             <br/>
            
             
@@ -181,7 +180,7 @@
                  
                     
                     <div class="row">
-                        <div class="col-3 text-right">Full Name:</div>
+                        <div class="col-3 text-right"><spring:message code="fullName"/>:</div>
                         <div class="col-9 text-left">
                             <form:input id="fullName" path="fullName" type="text" size="46"
                                 class="form:input-large" />
@@ -191,7 +190,7 @@
                     </div>
                     <div class="row">
 
-                        <div class="col-3 text-right">Address Line 1:</div>
+                        <div class="col-3 text-right"><spring:message code="addressLine1"/>:</div>
                         <div class="col-9 text-left">
                             <form:input id="addressLine1" path="addressLine1" type="text" size="46"
                                 class="form:input-large" />
@@ -199,7 +198,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-3 text-right">Address Line 2:</div>
+                        <div class="col-3 text-right"><spring:message code="addressLine2"/>:</div>
                         <div class="col-9 text-left">
                             <form:input id="addressLine2" path="addressLine2" type="text" size="46"
                                 class="form:input-large" />
@@ -207,7 +206,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-3 text-right">City:</div>
+                        <div class="col-3 text-right"><spring:message code="city"/>:</div>
                         <div class="col-9 text-left">
                             <form:input id="city" path="city" type="text" size="46"
                                 class="form:input-large" />
@@ -215,11 +214,11 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-3 text-right">State:</div>
+                        <div class="col-3 text-right"><spring:message code="state"/>:</div>
                         <div class="col-9 text-left">
                             <form:select id="state" path="state"
                                 style="width: 380px !important; min-width: 300px; max-width: 380px;">
-                                <form:option value="" selected="true">Select a State</form:option>
+                                <form:option value="" selected="true"><spring:message code="stateSelect"/></form:option>
                                 <form:option value="AL">Alabama</form:option>
                                 <form:option value="AK">Alaska</form:option>
                                 <form:option value="AZ">Arizona</form:option>
@@ -283,7 +282,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-3 text-right">Zip Code:</div>
+                        <div class="col-3 text-right"><spring:message code="zip"/>:</div>
                         <div class="col-9 text-left">
                             <form:input id="zipCode" path="zipCode" type="text" size="46"
                                 class="form:input-large" />
@@ -291,7 +290,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-3 text-right">Country:</div>
+                        <div class="col-3 text-right"><spring:message code="country"/>:</div>
                         <div class="col-9 text-left">
                             <form:select id="country" path="country"
                                 style="width: 380px !important; min-width: 300px; max-width: 380px;">
@@ -301,7 +300,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-3 text-right">Phone Number:</div>
+                        <div class="col-3 text-right"><spring:message code="phone"/>:</div>
                         <div class="col-9 text-left">
                             <form:input id="phoneNumber" path="phoneNumber" type="text" size="46"
                                 class="form:input-large" />
@@ -338,7 +337,7 @@
         <!-- Modal content -->
         <div class="modal-content">
           <br/>
-            <h3 align="center">Adding Payment</h3>
+            <h3 align="center"><spring:message code="addingPayment"/></h3>
             <br/>
             <form:form id="paymentForm" name="payment" modelAttribute="payment" method="POST">
                 <div class="container">
@@ -355,7 +354,7 @@
                     </div>
                     
                     <div class="row">
-                        <div class="col-3 text-right align-text-middle">Card type:</div>
+                        <div class="col-3 text-right align-text-middle"><spring:message code="cardType"/>:</div>
                         <div class="col-9 text-left">
                             <form:radiobutton path="paymentMethod" value="VISA"/>&nbsp;<img src="resource/images/cards/VISA.png"/>&nbsp;&nbsp;&nbsp;<form:radiobutton
                     path="paymentMethod" value="MasterCard" />&nbsp;<img src="resource/images/cards/MasterCard.png"/>&nbsp;&nbsp;&nbsp;<form:radiobutton
@@ -370,7 +369,7 @@
                     </div>
                     
                     <div class="row">
-                        <div class="col-3 text-right">Name on card:</div>
+                        <div class="col-3 text-right"><spring:message code="cardName"/>:</div>
                         <div class="col-9 text-left">
                             <form:input id="fullName" path="fullName" type="text" size="46"
                                 class="form:input-large" />
@@ -380,7 +379,7 @@
                     </div>
                     <div class="row">
 
-                        <div class="col-3 text-right">Card number:</div>
+                        <div class="col-3 text-right"><spring:message code="cardNumber"/>:</div>
                         <div class="col-9 text-left">
                             <form:input id="cardNumber" path="cardNumber" type="text" size="46"
                                 class="form:input-large" />
@@ -388,7 +387,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-3 text-right">CCV:</div>
+                        <div class="col-3 text-right"><spring:message code="ccv"/>:</div>
                         <div class="col-9 text-left">
                             <form:input id="ccv" path="ccv" type="text" size="46"
                                 class="form:input-large" />
@@ -396,7 +395,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-3 text-right">Expiration date:</div>
+                        <div class="col-3 text-right"><spring:message code="expirationDate"/>:</div>
                         <div class="col-9 text-left">
 	                            <form:select id="month" path="expirationMonth">
 	                            <form:option value="01">01</form:option>
@@ -468,7 +467,7 @@
         <!-- Modal content -->
         <div class="modal-content">
           <br/>
-            <h3 align="center">Adding Billing Address</h3>
+            <h3 align="center"><spring:message code="addingBilling"/></h3>
             <br/>
            
             
@@ -489,7 +488,7 @@
                  
                     
                     <div class="row">
-                        <div class="col-3 text-right">Full Name:</div>
+                        <div class="col-3 text-right"><spring:message code="fullName"/>:</div>
                         <div class="col-9 text-left">
                             <form:input id="fullName" path="fullName" type="text" size="46"
                                 class="form:input-large" />
@@ -499,7 +498,7 @@
                     </div>
                     <div class="row">
 
-                        <div class="col-3 text-right">Address Line 1:</div>
+                        <div class="col-3 text-right"><spring:message code="addressLine1"/>:</div>
                         <div class="col-9 text-left">
                             <form:input id="addressLine1" path="addressLine1" type="text" size="46"
                                 class="form:input-large" />
@@ -507,7 +506,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-3 text-right">Address Line 2:</div>
+                        <div class="col-3 text-right"><spring:message code="addressLine2"/>:</div>
                         <div class="col-9 text-left">
                             <form:input id="addressLine2" path="addressLine2" type="text" size="46"
                                 class="form:input-large" />
@@ -515,7 +514,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-3 text-right">City:</div>
+                        <div class="col-3 text-right"><spring:message code="city"/>:</div>
                         <div class="col-9 text-left">
                             <form:input id="city" path="city" type="text" size="46"
                                 class="form:input-large" />
@@ -523,11 +522,11 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-3 text-right">State:</div>
+                        <div class="col-3 text-right"><spring:message code="state"/>:</div>
                         <div class="col-9 text-left">
                             <form:select id="state" path="state"
                                 style="width: 380px !important; min-width: 300px; max-width: 380px;">
-                                <form:option value="" selected="true">Select a State</form:option>
+                                <form:option value="" selected="true"><spring:message code="stateSelect"/></form:option>
                                 <form:option value="AL">Alabama</form:option>
                                 <form:option value="AK">Alaska</form:option>
                                 <form:option value="AZ">Arizona</form:option>
@@ -591,7 +590,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-3 text-right">Zip Code:</div>
+                        <div class="col-3 text-right"><spring:message code="zip"/>:</div>
                         <div class="col-9 text-left">
                             <form:input id="zipCode" path="zipCode" type="text" size="46"
                                 class="form:input-large" />
@@ -599,7 +598,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-3 text-right">Country:</div>
+                        <div class="col-3 text-right"><spring:message code="country"/>:</div>
                         <div class="col-9 text-left">
                             <form:select id="country" path="country"
                                 style="width: 380px !important; min-width: 300px; max-width: 380px;">
@@ -609,7 +608,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-3 text-right">Phone Number:</div>
+                        <div class="col-3 text-right"><spring:message code="phone"/>:</div>
                         <div class="col-9 text-left">
                             <form:input id="phoneNumber" path="phoneNumber" type="text" size="46"
                                 class="form:input-large" />

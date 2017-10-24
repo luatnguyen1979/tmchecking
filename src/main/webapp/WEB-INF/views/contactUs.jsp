@@ -4,11 +4,12 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 <div class="container">
-<div class="col-md-5">
+<div class="col-md-5" style="margin-left:auto; margin-right:auto;">
 <div class="form-area"> 
 	<form:form action="helpSubmit" method="post" modelAttribute="emailForm">
+	<p style="color:blue;">${success}</p>
 	<br style="clear:both">
-		<h3 style="margin-bottom:25px; text-align: center;">Contact Form</h3>
+		<h3 style="margin-bottom:25px; text-align: center;"><spring:message code="contactForm"/></h3>
 		<div class="form-group">
 			<form:input type="text" class="form-control" path="name" placeholder="Name" required="required"/>
 		</div>

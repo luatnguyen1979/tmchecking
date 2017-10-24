@@ -41,6 +41,8 @@ public class EmailController {
 			"\n" + emailForm.getMessage();
 		emailService.sendMail("kelevi@mum.edu", emailForm.getSubject(), messageText);
 		
+		redirectAttributes.addFlashAttribute("success", "Success!");
+		
 		return "redirect:/help";
 	}
 
