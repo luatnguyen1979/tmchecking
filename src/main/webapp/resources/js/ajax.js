@@ -235,4 +235,10 @@ function closeErrorsConfirmation() {
 	make_hidden('result');
  }
 
- 
+$(function() {
+$('.selectpicker').on('change', function(){
+    var selected = $(this).find("option:selected").val();
+    $('#internationlization').submit();
+  });
+});
+  

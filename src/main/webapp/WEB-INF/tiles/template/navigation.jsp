@@ -1,5 +1,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
  <!-- Navigation -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light fixed-top">
@@ -25,7 +26,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="help"><span class="fa fa-question fa-fw"></span>Help&Support</a>
+              <a class="nav-link" href="help"><span class="fa fa-question fa-fw"></span>Help</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="help"><span class="fa fa-envelope fa-fw"></span>Contact US</a>
@@ -50,11 +51,17 @@
 				  </span>
 				</a>
             </li>
-			            </ul>
-          <br>
-          <a href="?lang=en">English</a>
-          <a href="?lang=jp">Japan</a>
-          <a href="?lang=vi">Vietnam</a>
+		</ul>
         </div>
+        
+		<form id="internationlization"> 
+		<select class="selectpicker" style="margin-left:20px" data-width="fit" name=language>
+		    <option value="en" <c:if test = "${pageContext.response.locale == 'en'}">selected</c:if>>English</option>
+		  	<option value="jp" <c:if test = "${pageContext.response.locale == 'jp'}">selected</c:if>>Japanese</option>
+		  	<option value="vt" <c:if test = "${pageContext.response.locale == 'vt'}">selected</c:if>>Vietnam</option>
+		</select>        
+		</form>
       </div>
     </nav>
+
+ 

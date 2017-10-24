@@ -47,6 +47,7 @@
 		            $("#product_view #price").text(product.price);
 		            $("#product_view #image").attr("src","resource/images/products/" + product.id + ".jpg");
 		            $('#quantity').attr("max", product.quantity);
+		            $('#quantity').val(1);
 		            $("#product_view").data("product", product);
 		            $("#product_view").modal("toggle");
 				},

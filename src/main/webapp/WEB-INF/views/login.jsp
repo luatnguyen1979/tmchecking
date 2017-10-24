@@ -7,7 +7,7 @@
 <!-- Where all the magic happens -->
 <!-- LOGIN FORM -->
 <div class="text-center" style="padding:50px 0 200px">
-	<div class="logo">login</div>
+	<div class="logo"><spring:message code="login"/></div>
 	<div id="errors" style="color:red;margin-left:20px" >   	
 		<p>${errors}</p>
 	</div>
@@ -28,6 +28,9 @@
 				</div>
 				<button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
 			</div>
+			<div class="etc-login-form">
+				<p>new user? <a href="#">create new account</a></p>
+			</div>			
 		</form:form>
 	</div>
 	<!-- end:Main Form -->
