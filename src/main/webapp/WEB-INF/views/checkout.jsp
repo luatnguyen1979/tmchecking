@@ -145,7 +145,7 @@
                     
                     <div class="col-xl-12 center-block text-right">
                         
-                        <a  href="placeOrder" class="btn btn-primary"
+                        <a  href="customer/placeOrder" class="btn btn-primary"
                             > Place Order </a>
                     </div>
                 </div>
