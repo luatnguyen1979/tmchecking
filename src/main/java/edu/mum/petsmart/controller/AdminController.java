@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import edu.mum.petsmart.domain.Product;
 import edu.mum.petsmart.dto.DomainErrors;
+import edu.mum.petsmart.service.CustomerOrderService;
 import edu.mum.petsmart.service.ProductService;
 
 @Controller
@@ -25,6 +27,10 @@ public class AdminController {
 	
 	@Autowired
 	ProductService productService;
+
+	@Autowired
+	CustomerOrderService customerOrderService;
+
 	
 	@Autowired
 	MessageSourceAccessor messageAccessor;
@@ -34,6 +40,14 @@ public class AdminController {
 		model.addAttribute("products", productService.getAll());
 		return "admin";
 	}
+	
+	
+	@RequestMapping(value = "/adminSearch", method=RequestMethod.GET)
+	public String search(@ModelAttribute("product")Product product, @RequestParam("keyword") String keyword, Model model) {
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("products", productService.findProducts(keyword));
+		return "admin";
+	}	
 
 	@RequestMapping(value = "/saveProduct", method=RequestMethod.POST)
 	public String saveProducts(@Valid @ModelAttribute("product")Product product, BindingResult bindingResult,
@@ -81,7 +95,14 @@ public class AdminController {
 	
 	@RequestMapping(value = "/deleteProduct", method=RequestMethod.POST)
 	public String saveProducts(@ModelAttribute("product")Product product) {
-		productService.delete(product.getId());;
+		productService.delete(product.getId());
 		return "redirect:admin";
+	}	
+	
+	
+	@RequestMapping(value = "/orders", method=RequestMethod.GET)
+	public String orders(Model model) {
+		model.addAttribute("orders", customerOrderService.getAll());
+		return "orders";
 	}	
 }

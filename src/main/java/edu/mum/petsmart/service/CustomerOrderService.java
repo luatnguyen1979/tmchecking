@@ -3,10 +3,8 @@
  */
 package edu.mum.petsmart.service;
 
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import java.util.List;
 
-import edu.mum.petsmart.domain.Customer;
 import edu.mum.petsmart.domain.CustomerOrder;
 
 /**
@@ -20,5 +18,5 @@ public interface CustomerOrderService {
 	public CustomerOrder getCustomerOrder(long custId);
 	public CustomerOrder save(CustomerOrder custOrder);
 	public CustomerOrder update(CustomerOrder custOrder);
-
+	public List<CustomerOrder> getAll();
 }

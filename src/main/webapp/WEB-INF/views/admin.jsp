@@ -142,29 +142,40 @@
 
 <!-- Page Content -->
 <div class="container">
-	<h3 class="my-4">Welcome to our PetsMart</h3>
-
-	<!-- Portfolio Section -->
-	<div class="row">
+	<h3 class="my-4">Product List</h3>
+   <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Tag</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Details</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
 		<c:forEach var="product" items="${products}">
-			<div class="col-lg-4 col-sm-6 portfolio-item">
-				<div class="card h-100">
-					<a href="#" onclick="getProduct(event, ${product.id})">
-						<img class="card-img-top" src="resource/images/products/${product.id}.jpg"
-							alt="" width="600" height="200"></a>
-					<div class="card-body">
-						<h4 class="card-title">
-							<a href="#" onclick="getProduct(event, ${product.id})">${product.name}</a>
-						</h4>
-						<p class="card-text">${product.tag}</p>
-					</div>
-	                <div class="btn-ground text-center">
-	                    <button style="margin-bottom:10px" type="button" class="btn-primary" onclick="showEdit(event, ${product.id})">Edit</button>
-	                    <button style="margin-bottom:10px" type="button" class="btn-primary" onclick="showDelete(event, ${product.id})">Delete</button>
-	                </div>
-				</div>
-			</div>
+	      <tr>
+	        <td>${product.id}</td>
+	        <td>${product.name}</td>
+	        <td>${product.tag}</td>
+	        <td>${product.price}</td>
+	        <td>${product.quantity}</td>
+	        <td>${product.details}</td>
+            <td>
+            	<button style="margin-bottom:10px" type="button" class="btn btn-primary" onclick="showEdit(event, ${product.id})">Edit</button>
+            </td>	
+            <td>
+             	<button style="margin-bottom:10px" type="button" class="btn btn-primary" onclick="showDelete(event, ${product.id})">Delete</button>
+            </td>	
+	      </tr>
 		</c:forEach>
+    </tbody>
+  </table>
+ 
 	</div>
 	<!-- /.row -->
 </div>

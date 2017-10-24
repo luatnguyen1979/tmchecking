@@ -89,5 +89,11 @@
 		<put-attribute name="title" value="Admin" />
  		<put-attribute name="body" value="/WEB-INF/views/admin.jsp" />
 	</definition>
+
+	<definition name="orders" extends="adminBaseLayout">
+		<put-attribute name="title" value="Admin" />
+ 		<put-attribute name="navigation" value="/WEB-INF/tiles/template/navigationOrder.jsp" />
+ 		<put-attribute name="body" value="/WEB-INF/views/orders.jsp" />
+	</definition>
 	 	
 </tiles-definitions>

@@ -43,5 +43,9 @@ public class ProductServiceImp implements ProductService{
 		return productRepository.findOne(id);
 	}
 
+	@Override
+	public List<Product> findProducts(String keyword) {
+		return productRepository.findProductsByKeywork(keyword);
+	}
 
 }
