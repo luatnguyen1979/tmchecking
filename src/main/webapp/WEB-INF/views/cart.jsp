@@ -40,7 +40,7 @@
 <div class="row" style="margin: 50px">
 	<div class="col-7"></div>
 	<div class="col-3 cartItemPrice">Total:<br>$${totalCost}</div>
-	<div class="col-2">CHECKOUT</div>
+	<div class="col-2"><a href="<spring:url value="checkout"/>">Checkout</a></div>
 </div>
 
 </div>
