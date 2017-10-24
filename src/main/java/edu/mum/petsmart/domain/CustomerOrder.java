@@ -4,7 +4,6 @@
 package edu.mum.petsmart.domain;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +20,6 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
-import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * @author Van Gia Luat Nguyen
@@ -40,17 +38,17 @@ public class CustomerOrder implements Serializable {
 	private Long id;
 
 	@NotNull
-	//@DateTimeFormat(pattern = "MM/dd/yyyy")
+	// @DateTimeFormat(pattern = "MM/dd/yyyy")
 	private String orderDate;
 
 	private double totalPrice;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "billingaddress_id", nullable=true,  insertable=false, updatable=false)
+	@JoinColumn(name = "billingaddress_id", nullable = true, insertable = false, updatable = false)
 	private Address billingAddress;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "shippingaddress_id", nullable=true,  insertable=false, updatable=false)
+	@JoinColumn(name = "shippingaddress_id", nullable = true, insertable = false, updatable = false)
 	private Address shipingAddress;
 
 	@Email
@@ -59,10 +57,10 @@ public class CustomerOrder implements Serializable {
 	String contactCellPhone;
 
 	String notes;
-	
+
 	@Valid
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="payment_id", nullable = true,  insertable=false, updatable=false)
+	@JoinColumn(name = "payment_id", nullable = true, insertable = false, updatable = false)
 	private Payment payment;
 
 	@OneToMany(fetch = FetchType.EAGER)
@@ -203,6 +201,20 @@ public class CustomerOrder implements Serializable {
 
 	public void setItems(List<Item> items) {
 		this.items = items;
+	}
+
+	/**
+	 * @return the payment
+	 */
+	public Payment getPayment() {
+		return payment;
+	}
+
+	/**
+	 * @param payment the payment to set
+	 */
+	public void setPayment(Payment payment) {
+		this.payment = payment;
 	}
 
 }

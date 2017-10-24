@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
@@ -35,24 +36,26 @@ public class Payment implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@NotEmpty
+	@NotEmpty(message="{Paymentmethod.validation}")
 	String paymentMethod;
 
-	@NotEmpty
-	@Size(min = 3, max = 40)
+	@NotEmpty(message="{Empty.validation}")
+	@Size(min = 3, max = 40, message= "{Size.validation}")
 	String fullName;
 
-	@NotEmpty
-	@Size(min = 16, max = 16)
+	@NotEmpty(message="{Empty.validation}")
+	@Size(min = 16, max = 16, message="{Address.size.16digits.validation}")
+	@Pattern(regexp = "[0-9]+", message = "{Pattern.number.validation}")
 	String cardNumber;
 
-	@NotEmpty
-	@Size(min = 3, max = 3)
+	@NotEmpty(message="{Empty.validation}")
+	@Size(min = 3, max = 3,  message="{Address.size.3digits.validation}")
+	@Pattern(regexp = "[0-9]+", message = "{Pattern.number.validation}")
 	String ccv;
 
-	@NotEmpty
-	@Size(min=7, max=7)
-	String expiration;
+	String expirationMonth;
+	
+	String expirationYear;
 
 	/**
 	 * @return the id
@@ -132,16 +135,31 @@ public class Payment implements Serializable {
 	/**
 	 * @return the expirationDate
 	 */
-	public String getExpiration() {
-		return expiration;
+	public String getExpirationMonth() {
+		return expirationMonth;
 	}
 
 	/**
 	 * @param expirationDate
 	 *            the expirationDate to set
 	 */
-	public void setExpiration(String expiration) {
-		this.expiration = expiration;
+	public void setExpirationMonth(String expiration) {
+		this.expirationMonth = expiration;
 	}
 
+	/**
+	 * @return the expirationYear
+	 */
+	public String getExpirationYear() {
+		return expirationYear;
+	}
+
+	/**
+	 * @param expirationYear the expirationYear to set
+	 */
+	public void setExpirationYear(String expirationYear) {
+		this.expirationYear = expirationYear;
+	}
+
+	
 }

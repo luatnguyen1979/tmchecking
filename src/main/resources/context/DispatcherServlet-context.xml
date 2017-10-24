@@ -44,7 +44,12 @@
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="10240000" />
 	</bean>
-
+	
+	<!-- handling error -->
+<bean id="messageAccessor"
+        class="org.springframework.context.support.MessageSourceAccessor">
+        <constructor-arg ref="messageSource" />
+    </bean>
 
 
 	<!-- name="paramName" value="language this is the parameter that the interceptor 

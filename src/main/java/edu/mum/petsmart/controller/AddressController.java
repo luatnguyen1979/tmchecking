@@ -3,6 +3,7 @@
  */
 package edu.mum.petsmart.controller;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +15,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.mum.petsmart.domain.Address;
+import edu.mum.petsmart.domain.Customer;
+import edu.mum.petsmart.domain.CustomerOrder;
 import edu.mum.petsmart.service.AddressService;
 
 
@@ -26,30 +30,32 @@ import edu.mum.petsmart.service.AddressService;
  * @product Web Application Architecture
  */
 @Controller
+@SessionAttributes({"customer", "customerOrder", "cart", "billingAddress", "shippingAddress", "payment"})
 @RequestMapping(value="/address")
 public class AddressController {
 	@Autowired
 	AddressService addrService;
 	
 	@RequestMapping(value = {"/add"}, method=RequestMethod.POST)
-	public @ResponseBody Address addAddress(@Valid @RequestBody Address address, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
-		/*if (bindingResult.hasErrors()) {
-			return "checkout";
-		}*/
+	public @ResponseBody Address addAddress(@Valid @RequestBody Address address, Model model, HttpSession session) {
+		//CustomerOrder custOrder = (CustomerOrder) session.getAttribute("customerOrder");
 			
-		addrService.save(address);
+		//addrService.save(address);
+		//custOrder.setBillingAddress(address);
+		session.setAttribute("shippingAddress", address);
 		return address;
- 
-	
-             
-             
-	    
+  
 	}
 	
-	
-	@RequestMapping(value = "/success", method=RequestMethod.GET)
-	public String getAddress(Model model) {
-		return "address";
+	@RequestMapping(value = {"/addbilling"}, method=RequestMethod.POST)
+	public @ResponseBody Address addBillingAddress(@Valid @RequestBody Address address, Model model, HttpSession session) {
+		/*Customer customer = (Customer)session.getAttribute("customer");
+		
+		addrService.save(address);*/
+		session.setAttribute("billingAddress", address);
+		return address;
+  
 	}
+	
 }
 

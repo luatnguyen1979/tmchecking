@@ -162,6 +162,12 @@ body {
     background-color: rgba(0,0,0,0.4); Black w/ opacity
 }
 
+.errors-display {
+
+    margin: 20px;
+    padding: 20px;
+}
+
 .modal-dialog {
 
     margin: 5% auto; 15% from the top and centered

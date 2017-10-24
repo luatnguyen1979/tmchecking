@@ -37,9 +37,9 @@ INSERT INTO cart_item (cart_id, cartitems_id) VALUES (1, 5);
 INSERT INTO cart_item (cart_id, cartitems_id) VALUES (1, 6);
 
 
-INSERT INTO payment (cardNumber, ccv, expiration, fullName, paymentMethod) VALUES ('1234567890123456', '123', '01/2018', 'Luat V Nguyen', 'VISA');
-INSERT INTO payment (cardNumber, ccv, expiration, fullName, paymentMethod) VALUES ('1111222233334444', '321', '01/2019', 'Ding', 'MASTERCARD');
-INSERT INTO payment (cardNumber, ccv, expiration, fullName, paymentMethod) VALUES ('444433322221111', '231', '01/2020', 'Kevin', 'DISCOVERY');
+INSERT INTO payment (cardNumber, ccv, expirationMonth, expirationYear, fullName, paymentMethod) VALUES ('1234567890123456', '123', '01', '2018', 'Luat V Nguyen', 'VISA');
+INSERT INTO payment (cardNumber, ccv, expirationMonth, expirationYear, fullName, paymentMethod) VALUES ('1111222233334444', '321', '01', '2019', 'Ding', 'MASTERCARD');
+INSERT INTO payment (cardNumber, ccv, expirationMonth, expirationYear, fullName, paymentMethod) VALUES ('444433322221111', '231', '01', '2020', 'Kevin', 'DISCOVERY');
 
 INSERT INTO address (fullName, addressLine1, addressLine2, city, state , zipCode,country, phoneNumber) VALUES('Luat Nguyen', '1302 S Main st', '', 'Fairfield', 'IA', '52556', 'US', '848-466-9338');
 INSERT INTO address (fullName, addressLine1, addressLine2, city, state , zipCode,country, phoneNumber) VALUES('Duc Vo', '4986 S Jefferson st', '', 'Ottumwa', 'IA', '52789', 'US', '848-466-1234');

@@ -32,34 +32,31 @@ public class Address implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@NotEmpty
-	@Size(min = 3, max = 40)
+	@NotEmpty(message="{Empty.validation}")
+	@Size(min = 3, max = 40, message= "{Size.validation}")
 	private String fullName;
 	
-	@NotEmpty
-	@Size(min = 3, max = 40)
+	@NotEmpty(message="{Empty.validation}")
+	@Size(min = 3, max = 40, message= "{Size.validation}")
 	private String addressLine1;
 
 	private String addressLine2;
 
-	@NotEmpty
-	@Size(min = 3, max = 40)
+	@NotEmpty(message="{Empty.validation}")
+	@Size(min = 3, max = 40, message= "{Size.validation}")
 	private String city;
 
-	@NotEmpty
-	@Size(min = 2, max = 2)
 	private String state;
 
-	@NotNull
+	@NotNull(message="{Empty.validation}")
 	@Digits(integer = 5, fraction = 2)
 	private Integer zipCode;
 
-	@NotEmpty
-	@Size(min = 3, max = 40)
+
 	private String country;
 	
-	@NotEmpty
-	@Size(min = 3, max = 40)
+	@NotEmpty(message="{Empty.validation}")
+	@Size(min = 10, max = 13, message= "{Size.validation}")
 	private String phoneNumber;
 	
 	public Address() {
