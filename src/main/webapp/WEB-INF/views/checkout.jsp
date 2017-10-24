@@ -8,7 +8,7 @@
 <div id="global">
 
 	<div id="accordion" role="tablist">
-	<form:form id="custOrderForm" modelAttribute="custOrder" method="POST">
+	<form:form id="custOrderForm" action="placeOrder" modelAttribute="custOrder" method="post">
 		<div class="card">
 			<div class="card-header" role="tab" id="headingOne">
 
@@ -144,9 +144,7 @@
                 <div class="row">
                     
                     <div class="col-xl-12 center-block text-right">
-                        
-                        <a  href="customer/placeOrder" class="btn btn-primary"
-                            > Place Order </a>
+                        <input type="submit" class="btn btn-primary" value="Place Order"/>
                     </div>
                 </div>
 

@@ -18,8 +18,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -42,13 +40,13 @@ public class Customer implements Serializable {
 	
 
 
-	 @ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="payment_id", nullable = true, insertable=false, updatable=false)
+	 @ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+	@JoinColumn(name="payment_id", nullable = true, insertable=true, updatable=true)
 	private Payment payment;
 
 
-	 @ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="address_id", nullable = true, insertable=false, updatable=false)
+	 @ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+	@JoinColumn(name="address_id", nullable = true, insertable=true, updatable=true)
 	private Address address;
 
 	@NotEmpty
@@ -56,13 +54,13 @@ public class Customer implements Serializable {
 
 	String notes;
 	
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinTable
 	private List<CustomerOrder> orderList = new ArrayList<CustomerOrder>();
 	
 
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "cart_id", nullable = true, insertable=false, updatable=false)
+	@OneToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+	@JoinColumn(name = "cart_id", nullable = true, insertable=true, updatable=true)
 	private Cart cart;
 
 	/**

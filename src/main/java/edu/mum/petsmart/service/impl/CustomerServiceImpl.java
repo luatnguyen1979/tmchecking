@@ -3,12 +3,16 @@
  */
 package edu.mum.petsmart.service.impl;
 
+import java.util.ArrayList;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.mum.petsmart.domain.Customer;
+import edu.mum.petsmart.domain.CustomerOrder;
+
 import edu.mum.petsmart.repository.CustomerRepository;
 import edu.mum.petsmart.service.CustomerService;
 
@@ -54,9 +58,8 @@ public class CustomerServiceImpl implements CustomerService {
 	 * Customer)
 	 */
 	@Override
-	public Customer update(Customer customer) {
-		// TODO Auto-generated method stub
-		return customerRepository.save(customer);
+	public Customer update(Customer cust, CustomerOrder order) {
+		return customerRepository.save(cust);
 	}
 
 }

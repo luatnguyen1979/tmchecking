@@ -74,6 +74,13 @@
         <put-attribute name="tagline" value="Checkout Order" />
         <put-attribute name="body" value="/WEB-INF/views/checkout.jsp" />	
 	</definition>
+	
+	<definition name="ordersuccessful" extends="baseLayout">
+        <put-attribute name="title" value="Order Successful" />
+        <put-attribute name="heading" value="Order Successful" />
+        <put-attribute name="tagline" value="Order Successful" />
+        <put-attribute name="body" value="/WEB-INF/views/ordersuccessful.jsp" />   
+    </definition>
 
 	<definition name="adminBaseLayout" template="/WEB-INF/tiles/template/layoutTemplate.jsp">
 		<put-attribute name="title" value="Admin" />

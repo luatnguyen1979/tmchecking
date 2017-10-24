@@ -50,14 +50,27 @@ INSERT INTO Customer (firstName, lastName, cellPhone, notes, address_id, cart_id
 INSERT INTO Customer (firstName, lastName, cellPhone, notes, address_id, cart_id, payment_id) VALUES('Tri', 'Tran', '(848) 466-4567', '', 2, 2, 2);
 INSERT INTO Customer (firstName, lastName, cellPhone, notes, address_id, cart_id, payment_id) VALUES('Duc', 'Vo', '(848) 466-5276', '', 3, 3, 3);
 
-INSERT INTO customerorder (contactCellPhone, contactEmail, notes, orderDate, totalPrice, billingaddress_id, payment_id, shippingaddress_id) VALUES('(848) 466-9338', 'vglnguyen@mum.edu', null, '11/02/2017', 90, 1, 1, 2);
-INSERT INTO customerorder (contactCellPhone, contactEmail, notes, orderDate, totalPrice, billingaddress_id, payment_id, shippingaddress_id) VALUES('(848) 466-1234', 'luatguyen@mum.edu', null, '11/05/2017', 200, 1, 2, 1);
-INSERT INTO customerorder (contactCellPhone, contactEmail, notes, orderDate, totalPrice, billingaddress_id, payment_id, shippingaddress_id) VALUES('(848) 466-4321', 'luatnguyen@yahoo.com', null, '10/25/2017', 100, 2, 3, 3);
+--INSERT INTO customerorder (contactCellPhone, contactEmail, notes, orderDate, totalPrice, billingaddress_id, payment_id, shippingaddress_id) VALUES('(848) 466-9338', 'vglnguyen@mum.edu', null, '11/02/2017', 90, 1, 1, 2);
+--INSERT INTO customerorder (contactCellPhone, contactEmail, notes, orderDate, totalPrice, billingaddress_id, payment_id, shippingaddress_id) VALUES('(848) 466-1234', 'luatguyen@mum.edu', null, '11/05/2017', 200, 1, 2, 1);
+--INSERT INTO customerorder (contactCellPhone, contactEmail, notes, orderDate, totalPrice, billingaddress_id, payment_id, shippingaddress_id) VALUES('(848) 466-4321', 'luatnguyen@yahoo.com', null, '10/25/2017', 100, 2, 3, 3);
 
-INSERT INTO customer_customerorder (Customer_id, orderList_id) VALUES (1, 1);
-INSERT INTO customer_customerorder (Customer_id, orderList_id) VALUES (1, 2);
-INSERT INTO customer_customerorder (Customer_id, orderList_id) VALUES (2, 3);
+--INSERT INTO customer_customerorder (Customer_id, orderList_id) VALUES (1, 1);
+--INSERT INTO customer_customerorder (Customer_id, orderList_id) VALUES (1, 2);
+--INSERT INTO customer_customerorder (Customer_id, orderList_id) VALUES (2, 3);
 
+--INSERT INTO CustomerOrder_Item(CustomerOrder_id,items_id) VALUES(1, 1);
+--INSERT INTO CustomerOrder_Item(CustomerOrder_id,items_id) VALUES(1, 2);
+--INSERT INTO CustomerOrder_Item(CustomerOrder_id,items_id) VALUES(1, 3);
+--INSERT INTO CustomerOrder_Item(CustomerOrder_id,items_id) VALUES(1, 4);
+--INSERT INTO CustomerOrder_Item(CustomerOrder_id,items_id) VALUES(1, 5);
+--INSERT INTO CustomerOrder_Item(CustomerOrder_id,items_id) VALUES(1, 6);
+
+--INSERT INTO CustomerOrder_Item(CustomerOrder_id,items_id) VALUES(2, 1);
+--INSERT INTO CustomerOrder_Item(CustomerOrder_id,items_id) VALUES(2, 2);
+--INSERT INTO CustomerOrder_Item(CustomerOrder_id,items_id) VALUES(2, 3);
+--INSERT INTO CustomerOrder_Item(CustomerOrder_id,items_id) VALUES(2, 4);
+--INSERT INTO CustomerOrder_Item(CustomerOrder_id,items_id) VALUES(2, 5);
+--INSERT INTO CustomerOrder_Item(CustomerOrder_id,items_id) VALUES(2, 6);
 
 
 

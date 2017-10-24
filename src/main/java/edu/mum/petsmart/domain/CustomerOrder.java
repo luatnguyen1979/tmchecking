@@ -6,7 +6,7 @@ package edu.mum.petsmart.domain;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -43,12 +43,12 @@ public class CustomerOrder implements Serializable {
 
 	private double totalPrice;
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "billingaddress_id", nullable = true, insertable = false, updatable = false)
+	@ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+	@JoinColumn(name = "billingaddress_id", nullable = true, insertable = true, updatable = true)
 	private Address billingAddress;
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "shippingaddress_id", nullable = true, insertable = false, updatable = false)
+	@ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+	@JoinColumn(name = "shippingaddress_id", nullable = true, insertable = true, updatable = true)
 	private Address shipingAddress;
 
 	@Email
@@ -59,11 +59,11 @@ public class CustomerOrder implements Serializable {
 	String notes;
 
 	@Valid
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "payment_id", nullable = true, insertable = false, updatable = false)
+	@ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+	@JoinColumn(name = "payment_id", nullable = true, insertable = true, updatable = true)
 	private Payment payment;
 
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinTable
 	List<Item> items = new ArrayList<Item>();
 

@@ -30,7 +30,7 @@ import edu.mum.petsmart.service.AddressService;
  * @product Web Application Architecture
  */
 @Controller
-@SessionAttributes({"customer", "customerOrder", "cart", "billingAddress", "shippingAddress", "payment"})
+@SessionAttributes({"customer", "customerOrder", "cart", "billingAddress", "shippingAddress", "orderPayment"})
 @RequestMapping(value="/address")
 public class AddressController {
 	@Autowired
@@ -42,7 +42,7 @@ public class AddressController {
 			
 		//addrService.save(address);
 		//custOrder.setBillingAddress(address);
-		session.setAttribute("shippingAddress", address);
+		model.addAttribute("shippingAddress", address);
 		return address;
   
 	}
@@ -52,7 +52,7 @@ public class AddressController {
 		/*Customer customer = (Customer)session.getAttribute("customer");
 		
 		addrService.save(address);*/
-		session.setAttribute("billingAddress", address);
+		model.addAttribute("billingAddress", address);
 		return address;
   
 	}

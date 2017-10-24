@@ -24,7 +24,7 @@ import edu.mum.petsmart.service.PaymentService;
  * @product Web Application Architecture
  */
 @Controller
-@SessionAttributes({"customer", "customerOrder", "cart", "billingAddress", "shippingAddress", "payment"})
+@SessionAttributes({"customer", "customerOrder", "cart", "billingAddress", "shippingAddress", "orderPayment"})
 @RequestMapping(value="/payment")
 public class PaymentController {
 	@Autowired
@@ -33,7 +33,7 @@ public class PaymentController {
 	@RequestMapping(value = {"/add"}, method=RequestMethod.POST)
 	public @ResponseBody Payment addPayment(@Valid @RequestBody Payment payment, Model model, HttpSession session) {		
 		//paymentService.save(payment);
-		session.setAttribute("payment", payment);
+		model.addAttribute("orderPayment", payment);
 		return payment;
   
 	}
