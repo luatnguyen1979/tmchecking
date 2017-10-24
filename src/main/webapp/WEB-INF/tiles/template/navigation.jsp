@@ -50,7 +50,11 @@
 				  </span>
 				</a>
             </li>
-          </ul>
+			            </ul>
+          <br>
+          <a href="?lang=en">English</a>
+          <a href="?lang=jp">Japan</a>
+          <a href="?lang=vi">Vietnam</a>
         </div>
       </div>
     </nav>
