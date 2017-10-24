@@ -119,7 +119,7 @@ public class CustomerOrderController {
 	
 	@RequestMapping(value = "/confirmation", method = RequestMethod.GET)
 	public String confirm(Model model) {
-		return "confirmation";
+		return "ordersuccessful";
 	}
 
 }
