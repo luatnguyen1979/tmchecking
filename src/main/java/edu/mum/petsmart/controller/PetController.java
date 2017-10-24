@@ -51,7 +51,7 @@ public class PetController {
 		return "forward:products";
 	}
 	
-	@RequestMapping(value = "/products", method=RequestMethod.GET)
+	@RequestMapping(value = "/products")
 	public String products(Model model) {
 		model.addAttribute("products", productService.getAll());
 		

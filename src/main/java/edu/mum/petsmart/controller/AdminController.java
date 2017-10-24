@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import edu.mum.petsmart.domain.Login;
 import edu.mum.petsmart.domain.Product;
 import edu.mum.petsmart.dto.DomainErrors;
 import edu.mum.petsmart.service.CustomerOrderService;
@@ -35,15 +36,22 @@ public class AdminController {
 	@Autowired
 	MessageSourceAccessor messageAccessor;
 	
-	@RequestMapping(value = "/admin", method=RequestMethod.GET)
-	public String products(@ModelAttribute("product")Product product, Model model) {
+	@RequestMapping(value = "/admin")
+	public String products(@ModelAttribute("product")Product product, Model model, HttpServletRequest request) {
+		if (checkSession(request)) {
+			return "forward:login";
+		}
 		model.addAttribute("products", productService.getAll());
 		return "admin";
 	}
 	
 	
 	@RequestMapping(value = "/adminSearch", method=RequestMethod.GET)
-	public String search(@ModelAttribute("product")Product product, @RequestParam("keyword") String keyword, Model model) {
+	public String search(@ModelAttribute("product")Product product, @RequestParam("keyword") String keyword, Model model, HttpServletRequest request) {
+		if (checkSession(request)) {
+			return "forward:login";
+		}
+
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("products", productService.findProducts(keyword));
 		return "admin";
@@ -52,6 +60,10 @@ public class AdminController {
 	@RequestMapping(value = "/saveProduct", method=RequestMethod.POST)
 	public String saveProducts(@Valid @ModelAttribute("product")Product product, BindingResult bindingResult,
 			Model model, HttpServletRequest request) {
+
+		if (checkSession(request)) {
+			return "forward:login";
+		}
 		
 		if (bindingResult.hasErrors()) {
 			return "redirect:admin";
@@ -101,8 +113,22 @@ public class AdminController {
 	
 	
 	@RequestMapping(value = "/orders", method=RequestMethod.GET)
-	public String orders(Model model) {
+	public String orders(Model model, HttpServletRequest request) {
+		if (checkSession(request)) {
+			return "forward:login";
+		}
+		
+		
 		model.addAttribute("orders", customerOrderService.getAll());
 		return "orders";
-	}	
+	}
+	
+	private boolean checkSession(HttpServletRequest request) {
+		Object l = request.getSession().getAttribute("login");
+		if (l !=null && "ADMIN".equals(((Login)l).getRole())) {
+			return false;
+		}
+		return true;
+	}
+	
 }

@@ -14,7 +14,11 @@
               <a class="nav-link" href="admin">Product list</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="signin">Sign In</a>
+<% if (session.getAttribute("login") == null) { %>
+      	<a class="nav-link" href="login"><span class="fa fa-user-plus fa-fw"></span>Sign In</a>
+<% } else {%>
+		<a class="nav-link" href="logout"><span class="fa fa-user-plus fa-fw"></span>Sign Out</a>
+<% } %>
             </li>
           </ul>
         </div>
