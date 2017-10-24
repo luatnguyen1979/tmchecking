@@ -354,7 +354,7 @@
                     </div>
                     
                     <div class="row">
-                        <div class="col-3 text-right align-text-middle"><spring:message code="cardType"/>:</div>
+                        <div class="col-3 text-right align-text-middle">Card Type:<form:radiobutton path="paymentMethod" value="VISA"/></div>
                         <div class="col-9 text-left">
                             <form:radiobutton path="paymentMethod" value="VISA"/>&nbsp;<img src="resource/images/cards/VISA.png"/>&nbsp;&nbsp;&nbsp;<form:radiobutton
                     path="paymentMethod" value="MasterCard" />&nbsp;<img src="resource/images/cards/MasterCard.png"/>&nbsp;&nbsp;&nbsp;<form:radiobutton
