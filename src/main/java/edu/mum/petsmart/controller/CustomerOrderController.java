@@ -111,9 +111,10 @@ public class CustomerOrderController {
 		custOrder.setPayment(payment);
 		List<CustomerOrder> orderList = new ArrayList<CustomerOrder>();
 		orderList.add(custOrder);
-		//customer.setOrderList(orderList);
-		customer.getOrderList().add(custOrder);
-		//custService.update(customer, custOrder);
+		customer.setOrderList(orderList);
+		//customer.getOrderList().add(custOrder);
+		
+		custService.update(customer, custOrder);
 		
 		request.getSession().removeAttribute("cart");
 		request.getSession().setAttribute("cartItems", 0);
