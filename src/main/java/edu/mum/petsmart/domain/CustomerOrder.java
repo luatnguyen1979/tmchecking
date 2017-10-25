@@ -49,7 +49,7 @@ public class CustomerOrder implements Serializable {
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name = "shippingaddress_id", nullable = true, insertable = true, updatable = true)
-	private Address shipingAddress;
+	private Address shippingAddress;
 
 	@Email
 	String contactEmail;
@@ -130,16 +130,16 @@ public class CustomerOrder implements Serializable {
 	/**
 	 * @return the shipingAddress
 	 */
-	public Address getShipingAddress() {
-		return shipingAddress;
+	public Address getShippingAddress() {
+		return shippingAddress;
 	}
 
 	/**
 	 * @param shipingAddress
 	 *            the shipingAddress to set
 	 */
-	public void setShipingAddress(Address shipingAddress) {
-		this.shipingAddress = shipingAddress;
+	public void setShippingAddress(Address shippingAddress) {
+		this.shippingAddress = shippingAddress;
 	}
 
 	/**

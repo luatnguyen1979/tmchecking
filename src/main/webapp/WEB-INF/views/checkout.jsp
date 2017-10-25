@@ -20,7 +20,7 @@
 
 					<div class="col-xl-1">
 						<a data-toggle="collapse" href="#collapseOne" aria-expanded="true"
-							aria-controls="collapseOne"> <spring:message code="charge"/> </a>
+							aria-controls="collapseOne"> <spring:message code="change"/> </a>
 							
                         
 					</div>
@@ -44,7 +44,7 @@
 				<div class="row">
 					<div id="defautlPayment" class="col-xl-11 center-block text-left">
 					<c:set var = "shortNumber" value = "${fn:substring(customer.payment.cardNumber, 11, 15)}" />
-						<h5>2. <spring:message code="paymentMethod"/> - <img src="resource/images/cards/${customer.payment.paymentMethod}.png"/> ending in ${shortNumber}&nbsp; <a href="javascript:make_visible('formPayment');" class="btn btn-primary"><spring:message code="addPayment"/></a></h5>
+						<h5>2. <spring:message code="paymentMethod"/> - <img src="resource/images/cards/${customer.payment.paymentMethod}.png"/> ending in XXXX-XXXX-XXXX-${shortNumber}&nbsp; <a href="javascript:make_visible('formPayment');" class="btn btn-primary"><spring:message code="addPayment"/></a></h5>
 					</div>
 					<div class="col-xl-1">
 						<a class="collapsed" data-toggle="collapse" href="#collapseTwo"
@@ -125,7 +125,7 @@
 						</div>
 						<div class="row">
 							<div class="col-2"></div>
-							<div class="col"><a href="products"><img src="resource/images/products/${cartItem.product.image}" alt="${cartItem.product.name}" style='width:70px;height:70px;'/></a></div>
+							<div class="col"><a href="products"><img src="resource/images/products/${cartItem.product.id}.jpg" alt="${cartItem.product.name}" style='width:70px;height:70px;'/></a></div>
 							<div class="col-8 text-left">${cartItem.product.name}<br/>${cartItem.product.details}</div>
 							<div class="col"></div>
 						</div>
@@ -161,7 +161,6 @@
           <br/>
             <h3 align="center"><spring:message code="addingAddress"/></h3>
             <br/>
-           
             
             <form:form id="addressForm" name="address" modelAttribute="shipAddr" method="POST">
                 <div class="container">
@@ -176,8 +175,6 @@
                     </div>
                     </div>
                     </div>
-                    
-                 
                     
                     <div class="row">
                         <div class="col-3 text-right"><spring:message code="fullName"/>:</div>
@@ -338,6 +335,7 @@
         <div class="modal-content">
           <br/>
             <h3 align="center"><spring:message code="addingPayment"/></h3>
+            
             <br/>
             <form:form id="paymentForm" name="payment" modelAttribute="payment" method="POST">
                 <div class="container">
@@ -354,8 +352,9 @@
                     </div>
                     
                     <div class="row">
-                        <div class="col-3 text-right align-text-middle">Card Type:<form:radiobutton path="paymentMethod" value="VISA"/></div>
+                        <div class="col-3 text-right align-text-middle">Card Type:</div>
                         <div class="col-9 text-left">
+                        <input type="radio" name="gender" value="male" checked>aaaaaa
                             <form:radiobutton path="paymentMethod" value="VISA"/>&nbsp;<img src="resource/images/cards/VISA.png"/>&nbsp;&nbsp;&nbsp;<form:radiobutton
                     path="paymentMethod" value="MasterCard" />&nbsp;<img src="resource/images/cards/MasterCard.png"/>&nbsp;&nbsp;&nbsp;<form:radiobutton
                     path="paymentMethod" value="American-Express" />&nbsp;<img src="resource/images/cards/American-Express.png"/><br/>

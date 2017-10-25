@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.mum.petsmart.domain.Address;
+import edu.mum.petsmart.domain.Cart;
 import edu.mum.petsmart.domain.Customer;
 import edu.mum.petsmart.domain.CustomerOrder;
 import edu.mum.petsmart.domain.Item;
@@ -72,8 +74,8 @@ public class CustomerOrderController {
 		
 		
 		/*session.setAttribute("billingAddress", billAddr);
-		session.setAttribute("shippingAddress", shipAddr);
-		session.setAttribute("payment", payment);*/
+		session.setAttribute("shippingAddress", shipAddr);*/
+		//session.setAttribute("orderPayment", payment);
 		model.addAttribute("billingAddress", customer.getAddress());
 		model.addAttribute("shippingAddress", customer.getAddress());
 		model.addAttribute("orderPayment", customer.getPayment());
@@ -86,7 +88,7 @@ public class CustomerOrderController {
 	
 	@RequestMapping(value = "/placeOrder", method = RequestMethod.POST)
 	public String placeOrder(@ModelAttribute("custOrder") CustomerOrder custOrder, RedirectAttributes redirectAttributes,
-			Model model, HttpSession session) {
+			Model model, HttpSession session, HttpServletRequest request) {
 		// model.addAttribute("newCustOrder", new CustomerOrder());
 		Customer customer = (Customer) session.getAttribute("customer");
 		//CustomerOrder order = (CustomerOrder) session.getAttribute("customerOrder");
@@ -105,11 +107,16 @@ public class CustomerOrderController {
 		Address shipAddr = (Address) session.getAttribute("shippingAddress");
 		Payment payment = (Payment) session.getAttribute("orderPayment");
 		custOrder.setBillingAddress(billAddr);
-		custOrder.setShipingAddress(shipAddr);
+		custOrder.setShippingAddress(shipAddr);
 		custOrder.setPayment(payment);
+		List<CustomerOrder> orderList = new ArrayList<CustomerOrder>();
+		orderList.add(custOrder);
+		//customer.setOrderList(orderList);
 		customer.getOrderList().add(custOrder);
-		custService.update(customer, custOrder);
-		model.addAttribute("cart", new ArrayList<Item> ());
+		//custService.update(customer, custOrder);
+		
+		request.getSession().removeAttribute("cart");
+		request.getSession().setAttribute("cartItems", 0);
 		model.addAttribute("customerOrder", new CustomerOrder());
 		model.addAttribute("customer", customer);
 		redirectAttributes.addFlashAttribute("customerOrder",custOrder);

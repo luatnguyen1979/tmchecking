@@ -40,8 +40,9 @@ public class PetController {
 	@RequestMapping(value= {"welcome", "/"}, method=RequestMethod.GET)
 	public String welcome(Model model, HttpServletRequest request) {
 		model.addAttribute("products", productService.getAll());
-		if(request.getSession().getAttribute("cart") == null ||
-				!cartService.contains((Cart) request.getSession().getAttribute("cart"))) {
+		/*if(request.getSession().getAttribute("cart") == null ||
+				!cartService.contains((Cart) request.getSession().getAttribute("cart"))) {*/
+		if(request.getSession().getAttribute("cart") == null) {
 			Cart cart = new Cart();
 			cartService.save(cart);
 			request.getSession().setAttribute("cart", cart);
