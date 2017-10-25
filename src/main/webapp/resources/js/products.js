@@ -44,6 +44,7 @@
 		            $('#quantity').attr("max", product.quantity);
 		            if (product.quantity>0) {
 		            	$('#quantity').val(1);
+		            	$('#addToCart').removeAttr("disabled");
 		            } else {
 		            	$('#quantity').val(0);
 		            	$('#addToCart').attr("disabled", "disabled");
