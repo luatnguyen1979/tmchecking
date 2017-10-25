@@ -129,9 +129,10 @@ public class CustomerOrderController {
 		//customer = custService.getCustomer(customer.getId());
 		cartService.delete(cart.getId());
 		request.getSession().removeAttribute("cart");
+		cart = new Cart();
 		model.addAttribute("items", new ArrayList<Item>());
 		cart.setCartItems(new ArrayList<Item>());
-//		request.getSession().setAttribute("cart", cart);
+		request.getSession().setAttribute("cart", cart);
 		request.getSession().setAttribute("cartItems", 0);
 		model.addAttribute("customerOrder", new CustomerOrder());
 		//model.addAttribute("customer", customer);
