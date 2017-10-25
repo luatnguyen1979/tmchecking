@@ -31,16 +31,14 @@ public class Customer implements Serializable {
 	private Long id;
 	
 	@NotEmpty
-	@Size(min = 2, max = 40)
+	@Size(min = 2, max = 40, message="{Size.validation}")
 	private String firstName;
 	
 	@NotEmpty
-	@Size(min = 2, max = 40)
+	@Size(min = 2, max = 40, message="{Size.validation}")
 	private String lastName;
 	
-
-
-	 @ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name="payment_id", nullable = true, insertable=true, updatable=true)
 	private Payment payment;
 

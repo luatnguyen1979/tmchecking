@@ -2,13 +2,14 @@ package edu.mum.petsmart.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotNull;
+import javax.persistence.OneToOne;
+import javax.validation.Valid;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -23,14 +24,18 @@ public class Login implements Serializable {
 	private long id;
 
 	@NotEmpty
-	@Size(min = 8, max = 20)
+	@Size(min = 4, max = 20,  message="{Size.validation}")
 	private String userId;
 
 	@NotEmpty
-	@Size(min = 8, max = 20)
+	@Size(min = 8, max = 20, message="{Size.validation}")
 	private String password;
 
-	@NotNull
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="customerId")
+	@Valid
+	private Customer customer;
+	
 	private String role;
 
 	public long getId() {
@@ -65,12 +70,12 @@ public class Login implements Serializable {
 		this.role = role;
 	}
 
-/*	public Customer getCustomer() {
+	public Customer getCustomer() {
 		return customer;
 	}
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
-	}*/
+	}
 	
 }

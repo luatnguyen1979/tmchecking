@@ -1,10 +1,12 @@
 package edu.mum.petsmart.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -51,5 +53,27 @@ public class LoginController {
 	public String logout(@ModelAttribute("login") Login login, HttpServletRequest request) {
  		request.getSession().removeAttribute("login");
  		return "redirect:products";
-	} 	
+	}
+ 	
+ 	
+ 	@RequestMapping(value ="/addUser")
+	public String addUser(@ModelAttribute("login") Login login) {
+ 		return "addUser";
+	}
+
+ 	@RequestMapping(value ="/createUser")
+	public String createUser(@Valid @ModelAttribute("login") Login login, BindingResult bindingResult) {
+ 		if (bindingResult.hasErrors()) {
+ 	 		return "addUser";
+ 		}
+ 		
+ 		login.setPassword(login.getPassword().replaceAll(",", ""));
+ 		login.setRole("USER");
+ 		loginService.save(login);
+ 		return "redirect:login";
+	}
+
+ 	
+ 	
+ 	
 }

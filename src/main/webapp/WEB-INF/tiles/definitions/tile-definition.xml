@@ -88,6 +88,12 @@
  		<put-attribute name="body" value="/WEB-INF/views/login.jsp" />
 	</definition>
 
+	<definition name="addUser" extends="baseLayout">
+		<put-attribute name="title" value="AddUser" />
+		<put-attribute name="header" value=""/>
+ 		<put-attribute name="body" value="/WEB-INF/views/addUser.jsp" />
+	</definition>
+
 	<definition name="adminBaseLayout" template="/WEB-INF/tiles/template/layoutTemplate.jsp">
 		<put-attribute name="title" value="Admin" />
 		<put-attribute name="heading" value="" />
