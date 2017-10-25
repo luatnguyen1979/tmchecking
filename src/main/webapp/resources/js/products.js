@@ -42,7 +42,12 @@
 		            $("#product_view #price").text(product.price);
 		            $("#product_view #image").attr("src","resource/images/products/" + product.id + ".jpg");
 		            $('#quantity').attr("max", product.quantity);
-		            $('#quantity').val(1);
+		            if (product.quantity>0) {
+		            	$('#quantity').val(1);
+		            } else {
+		            	$('#quantity').val(0);
+		            	$('#addToCart').attr("disabled", "disabled");
+		            }
 		            $("#product_view").data("product", product);
 		            $("#product_view").modal("toggle");
 				},
