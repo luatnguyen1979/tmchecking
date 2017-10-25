@@ -39,12 +39,13 @@ public class LoginController {
 	SessionHelper sessionHelper;
 
  	@RequestMapping(value ="/login", method=RequestMethod.GET)
-	public String login(@ModelAttribute("login") Login login, Model model) {
+	public String login(@ModelAttribute("login") Login login, @ModelAttribute("message") String message, Model model) {
  		model.addAttribute("errors", "");
+ 		model.addAttribute("message", message);
  		return "login";
 	}
 	
- 	@RequestMapping(value ="/login", method=RequestMethod.POST)
+ 	@RequestMapping(value ="/doLogin", method=RequestMethod.POST)
 	public String doLogin(@ModelAttribute("login") Login login, Model model,  HttpServletRequest request) {
  		
  		Login l = loginService.findByUsername(login.getUserId());

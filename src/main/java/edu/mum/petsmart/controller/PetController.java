@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import edu.mum.petsmart.domain.Cart;
 import edu.mum.petsmart.domain.Item;
+import edu.mum.petsmart.domain.Login;
 import edu.mum.petsmart.domain.Product;
 import edu.mum.petsmart.service.CartService;
 import edu.mum.petsmart.service.ItemService;
@@ -38,6 +39,10 @@ public class PetController {
 	CartService cartService;
 
 	@RequestMapping(value= {"welcome", "/","/products"}, method=RequestMethod.GET)	public String welcome(Model model, HttpServletRequest request) {
+		if (checkSession(request)) {
+			return "forward:login";
+		}
+		
 		model.addAttribute("products", productService.getAll());
 		if(request.getSession().getAttribute("cart") == null ||
 				!cartService.contains((Cart) request.getSession().getAttribute("cart"))) {
@@ -84,6 +89,10 @@ public class PetController {
 	
 	@RequestMapping(value = "/cart", method=RequestMethod.GET)
 	public String cart(Model model, HttpServletRequest request) throws Exception {
+		if (checkSession(request)) {
+			return "forward:login";
+		}
+		
 		if(request.getSession().getAttribute("cart") == null ||
 				!cartService.contains((Cart) request.getSession().getAttribute("cart"))) {
 			Cart cart = new Cart();
@@ -108,6 +117,10 @@ public class PetController {
 
 	@RequestMapping(value = "/removeItem/{itemId}")
 	public String removeFromCart(@PathVariable long itemId, HttpServletRequest request) {
+		if (checkSession(request)) {
+			return "forward:login";
+		}		
+		
 		long cartId = ((Cart)request.getSession().getAttribute("cart")).getId();
 		Cart testCart = cartService.get(cartId);
 		
@@ -122,6 +135,11 @@ public class PetController {
 	}
 	@RequestMapping(value = "/updateCart")
 	public String updateCart(HttpServletRequest request, Model model) {
+		if (checkSession(request)) {
+			return "forward:login";
+		}		
+		
+		
 		long cartId =((Cart)request.getSession().getAttribute("cart")).getId();
 		Cart tempCart = cartService.get(cartId);
 
@@ -144,10 +162,23 @@ public class PetController {
 	}
 
 	@RequestMapping(value = "/search", method=RequestMethod.GET)
-	public String search(@RequestParam("keyword") String keyword, Model model) {
+	public String search(@RequestParam("keyword") String keyword, Model model,  HttpServletRequest request) {
+		if (checkSession(request)) {
+			return "forward:login";
+		}		
+		
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("products", productService.findProducts(keyword));
 		return "products";
 	}
+	
+	
+	private boolean checkSession(HttpServletRequest request) {
+		Object l = request.getSession().getAttribute("login");
+		if (l !=null && "ADMIN".equals(((Login)l).getRole())) {
+			return true;
+		}
+		return false;
+	}	
 
 }

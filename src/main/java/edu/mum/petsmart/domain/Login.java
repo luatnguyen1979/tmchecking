@@ -23,12 +23,12 @@ public class Login implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-	@NotEmpty
-	@Size(min = 4, max = 20,  message="{Size.validation}")
+	@NotEmpty(message="{NotEmpty.userId}")
+	@Size(min = 4, max = 20,  message="{Size.validation.userId}")
 	private String userId;
 
-	@NotEmpty
-	@Size(min = 8, max = 20, message="{Size.validation}")
+	@NotEmpty(message="{NotEmpty.password}")
+	@Size(min = 8, max = 20, message="{Size.validation.password}")
 	private String password;
 
 	@OneToOne(cascade=CascadeType.ALL)

@@ -16,7 +16,7 @@
 	</div>
 	<!-- Main Form -->
 	<div class="login-form-1">
-		<form:form id="login-form" modelAttribut="login" method="Post" class="text-left">
+		<form:form id="login-form" modelAttribut="login" method="Post" class="text-left" action="doLogin">
 			<div class="login-form-main-message"></div>
 			<div class="main-login-form">
 				<div class="login-group">

@@ -30,12 +30,12 @@ public class Customer implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@NotEmpty
-	@Size(min = 2, max = 40, message="{Size.validation}")
+	@NotEmpty(message="{NotEmpty.firstName}")
+	@Size(min = 2, max = 40, message="{Size.validation.firstName}")
 	private String firstName;
 	
-	@NotEmpty
-	@Size(min = 2, max = 40, message="{Size.validation}")
+	@NotEmpty(message="{NotEmpty.lastName}")
+	@Size(min = 2, max = 40, message="{Size.validation.lastName}")
 	private String lastName;
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
@@ -47,7 +47,7 @@ public class Customer implements Serializable {
 	@JoinColumn(name="address_id", nullable = true, insertable=true, updatable=true)
 	private Address address;
 
-	@NotEmpty
+	@NotEmpty(message="{NotEmpty.cellPhone}")
 	String cellPhone;
 
 	String notes;
