@@ -8,6 +8,9 @@
 <!-- LOGIN FORM -->
 <div class="text-center" style="padding:50px 0 200px">
 	<div class="logo"><spring:message code="login"/></div>
+	<div style="color:green;margin-left:20px" >   	
+		<p>${message}</p>
+	</div>
 	<div id="errors" style="color:red;margin-left:20px" >   	
 		<p>${errors}</p>
 	</div>

@@ -1,12 +1,8 @@
 package edu.mum.petsmart.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import java.util.List;
 
 import edu.mum.petsmart.domain.Cart;
-import edu.mum.petsmart.domain.Product;
-import edu.mum.petsmart.repository.CartRepository;
 
 
 public interface CartService {
@@ -16,4 +12,5 @@ public interface CartService {
 	public Cart get(long id);
 	public boolean contains(Cart cart);
 	void delete(long id);
+	public List<Cart> getAll();
 }

@@ -27,7 +27,7 @@
 	        <td>${order.contactEmail}</td>
 	        <td>${order.contactCellPhone}</td>
 	        <td>${order.billingAddress}</td>
-	        <td>${order.shipingAddress}</td>
+	        <td>${order.shippingAddress}</td>
 	        <td>${order.notes}</td>
 	      </tr>
 		</c:forEach>

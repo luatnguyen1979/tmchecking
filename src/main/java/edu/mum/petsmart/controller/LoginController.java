@@ -1,5 +1,6 @@
 package edu.mum.petsmart.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +19,7 @@ import edu.mum.petsmart.domain.Item;
 import edu.mum.petsmart.domain.Login;
 import edu.mum.petsmart.service.CartService;
 import edu.mum.petsmart.service.CustomerService;
+import edu.mum.petsmart.service.ItemService;
 import edu.mum.petsmart.service.LoginService;
 
 @Controller
@@ -33,11 +35,15 @@ public class LoginController {
 	private CartService cartService;
 	
 	@Autowired
+	private ItemService itemService;
+	
+	@Autowired
 	SessionHelper sessionHelper;
 
  	@RequestMapping(value ="/login", method=RequestMethod.GET)
-	public String login(@ModelAttribute("login") Login login, Model model) {
+	public String login(@ModelAttribute("login") Login login, @ModelAttribute("message") String message, Model model) {
  		model.addAttribute("errors", "");
+ 		model.addAttribute("message", message);
  		return "login";
 	}
 	
@@ -49,23 +55,52 @@ public class LoginController {
  			if (l.getPassword().equals(login.getPassword())) {
  				request.getSession().setAttribute("login", l);
  				
- 				if(l.getCustomer().getCart() == null) {
- 					l.getCustomer().setCart(new Cart());
- 				}
- 				
- 				Cart customerCart = l.getCustomer().getCart();
- 				Cart sessionCart = cartService.get(((Cart)request.getSession().getAttribute("cart")).getId());
- 				
- 				List<Item> customerItems = customerCart.getCartItems();
- 				List<Item> sessionItems = sessionCart.getCartItems();
- 				
- 				customerCart.getCartItems().addAll(sessionItems);
- 				sessionCart.getCartItems().addAll(customerItems);
- 				
  				if ("ADMIN".equals(l.getRole())) {
  					return "redirect:admin";
  				} else {
- 					return "redirect:products";
+ 					if(l.getCustomer().getCart() == null) {
+ 	 					Cart newCustomerCart = new Cart();
+ 	 					cartService.save(newCustomerCart);
+ 	 					l.getCustomer().setCart(newCustomerCart);
+ 	 				}
+ 					
+ 	 				Cart customerCart = l.getCustomer().getCart();
+ 	 				
+ 	 				if ((Cart)request.getSession().getAttribute("cart") != null) {
+ 	 	 				Cart sessionCart = cartService.get(((Cart)request.getSession().getAttribute("cart")).getId());
+ 	 	 				
+ 	 	 				List<Item> customerItems = customerCart.getCartItems();
+ 	 	 				List<Item> sessionItems = sessionCart.getCartItems();
+ 	 	 				
+ 	 	 				for(Item item: sessionItems) {
+ 	 	 					
+ 	 	 					Item newItem = new Item();
+ 	 	 					newItem.setDiscount(item.getDiscount());
+ 	 	 					newItem.setProduct(item.getProduct());
+ 	 	 					newItem.setQuantity(item.getQuantity());
+ 	 	 					
+ 	 	 					itemService.save(newItem);
+ 	 	 	 				customerCart.getCartItems().add(newItem);
+ 	 	 				}
+ 	 	 				List<Item> items = new ArrayList<>();
+ 	 	 				sessionCart.setCartItems(items);
+ 	 	 				for(Item item: customerItems) {
+ 	 	 					
+ 	 	 					Item newItem = new Item();
+ 	 	 					newItem.setDiscount(item.getDiscount());
+ 	 	 					newItem.setProduct(item.getProduct());
+ 	 	 					newItem.setQuantity(item.getQuantity());
+ 	 	 					
+ 	 	 					itemService.save(newItem);
+ 	 	 	 				sessionCart.getCartItems().add(newItem);
+ 	 	 				}
+ 	 	 				
+ 	 	 				
+ 	 	 				cartService.save(customerCart);
+ 	 	 				cartService.save(sessionCart);
+ 	 				}
+ 	 				//customerService.save(l.getCustomer());
+ 					 					return "redirect:products";
  				}
  			}
  		}
@@ -87,7 +122,7 @@ public class LoginController {
 	}
 
  	@RequestMapping(value ="/createUser")
-	public String createUser(@Valid @ModelAttribute("login") Login login, BindingResult bindingResult) {
+	public String createUser(@Valid @ModelAttribute("login") Login login, BindingResult bindingResult, Model model) {
  		if (bindingResult.hasErrors()) {
  	 		return "addUser";
  		}
@@ -95,6 +130,7 @@ public class LoginController {
  		login.setPassword(login.getPassword().replaceAll(",", ""));
  		login.setRole("USER");
  		loginService.save(login);
+ 		model.addAttribute("message", "user has been success created.");
  		return "redirect:login";
 	}
 

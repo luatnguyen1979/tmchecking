@@ -73,14 +73,13 @@ INSERT INTO Customer (firstName, lastName, cellPhone, notes, address_id, cart_id
 --INSERT INTO CustomerOrder_Item(CustomerOrder_id,items_id) VALUES(2, 6);
 
 
-insert into login(customerId, password, role, userid) values(1,'123','USER','user1');
-insert into login(customerId, password, role, userid) values(2,'123','USER','user2');
-insert into login(customerId, password, role, userid) values(3,'123','USER','user3');
-insert into login(customerId, password, role, userid) values(4,'123','USER','user4');
-insert into login(customerId, password, role, userid) values(5,'123','ADMIN','admin1');
-insert into login(customerId, password, role, userid) values(6,'123','ADMIN','admin2');
-insert into login(customerId, password, role, userid) values(7,'123','ADMIN','admin3');
-insert into login(customerId, password, role, userid) values(8,'123','ADMIN','admin4');
+insert into login(id, customerId, password, role, userid) values(1, 1, '123','USER','user1');
+insert into login(id, customerId, password, role, userid) values(2, 2,'123','USER','user2');
+insert into login(id, customerId, password, role, userid) values(3, 3,'123','USER','user3');
+insert into login(id, password, role, userid) values(5,'123','ADMIN','admin1');
+insert into login(id, password, role, userid) values(6,'123','ADMIN','admin2');
+insert into login(id, password, role, userid) values(7,'123','ADMIN','admin3');
+insert into login(id, password, role, userid) values(8,'123','ADMIN','admin4');
 
 
 

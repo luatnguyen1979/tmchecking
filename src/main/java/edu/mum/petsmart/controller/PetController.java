@@ -37,27 +37,19 @@ public class PetController {
 	@Autowired
 	CartService cartService;
 
-	@RequestMapping(value= {"welcome", "/"}, method=RequestMethod.GET)
-	public String welcome(Model model, HttpServletRequest request) {
+	@RequestMapping(value= {"welcome", "/","/products"}, method=RequestMethod.GET)	public String welcome(Model model, HttpServletRequest request) {
 		model.addAttribute("products", productService.getAll());
-		/*if(request.getSession().getAttribute("cart") == null ||
-				!cartService.contains((Cart) request.getSession().getAttribute("cart"))) {*/
-		if(request.getSession().getAttribute("cart") == null) {
+		if(request.getSession().getAttribute("cart") == null ||
+				!cartService.contains((Cart) request.getSession().getAttribute("cart"))) {
 			Cart cart = new Cart();
 			cartService.save(cart);
 			request.getSession().setAttribute("cart", cart);
 			request.getSession().setAttribute("cartItems", 0);
 		}
 		
-		return "forward:products";
-	}
-	
-	@RequestMapping(value = "/products")
-	public String products(Model model) {
-		model.addAttribute("products", productService.getAll());
-		
 		return "products";
 	}
+	
 	
 	@RequestMapping(value = "/product/{productId}", method=RequestMethod.GET)
 	@ResponseBody
