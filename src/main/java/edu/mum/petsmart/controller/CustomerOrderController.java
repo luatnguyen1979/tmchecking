@@ -128,6 +128,7 @@ public class CustomerOrderController {
 		//reflect the id of Customer order
 		//customer = custService.getCustomer(customer.getId());
 		cartService.delete(cart.getId());
+		request.getSession().removeAttribute("cart");
 		model.addAttribute("items", new ArrayList<Item>());
 		cart.setCartItems(new ArrayList<Item>());
 		request.getSession().setAttribute("cart", cart);
