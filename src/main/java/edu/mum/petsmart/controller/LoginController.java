@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import edu.mum.petsmart.domain.Cart;
+import edu.mum.petsmart.domain.Customer;
 import edu.mum.petsmart.domain.Item;
 import edu.mum.petsmart.domain.Login;
 import edu.mum.petsmart.service.CartService;
@@ -41,9 +42,8 @@ public class LoginController {
 	SessionHelper sessionHelper;
 
  	@RequestMapping(value ="/login", method=RequestMethod.GET)
-	public String login(@ModelAttribute("login") Login login, @ModelAttribute("message") String message, Model model) {
+	public String login(@ModelAttribute("login") Login login, Model model) {
  		model.addAttribute("errors", "");
- 		model.addAttribute("message", message);
  		return "login";
 	}
 	
@@ -58,49 +58,78 @@ public class LoginController {
  				if ("ADMIN".equals(l.getRole())) {
  					return "redirect:admin";
  				} else {
- 					if(l.getCustomer().getCart() == null) {
- 	 					Cart newCustomerCart = new Cart();
- 	 					cartService.save(newCustomerCart);
- 	 					l.getCustomer().setCart(newCustomerCart);
- 	 				}
+ 					if(request.getSession().getAttribute("cart") == null ||
+ 							!cartService.contains((Cart) request.getSession().getAttribute("cart"))) {
+ 						Cart cart = new Cart();
+ 						cartService.save(cart);
+ 						request.getSession().setAttribute("cart", cart);
+ 						request.getSession().setAttribute("cartItems", 0);
+ 					}
  					
- 	 				Cart customerCart = l.getCustomer().getCart();
- 	 				
- 	 				if ((Cart)request.getSession().getAttribute("cart") != null) {
- 	 	 				Cart sessionCart = cartService.get(((Cart)request.getSession().getAttribute("cart")).getId());
- 	 	 				
- 	 	 				List<Item> customerItems = customerCart.getCartItems();
- 	 	 				List<Item> sessionItems = sessionCart.getCartItems();
- 	 	 				
- 	 	 				for(Item item: sessionItems) {
- 	 	 					
- 	 	 					Item newItem = new Item();
- 	 	 					newItem.setDiscount(item.getDiscount());
- 	 	 					newItem.setProduct(item.getProduct());
- 	 	 					newItem.setQuantity(item.getQuantity());
- 	 	 					
- 	 	 					itemService.save(newItem);
- 	 	 	 				customerCart.getCartItems().add(newItem);
- 	 	 				}
- 	 	 				List<Item> items = new ArrayList<>();
- 	 	 				sessionCart.setCartItems(items);
- 	 	 				for(Item item: customerItems) {
- 	 	 					
- 	 	 					Item newItem = new Item();
- 	 	 					newItem.setDiscount(item.getDiscount());
- 	 	 					newItem.setProduct(item.getProduct());
- 	 	 					newItem.setQuantity(item.getQuantity());
- 	 	 					
- 	 	 					itemService.save(newItem);
- 	 	 	 				sessionCart.getCartItems().add(newItem);
- 	 	 				}
- 	 	 				
- 	 	 				
- 	 	 				cartService.save(customerCart);
- 	 	 				cartService.save(sessionCart);
- 	 				}
+ 					Customer customer = l.getCustomer();
+ 					Cart sessionCart = cartService.get(((Cart)request.getSession().getAttribute("cart")).getId());
+ 					
+ 					if(customer.getCart() != null) {
+ 						for(Item i : customer.getCart().getCartItems()) {
+ 							Item newItem = new Item();
+ 							newItem.setDiscount(i.getDiscount());
+ 							newItem.setProduct(i.getProduct());
+ 							newItem.setQuantity(i.getQuantity());
+ 							itemService.save(newItem);
+ 							
+ 							sessionCart.addCartItem(newItem);
+ 						}
+ 					}
+ 					cartService.save(sessionCart);
+ 					
+ 					customer.setCart(sessionCart);
+ 					
+ 					customerService.save(customer);
+ 					
+// 					if(l.getCustomer().getCart() == null) {
+// 	 					Cart newCustomerCart = new Cart();
+// 	 					cartService.save(newCustomerCart);
+// 	 					l.getCustomer().setCart(newCustomerCart);
+// 	 				}
+// 					
+// 	 				Cart customerCart = l.getCustomer().getCart();
+// 	 				
+// 	 				if ((Cart)request.getSession().getAttribute("cart") != null) {
+// 	 	 				Cart sessionCart = cartService.get(((Cart)request.getSession().getAttribute("cart")).getId());
+// 	 	 				
+// 	 	 				List<Item> customerItems = customerCart.getCartItems();
+// 	 	 				List<Item> sessionItems = sessionCart.getCartItems();
+// 	 	 				
+// 	 	 				for(Item item: sessionItems) {
+// 	 	 					
+// 	 	 					Item newItem = new Item();
+// 	 	 					newItem.setDiscount(item.getDiscount());
+// 	 	 					newItem.setProduct(item.getProduct());
+// 	 	 					newItem.setQuantity(item.getQuantity());
+// 	 	 					
+// 	 	 					itemService.save(newItem);
+// 	 	 	 				customerCart.getCartItems().add(newItem);
+// 	 	 				}
+// 	 	 				List<Item> items = new ArrayList<>();
+// 	 	 				sessionCart.setCartItems(items);
+// 	 	 				for(Item item: customerItems) {
+// 	 	 					
+// 	 	 					Item newItem = new Item();
+// 	 	 					newItem.setDiscount(item.getDiscount());
+// 	 	 					newItem.setProduct(item.getProduct());
+// 	 	 					newItem.setQuantity(item.getQuantity());
+// 	 	 					
+// 	 	 					itemService.save(newItem);
+// 	 	 	 				sessionCart.getCartItems().add(newItem);
+// 	 	 				}
+// 	 	 				
+// 	 	 				
+// 	 	 				cartService.save(customerCart);
+// 	 	 				cartService.save(sessionCart);
+// 	 				}
  	 				//customerService.save(l.getCustomer());
- 					 					return "redirect:products";
+ 					
+ 					return "redirect:products";
  				}
  			}
  		}
@@ -122,7 +151,7 @@ public class LoginController {
 	}
 
  	@RequestMapping(value ="/createUser")
-	public String createUser(@Valid @ModelAttribute("login") Login login, BindingResult bindingResult, Model model) {
+	public String createUser(@Valid @ModelAttribute("login") Login login, BindingResult bindingResult) {
  		if (bindingResult.hasErrors()) {
  	 		return "addUser";
  		}
@@ -130,7 +159,6 @@ public class LoginController {
  		login.setPassword(login.getPassword().replaceAll(",", ""));
  		login.setRole("USER");
  		loginService.save(login);
- 		model.addAttribute("message", "user has been success created.");
  		return "redirect:login";
 	}
 
