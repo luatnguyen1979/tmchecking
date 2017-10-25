@@ -121,7 +121,7 @@ public class PetController {
 		return "redirect:/cart";
 	}
 	@RequestMapping(value = "/updateCart")
-	public String updateCart(HttpServletRequest request) {
+	public String updateCart(HttpServletRequest request, Model model) {
 		long cartId =((Cart)request.getSession().getAttribute("cart")).getId();
 		Cart tempCart = cartService.get(cartId);
 
@@ -139,6 +139,7 @@ public class PetController {
 		
 		cartService.save(tempCart);
 		request.getSession().setAttribute("cartItems", tempCart.getCartItems().size());
+		model.addAttribute("items", tempCart.getCartItems());
 		return "redirect:/cart";
 	}
 
