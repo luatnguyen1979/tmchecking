@@ -25,7 +25,7 @@ import edu.mum.petsmart.service.ItemService;
 import edu.mum.petsmart.service.ProductService;
 
 @Controller
-@SessionAttributes("cart")
+@SessionAttributes({"cart", "items"})
 public class PetController {
 
 	@Autowired

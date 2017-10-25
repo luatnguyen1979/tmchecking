@@ -131,7 +131,7 @@ public class CustomerOrderController {
 		request.getSession().removeAttribute("cart");
 		model.addAttribute("items", new ArrayList<Item>());
 		cart.setCartItems(new ArrayList<Item>());
-		request.getSession().setAttribute("cart", cart);
+//		request.getSession().setAttribute("cart", cart);
 		request.getSession().setAttribute("cartItems", 0);
 		model.addAttribute("customerOrder", new CustomerOrder());
 		//model.addAttribute("customer", customer);
