@@ -1,5 +1,7 @@
 package edu.mum.petsmart.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -11,7 +13,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import edu.mum.petsmart.domain.Cart;
+import edu.mum.petsmart.domain.Item;
 import edu.mum.petsmart.domain.Login;
+import edu.mum.petsmart.service.CartService;
+import edu.mum.petsmart.service.CustomerService;
 import edu.mum.petsmart.service.LoginService;
 
 @Controller
@@ -19,6 +25,12 @@ public class LoginController {
 
 	@Autowired
 	private LoginService loginService;
+	
+	@Autowired
+	private CustomerService customerService;
+	
+	@Autowired
+	private CartService cartService;
 	
 	@Autowired
 	SessionHelper sessionHelper;
@@ -36,6 +48,19 @@ public class LoginController {
  		if (l != null) {
  			if (l.getPassword().equals(login.getPassword())) {
  				request.getSession().setAttribute("login", l);
+ 				
+ 				if(l.getCustomer().getCart() == null) {
+ 					l.getCustomer().setCart(new Cart());
+ 				}
+ 				
+ 				Cart customerCart = l.getCustomer().getCart();
+ 				Cart sessionCart = cartService.get(((Cart)request.getSession().getAttribute("cart")).getId());
+ 				
+ 				List<Item> customerItems = customerCart.getCartItems();
+ 				List<Item> sessionItems = sessionCart.getCartItems();
+ 				
+ 				customerCart.getCartItems().addAll(sessionItems);
+ 				sessionCart.getCartItems().addAll(customerItems);
  				
  				if ("ADMIN".equals(l.getRole())) {
  					return "redirect:admin";

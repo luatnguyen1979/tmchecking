@@ -36,5 +36,10 @@ public class CartServiceImp implements CartService{
 	public boolean contains(Cart cart) {
 		return cartRepository.findOne(cart.getId()) != null;
 	}
+	
+	@Override
+	public void delete(long id) {
+		cartRepository.delete(id);
+	}
 
 }

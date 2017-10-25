@@ -15,4 +15,5 @@ public interface CartService {
 	public Cart save(Cart cart);
 	public Cart get(long id);
 	public boolean contains(Cart cart);
+	void delete(long id);
 }
