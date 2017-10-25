@@ -57,6 +57,7 @@
 		<form id="internationlization"> 
 		<select class="selectpicker" style="margin-left:20px" data-width="fit" name=language>
 		    <option value="en" <c:if test = "${pageContext.response.locale == 'en'}">selected</c:if>>English</option>
+		    
 		  	<option value="jp" <c:if test = "${pageContext.response.locale == 'jp'}">selected</c:if>>Japanese</option>
 		  	<option value="vt" <c:if test = "${pageContext.response.locale == 'vt'}">selected</c:if>>Vietnam</option>
 		</select>        

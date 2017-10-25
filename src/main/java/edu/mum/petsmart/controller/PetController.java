@@ -37,8 +37,7 @@ public class PetController {
 	@Autowired
 	CartService cartService;
 
-	@RequestMapping(value= {"welcome", "/","/products"}, method=RequestMethod.GET)
-	public String welcome(Model model, HttpServletRequest request) {
+	@RequestMapping(value= {"welcome", "/","/products"}, method=RequestMethod.GET)	public String welcome(Model model, HttpServletRequest request) {
 		model.addAttribute("products", productService.getAll());
 		if(request.getSession().getAttribute("cart") == null ||
 				!cartService.contains((Cart) request.getSession().getAttribute("cart"))) {
@@ -50,6 +49,7 @@ public class PetController {
 		
 		return "products";
 	}
+	
 	
 	@RequestMapping(value = "/product/{productId}", method=RequestMethod.GET)
 	@ResponseBody

@@ -352,7 +352,7 @@
                     </div>
                     
                     <div class="row">
-                        <div class="col-3 text-right align-text-middle">Card Type:</div>
+                        <div class="col-3 text-right align-text-middle"><spring:message code="cardType"/></div>
                         <div class="col-9 text-left">
                         <input type="radio" name="gender" value="male" checked>aaaaaa
                             <form:radiobutton path="paymentMethod" value="VISA"/>&nbsp;<img src="resource/images/cards/VISA.png"/>&nbsp;&nbsp;&nbsp;<form:radiobutton
