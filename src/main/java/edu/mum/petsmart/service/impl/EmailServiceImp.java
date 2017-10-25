@@ -17,6 +17,7 @@ public class EmailServiceImp implements EmailService{
 	public void sendMail(String to, String subject, String text) {
 		SimpleMailMessage message = new SimpleMailMessage();
 		message.setTo("kelevi@mum.edu");
+		message.setFrom("coolkent7777777@gmail.com");
 		message.setSubject(subject);
 		message.setText(text);
 		emailSender.send(message);
