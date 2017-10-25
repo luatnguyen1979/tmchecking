@@ -10,7 +10,7 @@
 <c:forEach var="item" items="${items}">
 	
 	<div class="row cartItem" style="margin: 50px">
-		<div class="col-2"><img class="card-img-top" src="resource/images/products/${item.product.image}"
+		<div class="col-2"><img class="card-img-top" src="resource/images/products/${item.product.id}.jpg"
 							alt="" width="300" height="100"></div>
 		<div class="col-5">
 			<div class="row">
