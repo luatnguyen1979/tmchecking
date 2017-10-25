@@ -43,7 +43,8 @@ public class PetController {
 				!cartService.contains((Cart) request.getSession().getAttribute("cart"))) {
 			Cart cart = new Cart();
 			cartService.save(cart);
-			request.getSession().setAttribute("cart", cart);
+			//request.getSession().setAttribute("cart", cart);
+			model.addAttribute("cart", cart);
 			request.getSession().setAttribute("cartItems", 0);
 		}
 		
