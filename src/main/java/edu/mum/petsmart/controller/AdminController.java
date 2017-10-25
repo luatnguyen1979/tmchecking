@@ -1,6 +1,7 @@
 package edu.mum.petsmart.controller;
 
 import java.io.File;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -17,9 +18,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import edu.mum.petsmart.domain.Cart;
+import edu.mum.petsmart.domain.CustomerOrder;
+import edu.mum.petsmart.domain.Item;
 import edu.mum.petsmart.domain.Login;
 import edu.mum.petsmart.domain.Product;
 import edu.mum.petsmart.dto.DomainErrors;
+import edu.mum.petsmart.service.CartService;
 import edu.mum.petsmart.service.CustomerOrderService;
 import edu.mum.petsmart.service.ProductService;
 
@@ -32,16 +37,19 @@ public class AdminController {
 	@Autowired
 	CustomerOrderService customerOrderService;
 
+	@Autowired
+	CartService cartService;
 	
 	@Autowired
 	MessageSourceAccessor messageAccessor;
 	
 	@RequestMapping(value = "/admin")
-	public String products(@ModelAttribute("product")Product product, Model model, HttpServletRequest request) {
+	public String products(@ModelAttribute("product")Product product, @ModelAttribute("errors") String errors, Model model, HttpServletRequest request) {
 		if (checkSession(request)) {
 			return "forward:login";
 		}
 		model.addAttribute("products", productService.getAll());
+		model.addAttribute("errors", errors);
 		return "admin";
 	}
 	
@@ -106,8 +114,26 @@ public class AdminController {
 	
 	
 	@RequestMapping(value = "/deleteProduct", method=RequestMethod.POST)
-	public String saveProducts(@ModelAttribute("product")Product product) {
-		productService.delete(product.getId());
+	public String saveProducts(@ModelAttribute("product")Product product, Model model) {
+		List<CustomerOrder> orderList= customerOrderService.getAll();
+		for (CustomerOrder order : orderList) {
+			for (Item item : order.getItems()) {
+				if (item.getProduct().getId().equals(product.getId())) {
+					model.addAttribute("errors", "You can not delete product that has order or cart.");
+					return "redirect:admin";
+				}
+			}
+		}
+		
+		List<Cart> cartList = cartService.getAll();
+		for (Cart cart : cartList) {
+			for (Item item : cart.getCartItems()) {
+				if (item.getProduct().getId().equals(product.getId())) {
+					model.addAttribute("errors", "You can not delete product that has order.");
+					return "redirect:admin";
+				}
+			}
+		}
 		return "redirect:admin";
 	}	
 	

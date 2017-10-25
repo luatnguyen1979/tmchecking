@@ -36,8 +36,9 @@ public class LoginController {
 	SessionHelper sessionHelper;
 
  	@RequestMapping(value ="/login", method=RequestMethod.GET)
-	public String login(@ModelAttribute("login") Login login, Model model) {
+	public String login(@ModelAttribute("login") Login login, @ModelAttribute("message") String message, Model model) {
  		model.addAttribute("errors", "");
+ 		model.addAttribute("message", message);
  		return "login";
 	}
 	
@@ -49,22 +50,21 @@ public class LoginController {
  			if (l.getPassword().equals(login.getPassword())) {
  				request.getSession().setAttribute("login", l);
  				
- 				if(l.getCustomer().getCart() == null) {
- 					l.getCustomer().setCart(new Cart());
- 				}
- 				
- 				Cart customerCart = l.getCustomer().getCart();
- 				Cart sessionCart = cartService.get(((Cart)request.getSession().getAttribute("cart")).getId());
- 				
- 				List<Item> customerItems = customerCart.getCartItems();
- 				List<Item> sessionItems = sessionCart.getCartItems();
- 				
- 				customerCart.getCartItems().addAll(sessionItems);
- 				sessionCart.getCartItems().addAll(customerItems);
- 				
  				if ("ADMIN".equals(l.getRole())) {
  					return "redirect:admin";
  				} else {
+ 	 				if(l.getCustomer().getCart() == null) {
+ 	 					l.getCustomer().setCart(new Cart());
+ 	 				}
+ 	 				
+ 	 				Cart customerCart = l.getCustomer().getCart();
+ 	 				Cart sessionCart = cartService.get(((Cart)request.getSession().getAttribute("cart")).getId());
+ 	 				
+ 	 				List<Item> customerItems = customerCart.getCartItems();
+ 	 				List<Item> sessionItems = sessionCart.getCartItems();
+ 	 				
+ 	 				customerCart.getCartItems().addAll(sessionItems);
+ 	 				sessionCart.getCartItems().addAll(customerItems);
  					return "redirect:products";
  				}
  			}
@@ -87,7 +87,7 @@ public class LoginController {
 	}
 
  	@RequestMapping(value ="/createUser")
-	public String createUser(@Valid @ModelAttribute("login") Login login, BindingResult bindingResult) {
+	public String createUser(@Valid @ModelAttribute("login") Login login, BindingResult bindingResult, Model model) {
  		if (bindingResult.hasErrors()) {
  	 		return "addUser";
  		}
@@ -95,6 +95,7 @@ public class LoginController {
  		login.setPassword(login.getPassword().replaceAll(",", ""));
  		login.setRole("USER");
  		loginService.save(login);
+ 		model.addAttribute("message", "user has been success created.");
  		return "redirect:login";
 	}
 
