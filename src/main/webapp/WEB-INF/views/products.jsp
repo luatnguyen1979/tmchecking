@@ -72,7 +72,7 @@
 						<!-- end col -->
 						<div class="space-ten"></div>
 						<div class="btn-ground">
-							<button type="button" class="btn btn-primary" onClick="addToCart()">
+							<button id="addToCart" type="button" class="btn btn-primary" onClick="addToCart()">
 								<span class="glyphicon glyphicon-shopping-cart"></span> <spring:message code="products.addToCart"/>
 							</button>
 						</div>
