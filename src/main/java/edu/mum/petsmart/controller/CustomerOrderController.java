@@ -28,6 +28,7 @@ import edu.mum.petsmart.domain.Item;
 import edu.mum.petsmart.domain.Payment;
 import edu.mum.petsmart.domain.Product;
 import edu.mum.petsmart.service.AddressService;
+import edu.mum.petsmart.service.CartService;
 import edu.mum.petsmart.service.CustomerOrderService;
 import edu.mum.petsmart.service.CustomerService;
 import edu.mum.petsmart.service.ItemService;
@@ -40,7 +41,7 @@ import edu.mum.petsmart.service.ProductService;
  */
 @Controller
 // @RequestMapping(value="/customer")
-@SessionAttributes({"customer", "customerOrder", "cart", "billingAddress", "shippingAddress", "orderPayment"})
+@SessionAttributes({"customer", "customerOrder", "cart", "billingAddress", "shippingAddress", "orderPayment", "items"})
 public class CustomerOrderController {
 
 	@Autowired
@@ -60,28 +61,33 @@ public class CustomerOrderController {
 
 	@Autowired
 	ProductService productService;
+	
+	@Autowired
+	CartService cartService;
 
 	@RequestMapping(value = "/checkout", method = RequestMethod.GET)
 	public String checkout(@ModelAttribute("custOrder") CustomerOrder custOrder,
 			@ModelAttribute("shipAddr") Address shipAddr,@ModelAttribute("billAddr") Address billAddr,  @ModelAttribute("payment") Payment payment,
-			Model model, HttpSession session) {
+			Model model, HttpSession session, HttpServletRequest request) {
 		// model.addAttribute("newCustOrder", new CustomerOrder());
-		
-		Customer customer = (Customer) session.getAttribute("customer");
-		if (customer == null) {
-			customer = custService.getCustomer(1);
+		Long custID = (Long)session.getAttribute("custID");
+		if (custID == null) {
+			custID = new Long(1);
+			session.setAttribute("custID", custID);
 		}
-		
-		
-		/*session.setAttribute("billingAddress", billAddr);
-		session.setAttribute("shippingAddress", shipAddr);*/
-		//session.setAttribute("orderPayment", payment);
-		model.addAttribute("billingAddress", customer.getAddress());
-		model.addAttribute("shippingAddress", customer.getAddress());
-		model.addAttribute("orderPayment", customer.getPayment());
+		Customer customer = custService.getCustomer(custID);
+		Address address = customer.getAddress();
+		address.setId(null);
+		model.addAttribute("billingAddress", address);
+		model.addAttribute("shippingAddress", address);
+		Payment pment = customer.getPayment();
+		pment.setId(null);
+		model.addAttribute("orderPayment", pment);
+		List<Item> items = (List<Item>)request.getSession().getAttribute("items");
+		custOrder.setItems(items);
 
 		model.addAttribute("customerOrder", custOrder);
-		model.addAttribute("customer", customer);
+		session.setAttribute("customer", customer);
 
 		return "checkout";
 	}
@@ -91,17 +97,17 @@ public class CustomerOrderController {
 			Model model, HttpSession session, HttpServletRequest request) {
 		// model.addAttribute("newCustOrder", new CustomerOrder());
 		Customer customer = (Customer) session.getAttribute("customer");
-		//CustomerOrder order = (CustomerOrder) session.getAttribute("customerOrder");
+		
 		custOrder.setOrderDate(LocalDate.now().toString());
-		List<Item> items = customer.getCart().getCartItems();
-		double totalPrice = 0;
-		for (Item item: items) {
-			double price = item.getProduct().getPrice();
-			double realPrice = item.getQuantity() * price - price*item.getDiscount()/100;
-			totalPrice += realPrice;
-		}
+		Cart tempCart = (Cart)request.getSession().getAttribute("cart");
+		Cart cart = cartService.get(tempCart.getId());
+	
+		/*custOrder.setItems(cart.getCartItems());
+		custOrder.setTotalPrice(cart.getTotalPrice());
+		*/
+		List<Item> items = (List<Item>)session.getAttribute("items");
 		custOrder.setItems(items);
-		custOrder.setTotalPrice(totalPrice);
+		custOrder.setTotalPrice(1000);
 		
 		Address billAddr = (Address) session.getAttribute("billingAddress");
 		Address shipAddr = (Address) session.getAttribute("shippingAddress");
@@ -109,18 +115,26 @@ public class CustomerOrderController {
 		custOrder.setBillingAddress(billAddr);
 		custOrder.setShippingAddress(shipAddr);
 		custOrder.setPayment(payment);
-		List<CustomerOrder> orderList = new ArrayList<CustomerOrder>();
-		orderList.add(custOrder);
-		customer.setOrderList(orderList);
-		//customer.getOrderList().add(custOrder);
+
+		customer.getOrderList().add(custOrder);
 		
-		custService.update(customer, custOrder);
+		//custOrder.setItems(cart.getCartItems());
+
+		customer = custService.save(customer);
 		
-		request.getSession().removeAttribute("cart");
+		//custOrder = custOrderService.save(custOrder);
+		
+		
+		//reflect the id of Customer order
+		//customer = custService.getCustomer(customer.getId());
+		cartService.delete(cart.getId());
+		model.addAttribute("items", new ArrayList<Item>());
+		cart.setCartItems(new ArrayList<Item>());
+		request.getSession().setAttribute("cart", cart);
 		request.getSession().setAttribute("cartItems", 0);
 		model.addAttribute("customerOrder", new CustomerOrder());
-		model.addAttribute("customer", customer);
-		redirectAttributes.addFlashAttribute("customerOrder",custOrder);
+		//model.addAttribute("customer", customer);
+		redirectAttributes.addFlashAttribute("doneCustomerOrder",custOrder);
 		model.addAttribute("customer", customer);
 		return "redirect:/confirmation";
 	}

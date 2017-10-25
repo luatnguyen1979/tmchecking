@@ -28,12 +28,12 @@ INSERT INTO item (product_Id, quantity, discount) VALUES (4, 3, 25);
 INSERT INTO item (product_Id, quantity, discount) VALUES (5, 2, 35);
 INSERT INTO item (product_Id, quantity, discount) VALUES (6, 1, 5);
 
-INSERT INTO cart_item (cart_id, cartitems_id) VALUES (1, 1);
-INSERT INTO cart_item (cart_id, cartitems_id) VALUES (1, 2);
-INSERT INTO cart_item (cart_id, cartitems_id) VALUES (1, 3);
-INSERT INTO cart_item (cart_id, cartitems_id) VALUES (1, 4);
-INSERT INTO cart_item (cart_id, cartitems_id) VALUES (1, 5);
-INSERT INTO cart_item (cart_id, cartitems_id) VALUES (1, 6);
+--INSERT INTO cart_item (cart_id, cartitems_id) VALUES (1, 1);
+--INSERT INTO cart_item (cart_id, cartitems_id) VALUES (1, 2);
+--INSERT INTO cart_item (cart_id, cartitems_id) VALUES (1, 3);
+--INSERT INTO cart_item (cart_id, cartitems_id) VALUES (1, 4);
+--INSERT INTO cart_item (cart_id, cartitems_id) VALUES (1, 5);
+--INSERT INTO cart_item (cart_id, cartitems_id) VALUES (1, 6);
 
 
 INSERT INTO payment (cardNumber, ccv, expirationMonth, expirationYear, fullName, paymentMethod) VALUES ('1234567890123456', '123', '01', '2018', 'Luat V Nguyen', 'VISA');

@@ -114,7 +114,7 @@
 
 					<div class="container">
 					
-					<c:forEach items="${customer.cart.cartItems}" var="cartItem">
+					<c:forEach items="${customerOrder.items}" var="cartItem">
 					
 					
 						<div class="row">
