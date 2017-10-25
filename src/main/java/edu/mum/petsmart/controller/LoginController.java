@@ -1,8 +1,5 @@
 package edu.mum.petsmart.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -151,7 +148,7 @@ public class LoginController {
 	}
 
  	@RequestMapping(value ="/createUser")
-	public String createUser(@Valid @ModelAttribute("login") Login login, BindingResult bindingResult) {
+	public String createUser(@Valid @ModelAttribute("login") Login login, BindingResult bindingResult, Model model) {
  		if (bindingResult.hasErrors()) {
  	 		return "addUser";
  		}
@@ -159,6 +156,7 @@ public class LoginController {
  		login.setPassword(login.getPassword().replaceAll(",", ""));
  		login.setRole("USER");
  		loginService.save(login);
+ 		model.addAttribute("message", "User has been success created.");
  		return "redirect:login";
 	}
 
