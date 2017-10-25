@@ -6,7 +6,7 @@
 	uri="http://www.springframework.org/security/tags"%>
 
 <div id="global">
-
+                            
 	<div id="accordion" role="tablist">
 	<form:form id="custOrderForm" action="placeOrder" modelAttribute="custOrder" method="post">
 		<div class="card">
@@ -354,15 +354,26 @@
                     <div class="row">
                         <div class="col-3 text-right align-text-middle">Card Type:</div>
                         <div class="col-9 text-left">
-                        <input type="radio" name="gender" value="male" checked>aaaaaa
-                            <form:radiobutton path="paymentMethod" value="VISA"/>&nbsp;<img src="resource/images/cards/VISA.png"/>&nbsp;&nbsp;&nbsp;<form:radiobutton
+                        
+                        <form:select id="state" path="paymentMethod"
+                                style="width: 380px !important; min-width: 300px; max-width: 380px;">
+                                <form:option value="" selected="true">--Select--</form:option>
+                                <form:option value="VISA">VISA</form:option>
+                                <form:option value="Discovery">Discovery</form:option>
+                                <form:option value="American-Express">American Express</form:option>
+                                <form:option value="MasterCard">MasterCard</form:option>
+                                <form:option value="Diners-Club">Diners Club</form:option>
+                                <form:option value="JCB">JCB</form:option>
+                                </form:select>
+                        
+                     <%--        <form:radiobutton path="paymentMethod" value="VISA"/>&nbsp;<img src="resource/images/cards/VISA.png"/>&nbsp;&nbsp;&nbsp;<form:radiobutton
                     path="paymentMethod" value="MasterCard" />&nbsp;<img src="resource/images/cards/MasterCard.png"/>&nbsp;&nbsp;&nbsp;<form:radiobutton
                     path="paymentMethod" value="American-Express" />&nbsp;<img src="resource/images/cards/American-Express.png"/><br/>
                     <form:radiobutton
                     path="paymentMethod" value="Discover" />&nbsp;<img src="resource/images/cards/Discover.png"/>&nbsp;&nbsp;&nbsp;<form:radiobutton
                     path="paymentMethod" value="Diners-Club" />&nbsp;<img src="resource/images/cards/Diners-Club.png"/>&nbsp;&nbsp;&nbsp;<form:radiobutton
-                    path="paymentMethod" value="JCB" /><img src="resource/images/cards/JCB.png"/>
-                            <form:errors path="paymentMethod" cssClass="text-danger"/>
+                    path="paymentMethod" value="JCB" /><img src="resource/images/cards/JCB.png"/> --%>
+
                         </div>
 
                     </div>

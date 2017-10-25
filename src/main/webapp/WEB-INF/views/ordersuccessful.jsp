@@ -29,35 +29,35 @@
 				<div id="newAddress" class="card-body">
 					<div class="row">
 						<div class="col-3 text-right">Full Name:</div>
-						<div class="col-9 text-left">${customerOrder.shippingAddress.fullName}</div>
+						<div class="col-9 text-left">${doneCustomerOrder.shippingAddress.fullName}</div>
 					</div>
 					<div class="row">
 						<div class="col-3 text-right">Address Line1:</div>
-						<div class="col-9 text-left">${customerOrder.shippingAddress.addressLine1}</div>
+						<div class="col-9 text-left">${doneCustomerOrder.shippingAddress.addressLine1}</div>
 					</div>
 					<div class="row">
 						<div class="col-3 text-right">Address Line2:</div>
-						<div class="col-9 text-left">${customerOrder.shippingAddress.addressLine2}</div>
+						<div class="col-9 text-left">${doneCustomerOrder.shippingAddress.addressLine2}</div>
 					</div>
 					<div class="row">
 						<div class="col-3 text-right">City:</div>
-						<div class="col-9 text-left">${customerOrder.shippingAddress.city}</div>
+						<div class="col-9 text-left">${doneCustomerOrder.shippingAddress.city}</div>
 					</div>
 					<div class="row">
 						<div class="col-3 text-right">State:</div>
-						<div class="col-9 text-left">${customerOrder.shippingAddress.state}</div>
+						<div class="col-9 text-left">${doneCustomerOrder.shippingAddress.state}</div>
 					</div>
 					<div class="row">
 						<div class="col-3 text-right">Zip Code:</div>
-						<div class="col-9 text-left">${customerOrder.shippingAddress.zipCode}</div>
+						<div class="col-9 text-left">${doneCustomerOrder.shippingAddress.zipCode}</div>
 					</div>
 					<div class="row">
 						<div class="col-3 text-right">Country:</div>
-						<div class="col-9 text-left">${customerOrder.shippingAddress.country}</div>
+						<div class="col-9 text-left">${doneCustomerOrder.shippingAddress.country}</div>
 					</div>
 					<div class="row">
 						<div class="col-3 text-right">Phone Number:</div>
-						<div class="col-9 text-left">${customerOrder.shippingAddress.phoneNumber}</div>
+						<div class="col-9 text-left">${doneCustomerOrder.shippingAddress.phoneNumber}</div>
 					</div>
 
 				</div>
@@ -86,11 +86,11 @@
                 <div id="newPayment" class="card-body">
                 
           
-		            <div class="row"><div class="col-3 text-right">Card type:</div><div class="col-9 text-left"><img src="resource/images/cards/${customerOrder.payment.paymentMethod}.png"/></div></div>
-		            <div class="row"><div class="col-3 text-right">Name on card:</div><div class="col-9 text-left">${customerOrder.payment.fullName}</div></div>
-		            <div class="row"><div class="col-3 text-right">Card number:</div><div class="col-9 text-left">XXXX-XXXX-XXXX-${fn:substring(customerOrder.payment.cardNumber, 11, 15)}</div></div>
-		            <div class="row"><div class="col-3 text-right">CCV:</div><div class="col-9 text-left">${customerOrder.payment.ccv}</div></div>
-		            <div class="row"><div class="col-3 text-right">Expiration date:</div><div class="col-9 text-left">${customerOrder.payment.expirationMonth}/${customerOrder.payment.expirationYear}</div></div>
+		            <div class="row"><div class="col-3 text-right">Card type:</div><div class="col-9 text-left"><img src="resource/images/cards/${doneCustomerOrder.payment.paymentMethod}.png"/></div></div>
+		            <div class="row"><div class="col-3 text-right">Name on card:</div><div class="col-9 text-left">${doneCustomerOrder.payment.fullName}</div></div>
+		            <div class="row"><div class="col-3 text-right">Card number:</div><div class="col-9 text-left">XXXX-XXXX-XXXX-${fn:substring(doneCustomerOrder.payment.cardNumber, 11, 15)}</div></div>
+		            <div class="row"><div class="col-3 text-right">CCV:</div><div class="col-9 text-left">${doneCustomerOrder.payment.ccv}</div></div>
+		            <div class="row"><div class="col-3 text-right">Expiration date:</div><div class="col-9 text-left">${doneCustomerOrder.payment.expirationMonth}/${doneCustomerOrder.payment.expirationYear}</div></div>
                 </div>
             </div>
         
@@ -108,31 +108,31 @@
                 <div id="newAddress" class="card-body">
                     <div class="row">
                         <div class="col-3 text-right">Full Name:</div>
-                        <div class="col-9 text-left">${customerOrder.billingAddress.fullName}</div>
+                        <div class="col-9 text-left">${doneCustomerOrder.billingAddress.fullName}</div>
                     </div>
                     <div class="row">
                         <div class="col-3 text-right">Address Line1:</div>
-                        <div class="col-9 text-left">${customerOrder.billingAddress.addressLine1}</div>
+                        <div class="col-9 text-left">${doneCustomerOrder.billingAddress.addressLine1}</div>
                     </div>
                     <div class="row">
                         <div class="col-3 text-right">Address Line2:</div>
-                        <div class="col-9 text-left">${customerOrder.billingAddress.addressLine2}</div>
+                        <div class="col-9 text-left">${doneCustomerOrder.billingAddress.addressLine2}</div>
                     </div>
                     <div class="row">
                         <div class="col-3 text-right">City:</div>
-                        <div class="col-9 text-left">${customerOrder.billingAddress.city}</div>
+                        <div class="col-9 text-left">${doneCustomerOrder.billingAddress.city}</div>
                     </div>
                     <div class="row">
                         <div class="col-3 text-right">State:</div>
-                        <div class="col-9 text-left">${customerOrder.billingAddress.state}</div>
+                        <div class="col-9 text-left">${doneCustomerOrder.billingAddress.state}</div>
                     </div>
                     <div class="row">
                         <div class="col-3 text-right">Zip Code:</div>
-                        <div class="col-9 text-left">${customerOrder.billingAddress.zipCode}</div>
+                        <div class="col-9 text-left">${doneCustomerOrder.billingAddress.zipCode}</div>
                     </div>
                     <div class="row">
                         <div class="col-3 text-right">Country:</div>
-                        <div class="col-9 text-left">${customerOrder.billingAddress.country}</div>
+                        <div class="col-9 text-left">${doneCustomerOrder.billingAddress.country}</div>
                     </div>
                     
 
@@ -172,7 +172,7 @@
 
                         </div>
                     
-                    <c:forEach items="${customerOrder.items}" var="cartItem">
+                    <c:forEach items="${doneCustomerOrder.items}" var="cartItem">
 
                         
                         <div class="row">
@@ -190,7 +190,7 @@
                     </c:forEach>
                         <div class="row">
                             <div class="col-10 text-right"><h4>Total Price:</h4></div>
-                            <div class="col-2 text-left"><h4>${customerOrder.totalPrice}</h4></div>
+                            <div class="col-2 text-left"><h4>${doneCustomerOrder.totalPrice}</h4></div>
                         </div>
                         <div class="row">
                             <div class="col-12">&nbsp;</div>
