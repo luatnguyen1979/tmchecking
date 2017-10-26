@@ -83,7 +83,7 @@
         
         function submitProductSaveForm(e) {
         	console.info("on click");
-        	event.preventDefault();
+        	//e.preventDefault();
             $("#product_view #errors").empty();
         	var dataToSend = JSON.stringify(serializeObject($('#saveProduct')));
 			$.ajax({
