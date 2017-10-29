@@ -75,11 +75,31 @@
         <put-attribute name="body" value="/WEB-INF/views/checkout.jsp" />	
 	</definition>
 	
+	<definition name="emptycart" extends="baseLayout">
+        <put-attribute name="title" value="Empty Cart" />
+        <put-attribute name="heading" value="Empty Cart" />
+        <put-attribute name="tagline" value="Empty Cart" />
+        <put-attribute name="body" value="/WEB-INF/views/emptycart.jsp" />   
+    </definition>
+    
+    <definition name="addcustomer" extends="baseLayout">
+        <put-attribute name="title" value="Adding Customer" />
+        <put-attribute name="heading" value="Adding Customer" />
+        <put-attribute name="tagline" value="Adding Customer" />
+        <put-attribute name="body" value="/WEB-INF/views/addcustomer.jsp" />   
+    </definition>
+	
 	<definition name="ordersuccessful" extends="baseLayout">
         <put-attribute name="title" value="Order Successful" />
         <put-attribute name="heading" value="Order Successful" />
         <put-attribute name="tagline" value="Order Successful" />
         <put-attribute name="body" value="/WEB-INF/views/ordersuccessful.jsp" />   
+    </definition>
+    <definition name="creatingcustomersuccessful" extends="baseLayout">
+        <put-attribute name="title" value="Creating Customer Successful" />
+        <put-attribute name="heading" value="Creating Customer Successful" />
+        <put-attribute name="tagline" value="Creating Customer Successful" />
+        <put-attribute name="body" value="/WEB-INF/views/creatingcustomersuccessful.jsp" />   
     </definition>
 
 	<definition name="login" extends="baseLayout">

@@ -47,10 +47,12 @@ public class Customer implements Serializable {
 	@JoinColumn(name="address_id", nullable = true, insertable=true, updatable=true)
 	private Address address;
 
-	@NotEmpty(message="{NotEmpty.cellPhone}")
+	
 	String cellPhone;
 
 	String notes;
+	
+	String email;
 	
 	@OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinTable
@@ -166,5 +168,21 @@ public class Customer implements Serializable {
 	public void setCart(Cart cart) {
 		this.cart = cart;
 	}
+
+	/**
+	 * @return the email
+	 */
+	public String getEmail() {
+		return email;
+	}
+
+	/**
+	 * @param email the email to set
+	 */
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	
 
 }

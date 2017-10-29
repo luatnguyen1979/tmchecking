@@ -32,8 +32,11 @@
 				<button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
 			</div>
 			<div class="etc-login-form">
-				<p>new user? <a href="addUser">create new account</a></p>
-			</div>			
+				<a href="addUser">Creating admin User (For Admin function only)</a>
+			</div>
+			<div class="etc-login-form">
+                <a href="addCustomer">Creating New Customer</p>
+            </div>		
 		</form:form>
 	</div>
 	<!-- end:Main Form -->

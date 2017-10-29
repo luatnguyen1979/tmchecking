@@ -38,9 +38,21 @@
 </c:forEach>
 
 <div class="row" style="margin: 50px">
-	<div class="col-7"></div>
+	<div class="col-9"></div>
 	<div class="col-3 cartItemPrice"><spring:message code="total"/><br>$${totalCost}</div>
-	<div class="col-2"><a href="<spring:url value="checkout"/>"><spring:message code="checkout"/></a></div>
+</div>
+<div class="row" style="margin: 50px">	
+<div class="col-4">
+</div>
+	<div class="col-2 text-right">
+    <form action="checkout"><input type="submit" class="btn btn-primary" value="<spring:message code="checkout"/>"/></form>
+    </div>
+	<div class="col-2 text-left"><form action="products"><input type="submit" class="btn btn-primary" value="Continue Shopping"/>       
+    </form>
+    </div>
+    
+    <div class="col-4">
+</div>
 </div>
 
 </div>

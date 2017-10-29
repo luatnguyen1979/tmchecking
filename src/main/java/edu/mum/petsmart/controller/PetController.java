@@ -3,6 +3,7 @@
  */
 package edu.mum.petsmart.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -50,6 +51,7 @@ public class PetController {
 			cartService.save(cart);
 			//request.getSession().setAttribute("cart", cart);
 			model.addAttribute("cart", cart);
+			model.addAttribute("items", new ArrayList<Item>());
 			request.getSession().setAttribute("cartItems", 0);
 		}
 		
@@ -67,7 +69,7 @@ public class PetController {
 	@RequestMapping(value = "/addToCart/{productId}/{quantity}", method=RequestMethod.POST)
 	@ResponseBody
 	public String addToCart(@PathVariable("productId") long productId, @PathVariable("quantity") int quantity,
-			HttpServletRequest request) {
+			HttpServletRequest request, Model model) {
 		Product product = productService.findOne(productId);
 		Item newItem = new Item();
 		
@@ -83,6 +85,7 @@ public class PetController {
 		
 		tempCart.addCartItem(newItem);
 		cartService.save(tempCart);
+		model.addAttribute("items", tempCart.getCartItems());
 		request.getSession().setAttribute("cartItems", tempCart.getCartItems().size());
 		return String.valueOf(tempCart.getCartItems().size());
 	}
@@ -116,7 +119,7 @@ public class PetController {
 	}
 
 	@RequestMapping(value = "/removeItem/{itemId}")
-	public String removeFromCart(@PathVariable long itemId, HttpServletRequest request) {
+	public String removeFromCart(@PathVariable long itemId, Model model, HttpServletRequest request) {
 		if (checkSession(request)) {
 			return "forward:login";
 		}		
@@ -130,9 +133,11 @@ public class PetController {
 			}
 		}
 		cartService.save(testCart);
+		model.addAttribute("items", testCart.getCartItems());
 		request.getSession().setAttribute("cartItems", testCart.getCartItems().size());
 		return "redirect:/cart";
 	}
+	
 	@RequestMapping(value = "/updateCart")
 	public String updateCart(HttpServletRequest request, Model model) {
 		if (checkSession(request)) {

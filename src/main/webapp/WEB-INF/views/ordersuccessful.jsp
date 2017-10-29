@@ -10,7 +10,7 @@
 	<div id="accordion" role="tablist">
             <div class="card">
 	            <div class="card-header text-center" role="tab" id="headingOne">
-	            <h4>You orders are successful. Please look at the following confirmation.</h4>
+	            <h4><spring:message code="order.success"/></h4>
 	            </div>
             </div>
 		<div class="card">
@@ -28,35 +28,35 @@
 				aria-labelledby="headingOne" data-parent="#accordion">
 				<div id="newAddress" class="card-body">
 					<div class="row">
-						<div class="col-3 text-right">Full Name:</div>
+						<div class="col-3 text-right"><spring:message code="fullName"/>:</div>
 						<div class="col-9 text-left">${doneCustomerOrder.shippingAddress.fullName}</div>
 					</div>
 					<div class="row">
-						<div class="col-3 text-right">Address Line1:</div>
+						<div class="col-3 text-right"><spring:message code="addressLine1"/>:</div>
 						<div class="col-9 text-left">${doneCustomerOrder.shippingAddress.addressLine1}</div>
 					</div>
 					<div class="row">
-						<div class="col-3 text-right">Address Line2:</div>
+						<div class="col-3 text-right"><spring:message code="addressLine2"/>:</div>
 						<div class="col-9 text-left">${doneCustomerOrder.shippingAddress.addressLine2}</div>
 					</div>
 					<div class="row">
-						<div class="col-3 text-right">City:</div>
+						<div class="col-3 text-right"><spring:message code="city"/>:</div>
 						<div class="col-9 text-left">${doneCustomerOrder.shippingAddress.city}</div>
 					</div>
 					<div class="row">
-						<div class="col-3 text-right">State:</div>
+						<div class="col-3 text-right"><spring:message code="state"/>:</div>
 						<div class="col-9 text-left">${doneCustomerOrder.shippingAddress.state}</div>
 					</div>
 					<div class="row">
-						<div class="col-3 text-right">Zip Code:</div>
+						<div class="col-3 text-right"><spring:message code="zip"/>:</div>
 						<div class="col-9 text-left">${doneCustomerOrder.shippingAddress.zipCode}</div>
 					</div>
 					<div class="row">
-						<div class="col-3 text-right">Country:</div>
+						<div class="col-3 text-right"><spring:message code="country"/>:</div>
 						<div class="col-9 text-left">${doneCustomerOrder.shippingAddress.country}</div>
 					</div>
 					<div class="row">
-						<div class="col-3 text-right">Phone Number:</div>
+						<div class="col-3 text-right"><spring:message code="phone"/>:</div>
 						<div class="col-9 text-left">${doneCustomerOrder.shippingAddress.phoneNumber}</div>
 					</div>
 
@@ -86,11 +86,11 @@
                 <div id="newPayment" class="card-body">
                 
           
-		            <div class="row"><div class="col-3 text-right">Card type:</div><div class="col-9 text-left"><img src="resource/images/cards/${doneCustomerOrder.payment.paymentMethod}.png"/></div></div>
-		            <div class="row"><div class="col-3 text-right">Name on card:</div><div class="col-9 text-left">${doneCustomerOrder.payment.fullName}</div></div>
-		            <div class="row"><div class="col-3 text-right">Card number:</div><div class="col-9 text-left">XXXX-XXXX-XXXX-${fn:substring(doneCustomerOrder.payment.cardNumber, 11, 15)}</div></div>
-		            <div class="row"><div class="col-3 text-right">CCV:</div><div class="col-9 text-left">${doneCustomerOrder.payment.ccv}</div></div>
-		            <div class="row"><div class="col-3 text-right">Expiration date:</div><div class="col-9 text-left">${doneCustomerOrder.payment.expirationMonth}/${doneCustomerOrder.payment.expirationYear}</div></div>
+		            <div class="row"><div class="col-3 text-right"><spring:message code="cardType"/>:</div><div class="col-9 text-left"><img src="resource/images/cards/${doneCustomerOrder.payment.paymentMethod}.png"/></div></div>
+		            <div class="row"><div class="col-3 text-right"><spring:message code="cardName"/>:</div><div class="col-9 text-left">${doneCustomerOrder.payment.fullName}</div></div>
+		            <div class="row"><div class="col-3 text-right"><spring:message code="cardNumber"/>:</div><div class="col-9 text-left">XXXX-XXXX-XXXX-${fn:substring(doneCustomerOrder.payment.cardNumber, 11, 15)}</div></div>
+		            <div class="row"><div class="col-3 text-right"><spring:message code="ccv"/>:</div><div class="col-9 text-left">${doneCustomerOrder.payment.ccv}</div></div>
+		            <div class="row"><div class="col-3 text-right"><spring:message code="expirationDate"/>:</div><div class="col-9 text-left">${doneCustomerOrder.payment.expirationMonth}/${doneCustomerOrder.payment.expirationYear}</div></div>
                 </div>
             </div>
         
@@ -107,31 +107,31 @@
                 aria-labelledby="headingOne" data-parent="#accordion">
                 <div id="newAddress" class="card-body">
                     <div class="row">
-                        <div class="col-3 text-right">Full Name:</div>
+                        <div class="col-3 text-right"><spring:message code="fullName"/>:</div>
                         <div class="col-9 text-left">${doneCustomerOrder.billingAddress.fullName}</div>
                     </div>
                     <div class="row">
-                        <div class="col-3 text-right">Address Line1:</div>
+                        <div class="col-3 text-right"><spring:message code="addressLine1"/>:</div>
                         <div class="col-9 text-left">${doneCustomerOrder.billingAddress.addressLine1}</div>
                     </div>
                     <div class="row">
-                        <div class="col-3 text-right">Address Line2:</div>
+                        <div class="col-3 text-right"><spring:message code="addressLine2"/>:</div>
                         <div class="col-9 text-left">${doneCustomerOrder.billingAddress.addressLine2}</div>
                     </div>
                     <div class="row">
-                        <div class="col-3 text-right">City:</div>
+                        <div class="col-3 text-right"><spring:message code="city"/>:</div>
                         <div class="col-9 text-left">${doneCustomerOrder.billingAddress.city}</div>
                     </div>
                     <div class="row">
-                        <div class="col-3 text-right">State:</div>
+                        <div class="col-3 text-right"><spring:message code="state"/>:</div>
                         <div class="col-9 text-left">${doneCustomerOrder.billingAddress.state}</div>
                     </div>
                     <div class="row">
-                        <div class="col-3 text-right">Zip Code:</div>
+                        <div class="col-3 text-right"><spring:message code="zip"/>:</div>
                         <div class="col-9 text-left">${doneCustomerOrder.billingAddress.zipCode}</div>
                     </div>
                     <div class="row">
-                        <div class="col-3 text-right">Country:</div>
+                        <div class="col-3 text-right"><spring:message code="country"/>:</div>
                         <div class="col-9 text-left">${doneCustomerOrder.billingAddress.country}</div>
                     </div>
                     
@@ -146,7 +146,7 @@
 
                 <div class="row">
                     <div class="col-xl-3 center-block text-left">
-                        <h5>3. Ordered items</h5>
+                        <h5>3. <spring:message code="ordersuccessful.label"/></h5>
                     </div>
                     <div class="col-xl-7"></div>
                     <div class="col-xl-2 center-block text-right">
@@ -165,10 +165,10 @@
                     <div class="container">
                         <div class="row">
                             <div class="col"></div>
-                            <div class="col"><h5>Item</h5></div>
-                            <div class="col-6 text-center"><h5>Description</h5></div>
-                            <div class="col-2 text-center"><h5>Quantity</h5></div>
-                            <div class="col-2 text-center"><h5>Price</h5></div>
+                            <div class="col"><h5><spring:message code="ordersuccessful.item"/></h5></div>
+                            <div class="col-6 text-center"><h5><spring:message code="ordersuccessful.description"/></h5></div>
+                            <div class="col-2 text-center"><h5><spring:message code="ordersuccessful.quantity"/></h5></div>
+                            <div class="col-2 text-center"><h5><spring:message code="ordersuccessful.price"/></h5></div>
 
                         </div>
                     
@@ -189,7 +189,7 @@
                         
                     </c:forEach>
                         <div class="row">
-                            <div class="col-10 text-right"><h4>Total Price:</h4></div>
+                            <div class="col-10 text-right"><h4><spring:message code="ordersuccessful.totalprice"/>:</h4></div>
                             <div class="col-2 text-left"><h4>${doneCustomerOrder.totalPrice}</h4></div>
                         </div>
                         <div class="row">

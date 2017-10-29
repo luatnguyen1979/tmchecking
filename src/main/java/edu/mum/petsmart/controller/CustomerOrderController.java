@@ -41,7 +41,7 @@ import edu.mum.petsmart.service.ProductService;
  */
 @Controller
 // @RequestMapping(value="/customer")
-@SessionAttributes({"customer", "customerOrder", "cart", "billingAddress", "shippingAddress", "orderPayment", "items"})
+@SessionAttributes({"customer", "customerOrder", "cart", "billingAddress", "shippingAddress", "orderPayment", "items", "custID"})
 public class CustomerOrderController {
 
 	@Autowired
@@ -70,10 +70,17 @@ public class CustomerOrderController {
 			@ModelAttribute("shipAddr") Address shipAddr,@ModelAttribute("billAddr") Address billAddr,  @ModelAttribute("payment") Payment payment,
 			Model model, HttpSession session, HttpServletRequest request) {
 		// model.addAttribute("newCustOrder", new CustomerOrder());
+		
+		List<Item> items = (List<Item>)request.getSession().getAttribute("items");
+		if (items == null || items.size() == 0) {
+			return "redirect:/emptycart";
+		}
+		
+		
 		Long custID = (Long)session.getAttribute("custID");
 		if (custID == null) {
 			custID = new Long(1);
-			session.setAttribute("custID", custID);
+			model.addAttribute("custID", custID);
 		}
 		Customer customer = custService.getCustomer(custID);
 		Address address = customer.getAddress();
@@ -81,14 +88,16 @@ public class CustomerOrderController {
 		model.addAttribute("billingAddress", address);
 		model.addAttribute("shippingAddress", address);
 		Payment pment = customer.getPayment();
-		pment.setId(null);
+		if (pment != null)
+			pment.setId(null);
+		
 		model.addAttribute("orderPayment", pment);
-		List<Item> items = (List<Item>)request.getSession().getAttribute("items");
+		//List<Item> items = (List<Item>)request.getSession().getAttribute("items");
 		custOrder.setItems(items);
 
 		model.addAttribute("customerOrder", custOrder);
-		session.setAttribute("customer", customer);
-
+		model.addAttribute("customer", customer);
+session.setAttribute("customer", customer);
 		return "checkout";
 	}
 	
@@ -145,5 +154,19 @@ public class CustomerOrderController {
 	public String confirm(Model model) {
 		return "ordersuccessful";
 	}
+	
+	@RequestMapping(value = "/emptycart", method = RequestMethod.GET)
+	public String emptyCard(Model model) {
+		return "emptycart";
+	}
+	
+	private void emptyCart(List<Item> list) {
+		while(list.size() > 0) {
+			list.remove(0);
+		}
+
+	}
+	
+	
 
 }

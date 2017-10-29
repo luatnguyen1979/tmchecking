@@ -28,7 +28,6 @@ public class Login implements Serializable {
 	private String userId;
 
 	@NotEmpty(message="{NotEmpty.password}")
-	@Size(min = 8, max = 20, message="{Size.validation.password}")
 	private String password;
 
 	@OneToOne(cascade=CascadeType.ALL)
