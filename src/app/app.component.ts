@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
         <products-list></products-list>
     </div>
   `,
-  styles: ['div { border: solid 2px red; width: 1300px;font-size: 180%; color:#369;}']
+  styles: ['div { border: solid 2px red; width: 1300px;font-size: 150%; color:#369; padding-bottom: 10px}']
 })
 export class AppComponent {
   title = 'App Store';
