@@ -1,11 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {NgModule, OnDestroy} from '@angular/core';
 
 
 import { AppComponent } from './app.component';
 import {ProductsList} from "./products-list.component";
 import {ProductDetailComponent} from "./product-detail.component";
-import {Product} from "./product";
+import {ProductService} from "./product/product-service";
 
 @NgModule({
   declarations: [
@@ -16,7 +16,11 @@ import {Product} from "./product";
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [ProductService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+}
+
+

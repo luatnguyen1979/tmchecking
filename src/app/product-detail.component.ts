@@ -1,6 +1,6 @@
 // child ProductDetailComponent
 import {Component, EventEmitter, Input, Output} from "@angular/core";
-import {Product} from './product';
+import {Product} from './product/product';
 
 @Component ({
     selector: 'product-detail',
@@ -11,6 +11,7 @@ import {Product} from './product';
 })
 
 export class ProductDetailComponent {
+
     @Input()
     product: Product;
 
