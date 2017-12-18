@@ -1,0 +1,10 @@
+Protocol:
+
+Group|Flag|AppointmentID
+Group: 	"ETHER" (hard coded)
+Flag:	1: create appointment
+		0: cancel/delete appointment
+		2: reminder
+AppointmentID: appointment id
+
+For ex: ETHER|1|1
