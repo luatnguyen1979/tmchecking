@@ -3,7 +3,13 @@ var router = express.Router();
 var bodyParser = require('body-parser');
 router.use(bodyParser.urlencoded({ extended: true }));
 var User = require('../models/User');
-
+router.use(bodyParser.json());
+router.all("/*", function(req, res, next){
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+    next();
+});
 router.use(function (req, res, next) {
     console.log('Request URL:', req.originalUrl);
     next();
@@ -11,19 +17,18 @@ router.use(function (req, res, next) {
     console.log('Request Type:', req.method);
     next();
 });
-
+/*
 router.pre('save', function (req, res, next) {
     req.body.password =
 })
 userSchema.pre('save', function(next) { var currentDate = new Date();
-});
+});*/
 
 // CREATES A NEW USER
 router.post('/', function (req, res) {
     User.create({
             firstName: req.body.firstName,
             lastName: req.body.lastName,
-            username : req.body.username,
             password : req.body.password,
             email : req.body.email,
             role : req.body.role,
@@ -36,14 +41,10 @@ router.post('/', function (req, res) {
 });
 
 router.post('/authenticate', function (req, res) {
-    User.create({
-            username : req.body.username,
-            password : req.body.password
-        },
-        function (err, user) {
-            if (err) return res.status(500).send("There was a problem user authentication.");
-            res.status(200).send(user);
-        });
+    User.find({email:req.body.email, password : req.body.password}, function (err, users) {
+        if (err) return res.status(500).send("There was a problem Authentication.");
+        res.status(200).send(users);
+    });
 });
 
 // RETURNS ALL THE USERS IN THE DATABASE
@@ -80,7 +81,7 @@ router.get('/:id', function (req, res) {
 router.delete('/:id', function (req, res) {
     User.findByIdAndRemove(req.params.id, function (err, user) {
         if (err) return res.status(500).send("There was a problem deleting the user.");
-        res.status(200).send("User "+ user.name +" was deleted.");
+        res.status(200).send("User with email "+ user.email +" was deleted.");
     });
 });
 

@@ -1,13 +1,12 @@
 // User.js
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-const SALT = 19791901;
+const SALT_WORK_FACTOR = 19791901;
 const UserSchema = new mongoose.Schema({
     firstName: {type: String, required: true},
     lastName: {type: String, required: true},
-    username: {type: String, index: true, unique: true},
     password: {type: String, required:true},
-    email: {type: String, required: true},
+    email: {type: String, required: true, unique: true},
     role: {type: String, required: true}, // Admin, Counselor, User
     telephone: {type: String}
 });
@@ -19,7 +18,7 @@ UserSchema.pre('save', function(next) {
     if (!user.isModified('password')) return next();
 
     // generate a salt
-    bcrypt.genSalt(SALT, function(err, salt) {
+    bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
         if (err) return next(err);
 
         // hash the password using our new salt

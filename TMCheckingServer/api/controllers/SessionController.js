@@ -17,8 +17,8 @@ router.post('/', function (req, res) {
     Session.create({
             date: req.body.date,
             duration: req.body.duration,
-            time : req.body.time,
-            status : req.body.password,
+            timeframe : req.body.timeframe,
+            status : req.body.status,
             isNotified : req.body.isNotified,
             counselorId : req.body.counselorId,
             userId : req.body.userId,
@@ -31,6 +31,38 @@ router.post('/', function (req, res) {
 // RETURNS ALL THE USERS IN THE DATABASE
 router.get('/', function (req, res) {
     Session.find({}, function (err, sessions) {
+        if (err) return res.status(500).send("There was a problem finding the sessions.");
+        res.status(200).send(sessions);
+    });
+});
+
+
+router.get('/filter', function (req, res) {
+    let condition = {};
+    if (req.query.date) {
+        condition.date = req.query.date;
+    }
+    if (req.query.counselorId) {
+        condition.counselorId = req.query.counselorId;
+    }
+    condition.status = 'Not Schedule Yet';
+    Session.find(condition, function (err, sessions) {
+        if (err) return res.status(500).send("There was a problem finding the sessions.");
+        res.status(200).send(sessions);
+    });
+});
+
+//Get all TM Checking session that belongs to current counselor
+router.get('/counselorsessions/:id', function (req, res) {
+    Session.find({counselorId: req.params.id}, function (err, sessions) {
+        if (err) return res.status(500).send("There was a problem finding the sessions.");
+        res.status(200).send(sessions);
+    });
+});
+
+//Get all TM checking sessions of current user
+router.get('/usersessions/:id', function (req, res) {
+    Session.find({userId: req.params.id}, function (err, sessions) {
         if (err) return res.status(500).send("There was a problem finding the sessions.");
         res.status(200).send(sessions);
     });
@@ -58,5 +90,33 @@ router.put('/:id', function (req, res) {
         res.status(200).send(session);
     });
 });
+
+router.put('/acknowledge/:id', function (req, res) {
+    updateSession(req.params.id, 'Booked', res);
+});
+
+router.put('/schedule/:id', function (req, res) {
+    updateSession(req.params.id, 'Scheduling', res);
+});
+
+router.put('/complete/:id', function (req, res) {
+    /*Session.findByIdAndUpdate(req.params.id, {status: 'Completed'}, function (err, session) {
+        if (err) return res.status(500).send("There was a problem updating the session.");
+        res.status(200).send(session);
+    });*/
+    updateSession(req.params.id, 'Completed', res);
+});
+
+router.put('/cancel/:id', function (req, res) {
+    updateSession(req.params.id, 'Canceled', res);
+});
+
+function updateSession(id, status, res) {
+    Session.findByIdAndUpdate(id, {status: status}, {new: false}, function (err, session) {
+        if (err) return res.status(500).send("There was a problem updating the session.");
+        session.status = status;
+        res.status(200).send(session);
+    });
+}
 
 module.exports = router;
