@@ -9,6 +9,8 @@ import { AuthGuard } from './guards/auth.guard';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { LoginService } from './services/login.service';
+import { SessionService } from './services/session.service';
+import { SessionModule } from './session-module/session.module';
 
 @NgModule({
   declarations: [
@@ -21,9 +23,11 @@ import { LoginService } from './services/login.service';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    SessionModule
+
   ],
-  providers: [ AuthGuard, HttpClient , LoginService ],
+  providers: [ AuthGuard, HttpClient, LoginService, SessionService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

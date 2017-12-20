@@ -1,3 +1,28 @@
-<p>
-  home works!
-</p>
+<ul class="nav nav-tabs" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" href="#current-booking" role="tab" data-toggle="tab">Current Booking</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#available" role="tab" data-toggle="tab">Available for Booking</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#create-session" role="tab" data-toggle="tab">Create Session</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#current-sessions" role="tab" data-toggle="tab">Current Sessions</a>
+  </li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+  <div role="tabpanel" class="tab-pane fade in active" id="current-booking">
+    <app-session [sessions]="this.sessions | filter:'Booking'"></app-session>
+  </div>
+  <div role="tabpanel" class="tab-pane fade" id="available">
+    <app-session [sessions]="this.sessions | filter:'Not Schedule Yet'"></app-session>
+  </div>
+  <div role="tabpanel" class="tab-pane fade" id="create-session"><app-create-session></app-create-session></div>
+  <div role="tabpanel" class="tab-pane fade" id="current-sessions">eee</div>
+</div>
+
+<router-outlet></router-outlet>

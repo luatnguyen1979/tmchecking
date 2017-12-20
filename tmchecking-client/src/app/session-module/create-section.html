@@ -1,0 +1,7 @@
+<form #form="ngForm" (ngSubmit)="submit(form)">
+  <div class="form-group">
+    <label for="date">Date</label>
+    <input required ngModel name="date" #date="ngModel" id="date" type="text" class="form-control">
+  </div>
+  <button class="btn btn-primary">Submit</button>
+</form>

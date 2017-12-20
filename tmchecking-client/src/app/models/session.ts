@@ -1,6 +1,6 @@
 export class Session {
-  constructor( private date: Date, private duration: string,
-               private timeframe: string, private status: string,
-               private isNotified: boolean, private counselorId: string,
-               private userId: string) {}
+  constructor( public _id: string, public date: Date, public duration: string,
+               public timeframe: string, public status: string,
+               public isNotified: boolean, public counselorId: string,
+               public userId: string) {}
 }
