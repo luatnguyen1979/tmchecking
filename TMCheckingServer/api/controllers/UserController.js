@@ -1,15 +1,15 @@
 var express = require('express');
 var router = express.Router();
-var bodyParser = require('body-parser');
-router.use(bodyParser.urlencoded({ extended: true }));
+/*var bodyParser = require('body-parser');
+router.use(bodyParser.urlencoded({ extended: true }));*/
 var User = require('../models/User');
-router.use(bodyParser.json());
-router.all("/*", function(req, res, next){
+/*router.use(bodyParser.json());
+router.all("/!*", function(req, res, next){
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
     next();
-});
+});*/
 router.use(function (req, res, next) {
     console.log('Request URL:', req.originalUrl);
     next();
@@ -44,7 +44,7 @@ router.post('/authenticate', function (req, res) {
     User.find({email:req.body.email, password : req.body.password}, function (err, users) {
         if (err) return res.status(500).send("There was a problem Authentication.");
         res.status(200).send(users);
-    });
+    }); 
 });
 
 // RETURNS ALL THE USERS IN THE DATABASE

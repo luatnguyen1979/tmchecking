@@ -10,7 +10,7 @@ var SessionSchema = new mongoose.Schema({
     userId: {type: String}
 });
 
-SessionSchema.index({date: 1, timeframe: 1, counselorId: 1}, {unique: true});
+SessionSchema.index({date: 1, timeframe: 1, counselorId: 1, status: 1, userId: 1}, {unique: true});
 
 const Session = mongoose.model('Session', SessionSchema);
 module.exports = Session;
