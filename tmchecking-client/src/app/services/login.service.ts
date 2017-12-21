@@ -33,4 +33,14 @@ export class LoginService {
       }
     );
   }
+
+  getAllUsers(http: HttpClient): Array<User> {
+    const result = new Array<User>();
+    http.get<User[]>(ServerConfiguration._url + '/users').subscribe(
+      (res) => {
+        for (const obj of res) { result.push(obj); }
+      }
+    )
+    return result;
+  }
 }

@@ -4,6 +4,8 @@ import {Session} from '../models/session';
 import {SessionService} from '../services/session.service';
 import {ServerConfiguration} from '../consts/server.config';
 import {HttpClient} from '@angular/common/http';
+import {User} from '../models/user';
+import {LoginService} from '../services/login.service';
 
 @Component({
   selector: 'app-session',
@@ -11,61 +13,62 @@ import {HttpClient} from '@angular/common/http';
     <div>
       <table class="table table-bordred table-striped">
         <thead>
-          <tr>
-            <th>Date</th>
-            <th>Frame</th>
-            <th>Duration</th>
-            <th>Student</th>
-            <th>Counselor</th>
-            <th>Status</th>
-            <th>Notified</th>
-            <th>Actions</th>
-          </tr>
+        <tr>
+          <th>Date</th>
+          <th>Frame</th>
+          <th>Duration</th>
+          <th *ngIf="bCounselor">Student</th>
+          <th *ngIf="!bCounselor">Counselor</th>
+          <th>Status</th>
+          <th>Notified</th>
+          <th>Actions</th>
+        </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let session of this.sessions">
-            <td>{{session.date | date : 'MM/dd/yyyy'}}</td>
-            <td>{{session.timeframe}}</td>
-            <td>{{session.duration}}</td>
-            <td>{{session.userId}}</td>
-            <td>{{session.counselorId}}</td>
-            <td>{{session.status}}</td>
-            <td>{{session.isNotified}}</td>
-            <td>
-              <div class="row">
-                <a href="#" *ngIf="bisCounselor  && session.status=='Booking'" title="Acknowledge" class="btn btn-primary a-btn-slide-text"
-                   (click)="handle('acknowledge', session._id)">
-                  <span class="glyphicon glyphicon glyphicon-ok"></span>
-                  <span><strong></strong></span>
-                </a>
-                <a href="#" *ngIf="!bisCounselor && session.status=='Not Schedule Yet'"
-                   title="Book Session" class="btn btn-primary a-btn-slide-text"
-                   (click)="handle('book', session._id)">
-                  <span  class="glyphicon glyphicon glyphicon-ok" aria-hidden="true"></span>
-                  <span><strong></strong></span>
-                </a>
-                <a href="#" *ngIf="bisCounselor  && session.status=='Booking'"
-                   title="Reject Session" class="btn btn-primary a-btn-slide-text"
-                   (click)="handle('reject', session._id)">
-                  <span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
-                  <span><strong></strong></span>
-                </a>
-                <a href="#" *ngIf="!bisCounselor && (session.status=='Booking' || session.status=='Booked')"
-                   title="Cancel Session" class="btn btn-primary a-btn-slide-text"
-                   (click)="handle('cancel', session._id)">
-                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                  <span><strong></strong></span>
-                </a>
-                <a href="#" *ngIf="bisCounselor   && session.status=='Booked'"
-                   title="Complete Session" class="btn btn-primary a-btn-slide-text"
-                   (click)="handle('complete', session._id)">
+        <tr *ngFor="let session of this.sessions">
+          <td>{{session.date | date: 'MM/dd/yyyy'}}</td>
+          <td>{{session.timeframe}}</td>
+          <td>{{session.duration}}</td>
+          <td *ngIf="bCounselor">{{session.userId | name: users}}</td>
+          <td *ngIf="!bCounselor">{{session.counselorId | name: users}}</td>
+          <td>{{session.status}}</td>
+          <td>{{session.isNotified}}</td>
+          <td>
+            <div class="row">
+              <a href="#" *ngIf="bCounselor  && session.status=='Booking'" title="Acknowledge"
+                 class="btn btn-primary a-btn-slide-text"
+                 (click)="handle('acknowledge', session._id)">
+                <span class="glyphicon glyphicon glyphicon-ok"></span>
+                <span><strong></strong></span>
+              </a>
+              <a href="#" *ngIf="!bCounselor && session.status=='Not Schedule Yet'"
+                 title="Book Session" class="btn btn-primary a-btn-slide-text"
+                 (click)="handle('book', session._id)">
+                <span class="glyphicon glyphicon glyphicon-ok" aria-hidden="true"></span>
+                <span><strong></strong></span>
+              </a>
+              <a href="#" *ngIf="bCounselor  && session.status=='Booking'"
+                 title="Reject Session" class="btn btn-primary a-btn-slide-text"
+                 (click)="handle('reject', session._id)">
+                <span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
+                <span><strong></strong></span>
+              </a>
+              <a href="#" *ngIf="!bCounselor && (session.status=='Booking' || session.status=='Booked')"
+                 title="Cancel Session" class="btn btn-primary a-btn-slide-text"
+                 (click)="handle('cancel', session._id)">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                <span><strong></strong></span>
+              </a>
+              <a href="#" *ngIf="bCounselor   && session.status=='Booked'"
+                 title="Complete Session" class="btn btn-primary a-btn-slide-text"
+                 (click)="handle('complete', session._id)">
 
-                  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-                  <span><strong></strong></span>
-                </a>
-              </div>
-            </td>
-          </tr>
+                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                <span><strong></strong></span>
+              </a>
+            </div>
+          </td>
+        </tr>
         </tbody>
       </table>
     </div>
@@ -74,18 +77,20 @@ import {HttpClient} from '@angular/common/http';
 export class SessionComponent implements OnInit {
   @Input() sessions: Session[];
   @Input() url: string;
+  users: User[];
   currentId: string;
-  bisCounselor = false;
+  bCounselor = false;
 
-  constructor(private http: HttpClient, private sessionService: SessionService) { }
+  constructor(private http: HttpClient, private sessionService: SessionService, private loginService: LoginService) { }
   ngOnInit() {
+    this.users = this.loginService.getAllUsers(this.http);
+
     this.currentId = localStorage.getItem('id');
     const isCounselor = (localStorage.getItem('role') === 'Counselor') ? 'true' : 'false';
-    this.bisCounselor = isCounselor === 'true';
+    this.bCounselor = isCounselor === 'true';
 
     const fullUrl = ServerConfiguration._url + this.url + localStorage.getItem('id') + '/' + isCounselor;
     this.sessions = this.sessionService.getSessionsByUrl(this.http, fullUrl);
-
     console.log(this.sessions);
   }
 

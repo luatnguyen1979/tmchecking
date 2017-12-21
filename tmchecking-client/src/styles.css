@@ -14,5 +14,17 @@ a.btn {
 }
 
 .col-sm-8 {
-  width: 100%;
+  width: 1000px;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
 }
