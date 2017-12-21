@@ -1,5 +1,5 @@
 <ul class="nav nav-tabs" role="tablist">
-  <li class="nav-item">
+  <li class="nav-item" (click)="abc('abcds')">
     <a class="nav-link active" href="#current-booking" role="tab" data-toggle="tab">Current Booking</a>
   </li>
   <li class="nav-item">
@@ -19,7 +19,7 @@
     <app-session [url] = "'/sessions/currentsessions/'"></app-session>
   </div>
   <div role="tabpanel" class="tab-pane fade" id="available">
-    <app-session [url] = "'/sessions/availablesessions/'"></app-session>
+    <app-session [url] = "'/sessions/availablesessions/'" ></app-session>
   </div>
   <div role="tabpanel" class="tab-pane fade" id="create-session">
     <app-create-session></app-create-session>

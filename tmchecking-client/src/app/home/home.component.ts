@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { Session } from '../models/session';
 import {SessionService} from '../services/session.service';
 import {HttpClient} from '@angular/common/http';
@@ -10,6 +10,7 @@ import {HttpClient} from '@angular/common/http';
 })
 export class HomeComponent implements OnInit {
   sessions: Session[] = new Array();
+  @Input() url: string;
   constructor(private http: HttpClient, private sessionService: SessionService) { }
     ngOnInit() {
       // this.sessions = this.sessionService.getSessions(this.http);
@@ -23,5 +24,9 @@ export class HomeComponent implements OnInit {
       this.sessions.push(new Session('5', new Date(), '30m', '10:00-10:30', 'Available', false, 'counselor-2', ''));
       this.sessions.push(new Session('6', new Date(), '60m', '10:30-11:30', 'Available', false, 'counselor-2', ''));
       */
+  }
+
+  abc(url: string) {
+    alert(url);
   }
 }

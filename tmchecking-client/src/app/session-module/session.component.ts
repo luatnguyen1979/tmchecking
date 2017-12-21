@@ -33,16 +33,24 @@ import {HttpClient} from '@angular/common/http';
             <td>{{session.isNotified}}</td>
             <td>
               <div class="row">
-                <a href="#" class="btn btn-primary a-btn-slide-text">
-                  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                <a href="#" *ngIf="bisCounselor" title="Acknowledge" class="btn btn-primary a-btn-slide-text">
+                  <span  class="glyphicon glyphicon glyphicon-ok"></span>
                   <span><strong></strong></span>
                 </a>
-                <a href="#" class="btn btn-primary a-btn-slide-text">
+                <a href="#" *ngIf="!bisCounselor" title="Book Session" class="btn btn-primary a-btn-slide-text">
+                  <span  class="glyphicon glyphicon glyphicon-ok" aria-hidden="true"></span>
+                  <span><strong></strong></span>
+                </a>
+                <a href="#" *ngIf="bisCounselor" title="Reject Session" class="btn btn-primary a-btn-slide-text">
+                  <span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
+                  <span><strong></strong></span>
+                </a>
+                <a href="#" *ngIf="!bisCounselor" title="Cancel Session" class="btn btn-primary a-btn-slide-text">
                   <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                   <span><strong></strong></span>
                 </a>
-                <a href="#" class="btn btn-primary a-btn-slide-text">
-                  <span class="glyphicon glyphicon-" aria-hidden="true"></span>
+                <a href="#" *ngIf="bisCounselor" title="Complete Session" class="btn btn-primary a-btn-slide-text">
+                  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
                   <span><strong></strong></span>
                 </a>
               </div>
@@ -55,11 +63,15 @@ import {HttpClient} from '@angular/common/http';
 })
 export class SessionComponent implements OnInit {
   sessions: Session[];
+  bisCounselor = false;
   @Input() url: string;
   constructor(private http: HttpClient, private sessionService: SessionService) { }
   ngOnInit() {
-    const isCounselor = (localStorage.getItem('role') === 'Counselor') ? 'true' : 'false';
+     const isCounselor = (localStorage.getItem('role') === 'Counselor') ? 'true' : 'false';
+    this.bisCounselor = isCounselor === 'false';
+
     const fullUrl = ServerConfiguration._url + this.url + localStorage.getItem('id') + '/' + isCounselor;
     this.sessions = this.sessionService.getSessionsByUrl(this.http, fullUrl);
   }
+
 }
