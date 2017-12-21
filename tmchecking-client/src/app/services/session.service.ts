@@ -50,6 +50,7 @@ export class SessionService {
     console.log(params);
     http.post(ServerConfiguration._url + '/sessions', params, {headers: headers}).subscribe((res) => {
      console.log('Create new session successfully!');
+     alert('Create new session successfully!');
     });
 
   }

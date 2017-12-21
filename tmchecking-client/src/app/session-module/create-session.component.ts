@@ -2,6 +2,7 @@ import {Component, Injectable, OnInit} from '@angular/core';
 import {SessionService} from '../services/session.service';
 import {HttpClient} from '@angular/common/http';
 import {User} from '../models/user';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-create-session',
@@ -9,7 +10,7 @@ import {User} from '../models/user';
 })
 @Injectable()
 export class CreateSectionComponent implements OnInit {
-  constructor(private http: HttpClient, private sessionService: SessionService) {}
+  constructor(private http: HttpClient, private sessionService: SessionService, private router: Router) {}
   counselors: User[] = new Array();
 
   submit(obj) {
@@ -18,6 +19,7 @@ export class CreateSectionComponent implements OnInit {
     console.log(sessionDate);
     this.sessionService.createSession(this.http, sessionDate,
       obj.value.newSession.frame, obj.value.newSession.counselor);
+    // this.router.navigate(['/sessions/currentsessions/' + localStorage.getItem('id') + '/true']);
   }
 
   ngOnInit() {
