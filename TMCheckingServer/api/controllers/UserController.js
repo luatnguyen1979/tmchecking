@@ -44,7 +44,7 @@ router.post('/authenticate', function (req, res) {
     User.find({email:req.body.email, password : req.body.password}, function (err, users) {
         if (err) return res.status(500).send("There was a problem Authentication.");
         res.status(200).send(users);
-    }); 
+    });
 });
 
 // RETURNS ALL THE USERS IN THE DATABASE
