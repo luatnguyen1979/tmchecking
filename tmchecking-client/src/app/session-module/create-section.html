@@ -2,7 +2,7 @@
   <div ngModelGroup="newSession">
     <div class="form-group">
       <label for="date">Date</label>
-      <input placeholder="MM/dd/yyyy" required name="date" id="date" type="text" class="form-control" ngModel>
+      <input placeholder="yyyy-MM-dd" required name="date" id="date" type="text" class="form-control" ngModel>
     </div>
 
     <div class="form-group">
@@ -27,7 +27,7 @@
 
     <div class="form-group">
       <label for="counselor">Counselor</label>
-      <select class="form-control"  name="counselor" id="counselor">
+      <select class="form-control"  name="counselor" id="counselor" ngModel>
         <option *ngFor="let counselor of counselors" value="{{counselor._id}}">{{counselor.firstName + ' ' + counselor.lastName}}</option>
 
       </select>

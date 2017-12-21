@@ -9,7 +9,7 @@ import {ServerConfiguration} from '../consts/server.config';
 export class LoginService {
   constructor ( private router: Router ) {}
 
-  login(http: HttpClient, username: string, password: string): any {
+  login(router: Router, http: HttpClient, username: string, password: string): any {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json'});
     headers.set('Access-Control-Allow-Origin', '*');
     headers.set('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE, OPTIONS');
@@ -21,10 +21,10 @@ export class LoginService {
     http.post<User>(url, params, {'headers': headers}).subscribe(
       res => {
         if (res != null && res[0] != null) {
-
             localStorage.setItem('id', res[0]._id);
             localStorage.setItem('email', res[0].email);
             localStorage.setItem('role', res[0].role);
+            router.navigate(['']);
         }
         return true;
       },

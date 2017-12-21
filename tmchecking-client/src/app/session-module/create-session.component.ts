@@ -13,7 +13,11 @@ export class CreateSectionComponent implements OnInit {
   counselors: User[] = new Array();
 
   submit(obj) {
-    this.sessionService.createSession(this.http, obj.date, obj.frame, obj.counselor);
+    const sessionDate: Date = new Date(obj.value.newSession.date);
+    sessionDate.setHours(sessionDate.getHours() + 12);
+    console.log(sessionDate);
+    this.sessionService.createSession(this.http, sessionDate,
+      obj.value.newSession.frame, obj.value.newSession.counselor);
   }
 
   ngOnInit() {

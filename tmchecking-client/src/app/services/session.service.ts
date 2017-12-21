@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
-import {HttpClient, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Session} from '../models/session';
 import {ServerConfiguration} from '../consts/server.config';
 import {User} from '../models/user';
@@ -41,15 +41,17 @@ export class SessionService {
   }
 
   public createSession(http: HttpClient, date: Date, frame: string, counselor: string) {
-    const params = new HttpParams();
-    params.set('date', '2017-12-20');
-    params.set('timeframe', frame);
-    params.set('counselorId', counselor);
-    params.set('duration', '30 minutes');
-    http.post(ServerConfiguration._url + '/sessions', params).subscribe((res) => {
-      console.log('Create new session successfully!');
-
+    const  params = JSON.stringify({'date': date, 'timeframe': frame, 'counselorId' : counselor, 'duration' : '30 minutes'});
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json'});
+    headers.set('Access-Control-Allow-Origin', '*');
+    headers.set('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE, OPTIONS');
+    headers.set('Access-Control-Allow-Headers', 'Origin, Content-Type, X-Auth-Token');
+    console.log('Params to create session:')
+    console.log(params);
+    http.post(ServerConfiguration._url + '/sessions', params, {headers: headers}).subscribe((res) => {
+     console.log('Create new session successfully!');
     });
+
   }
 
   /* ACTION BUTTON */

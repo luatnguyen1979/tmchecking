@@ -20,8 +20,9 @@ export class LoginComponent implements OnInit {
   });
 
   login() {
-    this.loginService.login(this.http, this.loginForm.get('email').value, this.loginForm.get('password').value);
-    this.router.navigate(['']);
+    if (this.loginService.login(this.router, this.http, this.loginForm.get('email').value, this.loginForm.get('password').value)) {
+      console.log('Login successfully -> Navigate to Home component!');
+    }
   }
 
   ngOnInit() {
