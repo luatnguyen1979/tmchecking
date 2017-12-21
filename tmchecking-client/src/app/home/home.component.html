@@ -1,14 +1,14 @@
 <ul class="nav nav-tabs" role="tablist">
-  <li class="nav-item" (click)="abc('abcds')">
+  <li class="nav-item" (click)="refereshTabContent('/sessions/currentsessions/')">
     <a class="nav-link active" href="#current-booking" role="tab" data-toggle="tab">Current Booking</a>
   </li>
-  <li class="nav-item">
+  <li class="nav-item" (click)="refereshTabContent('/sessions/availablesessions/')">
     <a class="nav-link" href="#available" role="tab" data-toggle="tab">Available for Booking</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="#create-session" role="tab" data-toggle="tab">Create Session</a>
   </li>
-  <li class="nav-item">
+  <li class="nav-item" (click)="refereshTabContent('/sessions/currentsessions/')">
     <a class="nav-link" href="#current-sessions" role="tab" data-toggle="tab">Current Sessions</a>
   </li>
 </ul>
@@ -16,16 +16,16 @@
 <!-- Tab panes -->
 <div class="tab-content">
   <div role="tabpanel" class="tab-pane fade in active" id="current-booking">
-    <app-session [url] = "'/sessions/currentsessions/'"></app-session>
+    <app-session [url] = "'/sessions/currentsessions/'" [sessions]="this.sessions"></app-session>
   </div>
   <div role="tabpanel" class="tab-pane fade" id="available">
-    <app-session [url] = "'/sessions/availablesessions/'" ></app-session>
+    <app-session [url] = "'/sessions/availablesessions/'" [sessions]="this.sessions"></app-session>
   </div>
   <div role="tabpanel" class="tab-pane fade" id="create-session">
     <app-create-session></app-create-session>
   </div>
-  <div role="tabpanel" class="tab-pane fade" id="current-sessions">
-    <app-session [url] = "'/sessions/currentsessions/'"></app-session>
+  <div role="tabpanel" class="tab-pane fade" id="current-sessions" >
+    <app-session [sessions]="this.sessions" [url]="'/sessions/currentsessions/'"></app-session>
   </div>
 </div>
 

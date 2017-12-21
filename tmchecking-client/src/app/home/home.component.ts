@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import { Session } from '../models/session';
 import {SessionService} from '../services/session.service';
 import {HttpClient} from '@angular/common/http';
+import {ServerConfiguration} from '../consts/server.config';
 
 @Component({
   selector: 'app-home',
@@ -26,7 +27,10 @@ export class HomeComponent implements OnInit {
       */
   }
 
-  abc(url: string) {
-    alert(url);
+  refereshTabContent(url: string) {
+    const isCounselor = (localStorage.getItem('role') === 'Counselor') ? 'true' : 'false';
+    const fullUrl = ServerConfiguration._url + url + localStorage.getItem('id') + '/' + isCounselor;
+    alert(fullUrl);
+    this.sessions = this.sessionService.getSessionsByUrl(this.http, fullUrl);
   }
 }

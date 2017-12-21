@@ -62,12 +62,12 @@ import {HttpClient} from '@angular/common/http';
   `
 })
 export class SessionComponent implements OnInit {
-  sessions: Session[];
+  @Input() sessions: Session[];
   bisCounselor = false;
   @Input() url: string;
   constructor(private http: HttpClient, private sessionService: SessionService) { }
   ngOnInit() {
-     const isCounselor = (localStorage.getItem('role') === 'Counselor') ? 'true' : 'false';
+    const isCounselor = (localStorage.getItem('role') === 'Counselor') ? 'true' : 'false';
     this.bisCounselor = isCounselor === 'false';
 
     const fullUrl = ServerConfiguration._url + this.url + localStorage.getItem('id') + '/' + isCounselor;
