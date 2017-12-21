@@ -83,32 +83,56 @@ export class SessionComponent implements OnInit {
 
     const fullUrl = ServerConfiguration._url + this.url + localStorage.getItem('id') + '/' + isCounselor;
     this.sessions = this.sessionService.getSessionsByUrl(this.http, fullUrl);
-    // console.log(this.sessions);
   }
+
   handle (action: string, id: string, userId: string) {
+    const isCounselor = (localStorage.getItem('role') === 'Counselor') ? 'true' : 'false';
+    const urlReload = ServerConfiguration._url + this.url + localStorage.getItem('id') + '/' + isCounselor;
+    console.log(urlReload);
     switch (action) {
       case 'acknowledge':
-        this.sessionService.acknowledge(this.http, id);
+        // this.sessions = this.sessionService.acknowledge(this.http, id, urlReload);
+        this.http.put(ServerConfiguration._url + '/sessions/acknowledge/' + id, {}).subscribe(
+          (res) => {
+            console.log('Acknowledge successfully !!!');
+            this.sessions = this.sessionService.getSessionsByUrl(this.http, urlReload);
+          });
         break;
       case 'book':
-        this.sessionService.book(this.http, id, userId);
+        this.sessions = this.sessionService.book(this.http, id, userId, urlReload);
+        // this.sessions = this.sessionService.acknowledge(this.http, id, urlReload);
+        this.http.put(ServerConfiguration._url + '/sessions/book/' + id + '/' + userId, {}).subscribe(
+          (res) => {
+            console.log('Book successfully !!!');
+            this.sessions = this.sessionService.getSessionsByUrl(this.http, urlReload);
+          });
         break;
       case 'reject':
-        this.sessionService.reject(this.http, id);
+        // this.sessions = this.sessionService.reject(this.http, id, urlReload);
+        this.http.put(ServerConfiguration._url + '/sessions/reject/' + id, {}).subscribe(
+          (res) => {
+            console.log('Reject successfully !!!');
+            this.sessions = this.sessionService.getSessionsByUrl(this.http, urlReload);
+          });
         break;
       case 'cancel':
-        this.sessionService.cancel(this.http, id);
+        // this.sessions = this.sessionService.cancel(this.http, id, urlReload);
+        this.http.put(ServerConfiguration._url + '/sessions/cancel/' + id, {}).subscribe(
+          (res) => {
+            console.log('Cancel successfully !!!');
+            this.sessions = this.sessionService.getSessionsByUrl(this.http, urlReload);
+          });
         break;
       case 'complete':
-        this.sessionService.complete(this.http, id);
+        // this.sessions = this.sessionService.complete(this.http, id, urlReload);
+        this.http.put(ServerConfiguration._url + '/sessions/complete/' + id, {}).subscribe(
+          (res) => {
+            console.log('Complete successfully !!!');
+            this.sessions = this.sessionService.getSessionsByUrl(this.http, urlReload);
+          });
         break;
       default:
         break;
     }
-    const isCounselor = (localStorage.getItem('role') === 'Counselor') ? 'true' : 'false';
-    const fullUrl = ServerConfiguration._url + this.url + localStorage.getItem('id') + '/' + isCounselor;
-    this.sessions = this.sessionService.getSessionsByUrl(this.http, fullUrl);
   }
-
-
 }

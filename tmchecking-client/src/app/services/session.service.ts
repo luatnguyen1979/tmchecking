@@ -34,7 +34,6 @@ export class SessionService {
       const url = ServerConfiguration._url + '/users/counselor';
       const isCounselor = (localStorage.getItem('role') === 'Counselor') ? 'true' : 'false';
       http.get<User[]>(url).subscribe((res) => {
-        // console.log(res);
         for (const obj of res) { counselors.push(obj); }
       });
       return counselors;
@@ -49,36 +48,62 @@ export class SessionService {
     params.set('duration', '30 minutes');
     http.post(ServerConfiguration._url + '/sessions', params).subscribe((res) => {
       console.log('Create new session successfully!');
+
     });
   }
 
-  public acknowledge(http: HttpClient, sessionId: string) {
+  /* ACTION BUTTON */
+  public acknowledge(http: HttpClient, sessionId: string, urlReload: string): Array<Session> {
     http.put(ServerConfiguration._url + '/sessions/acknowledge/' + sessionId, {}).subscribe(
-      (res) => console.log('Acknowledge successfully !!!')
+      (res) => {
+        console.log('Acknowledge successfully !!!');
+        return this.getSessionsByUrl(http, urlReload);
+      }
     );
+    return new Array<Session>();
   }
 
-  public book(http: HttpClient, sessionId: string, userId: string) {
+  public book(http: HttpClient, sessionId: string, userId: string, urlReload: string): Array<Session> {
     http.put(ServerConfiguration._url + '/sessions/book/' + sessionId + '/' + userId, {}).subscribe(
-      (res) => console.log('Book successfully !!!')
+      (res) => {
+        console.log('Book successfully !!!');
+        return this.getSessionsByUrl(http, urlReload);
+      }
     );
+    return new Array<Session>();
   }
 
-  public reject(http: HttpClient, sessionId: string) {
+  public reject(http: HttpClient, sessionId: string, urlReload: string): Array<Session> {
+    let sessions = new Array<Session>();
     http.put(ServerConfiguration._url + '/sessions/reject/' + sessionId, {'id': sessionId}).subscribe(
-      (res) => console.log('Reject successfully !!!')
+      (res) =>  {
+        console.log('Reject successfully !!!')
+        console.log(this.getSessionsByUrl(http, urlReload));
+        sessions = this.getSessionsByUrl(http, urlReload);
+      }
     );
+    console.log('aaa');
+    console.log(sessions);
+    return sessions;
   }
 
-  public cancel(http: HttpClient, sessionId: string) {
+  public cancel(http: HttpClient, sessionId: string, urlReload: string): Array<Session>  {
     http.put(ServerConfiguration._url + '/sessions/cancel/' + sessionId, {'id': sessionId}).subscribe(
-      (res) => console.log('Cancel successfully !!!')
+      (res) =>  {
+        console.log('Cancel successfully !!!')
+        return this.getSessionsByUrl(http, urlReload);
+      }
     );
+    return new Array<Session>();
   }
 
-  public complete(http: HttpClient, sessionId: string) {
-    http.put(ServerConfiguration._url + '/sessions/cancel/' + sessionId, {'id': sessionId}).subscribe(
-      (res) => console.log('Complete successfully !!!')
+  public complete(http: HttpClient, sessionId: string, urlReload: string): Array<Session>  {
+    http.put(ServerConfiguration._url + '/sessions/complete/' + sessionId, {'id': sessionId}).subscribe(
+      (res) =>  {
+        console.log('Complete successfully !!!');
+        return this.getSessionsByUrl(http, urlReload);
+      }
     );
+    return new Array<Session>();
   }
 }
