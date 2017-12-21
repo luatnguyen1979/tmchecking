@@ -1,14 +1,14 @@
 <ul class="nav nav-tabs" role="tablist">
-  <li class="nav-item" (click)="refereshTabContent('/sessions/currentsessions/')">
+  <li class="nav-item" *ngIf="!bisCounselor" (click)="refereshTabContent('/sessions/currentsessions/')">
     <a class="nav-link active" href="#current-booking" role="tab" data-toggle="tab">Current Booking</a>
   </li>
-  <li class="nav-item" (click)="refereshTabContent('/sessions/availablesessions/')">
+  <li class="nav-item" *ngIf="!bisCounselor" (click)="refereshTabContent('/sessions/availablesessions/')">
     <a class="nav-link" href="#available" role="tab" data-toggle="tab">Available for Booking</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#create-session" role="tab" data-toggle="tab">Create Session</a>
+    <a class="nav-link" *ngIf="bisCounselor" href="#create-session" role="tab" data-toggle="tab">Create Session</a>
   </li>
-  <li class="nav-item" (click)="refereshTabContent('/sessions/currentsessions/')">
+  <li class="nav-item" *ngIf="bisCounselor" (click)="refereshTabContent('/sessions/currentsessions/')">
     <a class="nav-link" href="#current-sessions" role="tab" data-toggle="tab">Current Sessions</a>
   </li>
 </ul>

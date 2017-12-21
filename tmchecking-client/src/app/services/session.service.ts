@@ -42,7 +42,11 @@ export class SessionService {
   }
 
   public createSession(http: HttpClient, date: Date, frame: string, counselor: string) {
-    const params = JSON.stringify({date: date, timeFrame: frame, counselorId: counselor, duration: '30 minutes'});
+    const params = new HttpParams();
+    params.set('date', '2017-12-20');
+    params.set('timeframe', frame);
+    params.set('counselorId', counselor);
+    params.set('duration', '30 minutes');
     http.post(ServerConfiguration._url + '/sessions', params).subscribe((res) => {
       console.log('Create new session successfully!');
     });

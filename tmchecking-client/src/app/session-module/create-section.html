@@ -22,12 +22,12 @@
 
     <div class="form-group">
       <label for="duration">Duration</label>
-      <input required disabled  id="duration" type="text" class="form-control" value="30 minutes" ngModel>
+      <input required disabled  id="duration" type="text" class="form-control" value="30 minutes">
     </div>
 
     <div class="form-group">
       <label for="counselor">Counselor</label>
-      <select class="form-control"  name="counselor" id="counselor" ngModel>
+      <select class="form-control"  name="counselor" id="counselor">
         <option *ngFor="let counselor of counselors" value="{{counselor._id}}">{{counselor.firstName + ' ' + counselor.lastName}}</option>
 
       </select>

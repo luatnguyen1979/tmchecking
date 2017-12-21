@@ -20,10 +20,11 @@ export class LoginService {
 
     http.post<User>(url, params, {'headers': headers}).subscribe(
       res => {
-        if (res != null) {
-          localStorage.setItem('id', res[0]._id);
-          localStorage.setItem('email', res[0].email);
-          localStorage.setItem('role', res[0].role);
+        if (res != null && res[0] != null) {
+
+            localStorage.setItem('id', res[0]._id);
+            localStorage.setItem('email', res[0].email);
+            localStorage.setItem('role', res[0].role);
         }
         return true;
       },
