@@ -1,7 +1,37 @@
 <form #form="ngForm" (ngSubmit)="submit(form)">
-  <div class="form-group">
-    <label for="date">Date</label>
-    <input required ngModel name="date" #date="ngModel" id="date" type="text" class="form-control">
+  <div ngModelGroup="newSession">
+    <div class="form-group">
+      <label for="date">Date</label>
+      <input placeholder="MM/dd/yyyy" required name="date" id="date" type="text" class="form-control" ngModel>
+    </div>
+
+    <div class="form-group">
+      <label for="frame">Time frame</label>
+      <select class="form-control"  name="frame" id="frame" ngModel>
+        <option value="09:30 - 10:00">09:30 - 10:00</option>
+        <option value="10:00 - 10:30">10:00 - 10:30</option>
+        <option value="10:30 - 11:00">10:30 - 11:00</option>
+        <option value="11:00 - 11:30">11:00 - 11:30</option>
+        <option value="13:00 - 13:30">13:00 - 13:30</option>
+        <option value="13:30 - 14:00">13:30 - 14:00</option>
+        <option value="14:00 - 14:30">14:00 - 14:30</option>
+        <option value="14:30 - 15:00">14:30 - 15:00</option>
+        <option value="15:00 - 15:30">15:00 - 15:30</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="duration">Duration</label>
+      <input required disabled  id="duration" type="text" class="form-control" value="30 minutes" ngModel>
+    </div>
+
+    <div class="form-group">
+      <label for="counselor">Counselor</label>
+      <select class="form-control"  name="counselor" id="counselor" ngModel>
+        <option *ngFor="let counselor of counselors" value="{{counselor._id}}">{{counselor.firstName + ' ' + counselor.lastName}}</option>
+
+      </select>
+    </div>
   </div>
   <button class="btn btn-primary">Submit</button>
 </form>

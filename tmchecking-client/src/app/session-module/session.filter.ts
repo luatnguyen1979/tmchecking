@@ -8,12 +8,12 @@ export class FilterPipe implements PipeTransform {
       return new Array<Session>();
     }
 
-    console.log('input:');
-    console.log(sessions);
+    // console.log('input:');
+    // console.log(sessions);
     const result = new Array<Session>();
     for (const ss of sessions){
-      console.log('d' + ss.status);
-      console.log(status);
+      // console.log('d' + ss.status);
+      // console.log(status);
       if (ss.status === status) {
         result.push(ss);
       }

@@ -3,4 +3,5 @@ export class Session {
                public timeframe: string, public status: string,
                public isNotified: boolean, public counselorId: string,
                public userId: string) {}
+
 }
