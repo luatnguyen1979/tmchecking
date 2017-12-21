@@ -34,31 +34,31 @@ import {HttpClient} from '@angular/common/http';
             <td>
               <div class="row">
                 <a href="#" *ngIf="bisCounselor  && session.status=='Booking'" title="Acknowledge" class="btn btn-primary a-btn-slide-text"
-                   (click)="handle('acknowledge', session._id, session.userId)">
+                   (click)="handle('acknowledge', session._id)">
                   <span class="glyphicon glyphicon glyphicon-ok"></span>
                   <span><strong></strong></span>
                 </a>
                 <a href="#" *ngIf="!bisCounselor && session.status=='Not Schedule Yet'"
                    title="Book Session" class="btn btn-primary a-btn-slide-text"
-                   (click)="handle('book', session._id, session.userId)">
+                   (click)="handle('book', session._id)">
                   <span  class="glyphicon glyphicon glyphicon-ok" aria-hidden="true"></span>
                   <span><strong></strong></span>
                 </a>
                 <a href="#" *ngIf="bisCounselor  && session.status=='Booking'"
                    title="Reject Session" class="btn btn-primary a-btn-slide-text"
-                   (click)="handle('reject', session._id, session.userId)">
+                   (click)="handle('reject', session._id)">
                   <span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
                   <span><strong></strong></span>
                 </a>
                 <a href="#" *ngIf="!bisCounselor && (session.status=='Booking' || session.status=='Booked')"
                    title="Cancel Session" class="btn btn-primary a-btn-slide-text"
-                   (click)="handle('cancel', session._id, session.userId)">
+                   (click)="handle('cancel', session._id)">
                   <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                   <span><strong></strong></span>
                 </a>
                 <a href="#" *ngIf="bisCounselor   && session.status=='Booked'"
                    title="Complete Session" class="btn btn-primary a-btn-slide-text"
-                   (click)="handle('complete', session._id, session.userId)">
+                   (click)="handle('complete', session._id)">
 
                   <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
                   <span><strong></strong></span>
@@ -73,25 +73,29 @@ import {HttpClient} from '@angular/common/http';
 })
 export class SessionComponent implements OnInit {
   @Input() sessions: Session[];
-  bisCounselor = false;
   @Input() url: string;
+  currentId: string;
+  bisCounselor = false;
+
   constructor(private http: HttpClient, private sessionService: SessionService) { }
   ngOnInit() {
+    this.currentId = localStorage.getItem('id');
     const isCounselor = (localStorage.getItem('role') === 'Counselor') ? 'true' : 'false';
-
     this.bisCounselor = isCounselor === 'true';
 
     const fullUrl = ServerConfiguration._url + this.url + localStorage.getItem('id') + '/' + isCounselor;
     this.sessions = this.sessionService.getSessionsByUrl(this.http, fullUrl);
+
+    console.log(this.sessions);
   }
 
-  handle (action: string, id: string, userId: string) {
+  handle (action: string, id: string) {
     const isCounselor = (localStorage.getItem('role') === 'Counselor') ? 'true' : 'false';
     const urlReload = ServerConfiguration._url + this.url + localStorage.getItem('id') + '/' + isCounselor;
     console.log(urlReload);
+    console.log('user id' + this.currentId);
     switch (action) {
       case 'acknowledge':
-        // this.sessions = this.sessionService.acknowledge(this.http, id, urlReload);
         this.http.put(ServerConfiguration._url + '/sessions/acknowledge/' + id, {}).subscribe(
           (res) => {
             console.log('Acknowledge successfully !!!');
@@ -99,16 +103,13 @@ export class SessionComponent implements OnInit {
           });
         break;
       case 'book':
-        // this.sessions = this.sessionService.book(this.http, id, userId, urlReload);
-        // this.sessions = this.sessionService.acknowledge(this.http, id, urlReload);
-        this.http.put(ServerConfiguration._url + '/sessions/book/' + id + '/' + userId, {}).subscribe(
+        this.http.put(ServerConfiguration._url + '/sessions/book/' + id + '/' + this.currentId, {}).subscribe(
           (res) => {
             console.log('Book successfully !!!');
             this.sessions = this.sessionService.getSessionsByUrl(this.http, urlReload);
           });
         break;
       case 'reject':
-        // this.sessions = this.sessionService.reject(this.http, id, urlReload);
         this.http.put(ServerConfiguration._url + '/sessions/reject/' + id, {}).subscribe(
           (res) => {
             console.log('Reject successfully !!!');
@@ -116,7 +117,6 @@ export class SessionComponent implements OnInit {
           });
         break;
       case 'cancel':
-        // this.sessions = this.sessionService.cancel(this.http, id, urlReload);
         this.http.put(ServerConfiguration._url + '/sessions/cancel/' + id, {}).subscribe(
           (res) => {
             console.log('Cancel successfully !!!');
@@ -124,7 +124,6 @@ export class SessionComponent implements OnInit {
           });
         break;
       case 'complete':
-        // this.sessions = this.sessionService.complete(this.http, id, urlReload);
         this.http.put(ServerConfiguration._url + '/sessions/complete/' + id, {}).subscribe(
           (res) => {
             console.log('Complete successfully !!!');
