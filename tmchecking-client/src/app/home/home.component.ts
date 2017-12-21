@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
   sessions: Session[] = new Array();
   constructor(private http: HttpClient, private sessionService: SessionService) { }
     ngOnInit() {
-      this.sessions = this.sessionService.getSessions(this.http);
+      // this.sessions = this.sessionService.getSessions(this.http);
 
       // TESTING ONLY
       /*this.sessions.push(new Session('1', new Date(), '30m', '9:30-10:00', 'Available', false, 'counselor-1', ''));
