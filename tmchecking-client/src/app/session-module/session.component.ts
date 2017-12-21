@@ -1,6 +1,9 @@
 
 import {Component, Input, OnInit} from '@angular/core';
 import {Session} from '../models/session';
+import {SessionService} from '../services/session.service';
+import {ServerConfiguration} from '../consts/server.config';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-session',
@@ -38,6 +41,10 @@ import {Session} from '../models/session';
                   <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                   <span><strong></strong></span>
                 </a>
+                <a href="#" class="btn btn-primary a-btn-slide-text">
+                  <span class="glyphicon glyphicon-" aria-hidden="true"></span>
+                  <span><strong></strong></span>
+                </a>
               </div>
             </td>
           </tr>
@@ -47,8 +54,12 @@ import {Session} from '../models/session';
   `
 })
 export class SessionComponent implements OnInit {
-  @Input() sessions: Session[];
-  constructor() { }
+  sessions: Session[];
+  @Input() url: string;
+  constructor(private http: HttpClient, private sessionService: SessionService) { }
   ngOnInit() {
+    const isCounselor = (localStorage.getItem('role') === 'Counselor') ? 'true' : 'false';
+    const fullUrl = ServerConfiguration._url + this.url + localStorage.getItem('id') + '/' + isCounselor;
+    this.sessions = this.sessionService.getSessionsByUrl(this.http, fullUrl);
   }
 }

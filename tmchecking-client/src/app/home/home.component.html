@@ -16,13 +16,17 @@
 <!-- Tab panes -->
 <div class="tab-content">
   <div role="tabpanel" class="tab-pane fade in active" id="current-booking">
-    <app-session [sessions]="this.sessions | filter:'Booking'"></app-session>
+    <app-session [url] = "'/sessions/currentsessions/'"></app-session>
   </div>
   <div role="tabpanel" class="tab-pane fade" id="available">
-    <app-session [sessions]="this.sessions | filter:'Not Schedule Yet'"></app-session>
+    <app-session [url] = "'/sessions/availablesessions/'"></app-session>
   </div>
-  <div role="tabpanel" class="tab-pane fade" id="create-session"><app-create-session></app-create-session></div>
-  <div role="tabpanel" class="tab-pane fade" id="current-sessions">eee</div>
+  <div role="tabpanel" class="tab-pane fade" id="create-session">
+    <app-create-session></app-create-session>
+  </div>
+  <div role="tabpanel" class="tab-pane fade" id="current-sessions">
+    <app-session [url] = "'/sessions/currentsessions/'"></app-session>
+  </div>
 </div>
 
 <router-outlet></router-outlet>
