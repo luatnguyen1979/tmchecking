@@ -15,9 +15,9 @@ export class HomeComponent implements OnInit {
   constructor(private http: HttpClient, private sessionService: SessionService) { }
     ngOnInit() {
       // this.sessions = this.sessionService.getSessions(this.http);
-
       // TESTING ONLY
-      /*this.sessions.push(new Session('1', new Date(), '30m', '9:30-10:00', 'Available', false, 'counselor-1', ''));
+      /*
+      this.sessions.push(new Session('1', new Date(), '30m', '9:30-10:00', 'Available', false, 'counselor-1', ''));
       this.sessions.push(new Session('2', new Date(), '30m', '10:00-10:30', 'Booking', false, 'counselor-1', 'student-1'));
       this.sessions.push(new Session('3', new Date(), '60m', '10:30-11:30', 'Complete', false, 'counselor-1', 'student-1'));
 
@@ -30,7 +30,6 @@ export class HomeComponent implements OnInit {
   refereshTabContent(url: string) {
     const isCounselor = (localStorage.getItem('role') === 'Counselor') ? 'true' : 'false';
     const fullUrl = ServerConfiguration._url + url + localStorage.getItem('id') + '/' + isCounselor;
-    alert(fullUrl);
     this.sessions = this.sessionService.getSessionsByUrl(this.http, fullUrl);
   }
 }
