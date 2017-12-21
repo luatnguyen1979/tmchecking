@@ -99,7 +99,7 @@ export class SessionComponent implements OnInit {
           });
         break;
       case 'book':
-        this.sessions = this.sessionService.book(this.http, id, userId, urlReload);
+        // this.sessions = this.sessionService.book(this.http, id, userId, urlReload);
         // this.sessions = this.sessionService.acknowledge(this.http, id, urlReload);
         this.http.put(ServerConfiguration._url + '/sessions/book/' + id + '/' + userId, {}).subscribe(
           (res) => {
