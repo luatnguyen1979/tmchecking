@@ -20,7 +20,7 @@ import {LoginService} from '../services/login.service';
           <th *ngIf="bCounselor">Student</th>
           <th *ngIf="!bCounselor">Counselor</th>
           <th>Status</th>
-          <th>Notified</th>
+          <!--<th>Notified</th>-->
           <th>Actions</th>
         </tr>
         </thead>
@@ -32,7 +32,7 @@ import {LoginService} from '../services/login.service';
           <td *ngIf="bCounselor">{{session.userId | name: users}}</td>
           <td *ngIf="!bCounselor">{{session.counselorId | name: users}}</td>
           <td>{{session.status}}</td>
-          <td>{{session.isNotified}}</td>
+          <!--<td>{{session.isNotified}}</td>-->
           <td>
             <div class="row">
               <a href="#" *ngIf="bCounselor  && session.status=='Booking'" title="Acknowledge"
