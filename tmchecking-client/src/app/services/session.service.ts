@@ -51,4 +51,34 @@ export class SessionService {
       console.log('Create new session successfully!');
     });
   }
+
+  public acknowledge(http: HttpClient, sessionId: string) {
+    http.put(ServerConfiguration._url + '/sessions/acknowledge/' + sessionId, {}).subscribe(
+      (res) => console.log('Acknowledge successfully !!!')
+    );
+  }
+
+  public book(http: HttpClient, sessionId: string, userId: string) {
+    http.put(ServerConfiguration._url + '/sessions/book/' + sessionId + '/' + userId, {}).subscribe(
+      (res) => console.log('Book successfully !!!')
+    );
+  }
+
+  public reject(http: HttpClient, sessionId: string) {
+    http.put(ServerConfiguration._url + '/sessions/reject/' + sessionId, {'id': sessionId}).subscribe(
+      (res) => console.log('Reject successfully !!!')
+    );
+  }
+
+  public cancel(http: HttpClient, sessionId: string) {
+    http.put(ServerConfiguration._url + '/sessions/cancel/' + sessionId, {'id': sessionId}).subscribe(
+      (res) => console.log('Cancel successfully !!!')
+    );
+  }
+
+  public complete(http: HttpClient, sessionId: string) {
+    http.put(ServerConfiguration._url + '/sessions/cancel/' + sessionId, {'id': sessionId}).subscribe(
+      (res) => console.log('Complete successfully !!!')
+    );
+  }
 }
