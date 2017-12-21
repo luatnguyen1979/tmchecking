@@ -34,27 +34,32 @@ import {HttpClient} from '@angular/common/http';
             <td>
               <div class="row">
                 <a href="#" *ngIf="bisCounselor"
-                   title="Acknowledge" class="btn btn-primary a-btn-slide-text" (click)="handle('acknowledge')">
+                   title="Acknowledge" class="btn btn-primary a-btn-slide-text"
+                   (click)="handle('acknowledge', session._id, session.userId)">
                   <span class="glyphicon glyphicon glyphicon-ok"></span>
                   <span><strong></strong></span>
                 </a>
                 <a href="#" *ngIf="!bisCounselor"
-                   title="Book Session" class="btn btn-primary a-btn-slide-text" (click)="handle('book')">
+                   title="Book Session" class="btn btn-primary a-btn-slide-text"
+                   (click)="handle('book', session._id, session.userId)">
                   <span  class="glyphicon glyphicon glyphicon-ok" aria-hidden="true"></span>
                   <span><strong></strong></span>
                 </a>
                 <a href="#" *ngIf="bisCounselor"
-                   title="Reject Session" class="btn btn-primary a-btn-slide-text" (click)="handle('reject')">
+                   title="Reject Session" class="btn btn-primary a-btn-slide-text"
+                   (click)="handle('reject', session._id, session.userId)">
                   <span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
                   <span><strong></strong></span>
                 </a>
                 <a href="#" *ngIf="!bisCounselor"
-                   title="Cancel Session" class="btn btn-primary a-btn-slide-text" (click)="handle('cancel')">
+                   title="Cancel Session" class="btn btn-primary a-btn-slide-text"
+                   (click)="handle('cancel', session._id, session.userId)">
                   <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                   <span><strong></strong></span>
                 </a>
                 <a href="#" *ngIf="bisCounselor"
-                   title="Complete Session" class="btn btn-primary a-btn-slide-text" (click)="handle('complete')">
+                   title="Complete Session" class="btn btn-primary a-btn-slide-text"
+                   (click)="handle('complete', session._id, session.userId)">
                   <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
                   <span><strong></strong></span>
                 </a>
@@ -76,23 +81,31 @@ export class SessionComponent implements OnInit {
     this.bisCounselor = isCounselor === 'false';
     const fullUrl = ServerConfiguration._url + this.url + localStorage.getItem('id') + '/' + isCounselor;
     this.sessions = this.sessionService.getSessionsByUrl(this.http, fullUrl);
+    // console.log(this.sessions);
   }
-
-  handle (action: string) {
+  handle (action: string, id: string, userId: string) {
     switch (action) {
       case 'acknowledge':
+        this.sessionService.acknowledge(this.http, id);
         break;
       case 'book':
+        this.sessionService.book(this.http, id, userId);
         break;
       case 'reject':
+        this.sessionService.reject(this.http, id);
         break;
       case 'cancel':
+        this.sessionService.cancel(this.http, id);
         break;
       case 'complete':
+        this.sessionService.complete(this.http, id);
         break;
       default:
         break;
     }
+    const isCounselor = (localStorage.getItem('role') === 'Counselor') ? 'true' : 'false';
+    const fullUrl = ServerConfiguration._url + this.url + localStorage.getItem('id') + '/' + isCounselor;
+    this.sessions = this.sessionService.getSessionsByUrl(this.http, fullUrl);
   }
 
 
